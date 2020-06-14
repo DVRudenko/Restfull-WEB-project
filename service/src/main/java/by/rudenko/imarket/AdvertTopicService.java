@@ -1,21 +1,21 @@
 package by.rudenko.imarket;
 
-import by.rudenko.imarket.dto.UserDTO;
+import by.rudenko.imarket.dto.AdvertTopicDTO;
 import by.rudenko.imarket.exception.NoSuchIdException;
 
 import java.util.List;
 
 
-public interface UserService {
-    UserDTO findById(long id) throws NoSuchIdException;
+public interface AdvertTopicService {
+    AdvertTopicDTO findById(Long id) throws NoSuchIdException;
 
-    List<UserDTO> getAllUsersList(int pageNumber, int pageSize);
+    List<AdvertTopicDTO> getAllAdvertTopicsList(int pageNumber, int pageSize);
 
-    boolean addNewUser(UserDTO userDTO);
+    boolean addNewAdvertTopic(AdvertTopicDTO advertTopicDTO);
 
-    boolean deleteUser(UserDTO userDTO);
+    boolean deleteAdvertTopic(AdvertTopicDTO advertTopicDTO);
 
-    boolean update(UserDTO userDTO);
+    boolean update(AdvertTopicDTO advertTopicDTO);
 }
 
 

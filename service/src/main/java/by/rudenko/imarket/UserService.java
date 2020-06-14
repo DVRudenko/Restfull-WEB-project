@@ -1,24 +1,21 @@
 package by.rudenko.imarket;
 
-import by.rudenko.imarket.dto.OrderDTO;
-import by.rudenko.imarket.dto.OrderShortDTO;
+import by.rudenko.imarket.dto.UserDTO;
 import by.rudenko.imarket.exception.NoSuchIdException;
 
 import java.util.List;
 
 
-public interface OrderService {
-    OrderDTO findById(long id) throws NoSuchIdException;
+public interface UserService {
+    UserDTO findById(Long id) throws NoSuchIdException;
 
-    OrderShortDTO findShortById(long id) throws NoSuchIdException;
+    List<UserDTO> getAllUsersList(int pageNumber, int pageSize);
 
-    List<OrderDTO> getAllOrdersList(int pageNumber, int pageSize);
+    boolean addNewUser(UserDTO userDTO);
 
-    int getOrderCost(OrderDTO orderDTO);
+    boolean deleteUser(UserDTO userDTO);
 
-    boolean addNewOrder(OrderDTO orderDTO);
-
-    boolean deleteOrder(OrderDTO byId);
+    boolean update(UserDTO userDTO);
 }
 
 

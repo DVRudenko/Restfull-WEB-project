@@ -1,9 +1,9 @@
 package by.rudenko.imarket;
 
-import by.rudenko.imarket.model.User;
+import by.rudenko.imarket.model.AdvertTopic;
 
 
-public interface UserDao extends GenericDao <User, Long> {
+public interface AdvertTopicDao extends GenericDao <AdvertTopic, Long> {
 
 
 }

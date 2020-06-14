@@ -14,20 +14,20 @@ import java.time.LocalDate;
  */
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class CommentsDTO  {
+public class CommentDTO {
 
-    private long id;
+    private Long id;
     private Advert advert;
     private User user;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private LocalDate commentDate;
     private String commentText;
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

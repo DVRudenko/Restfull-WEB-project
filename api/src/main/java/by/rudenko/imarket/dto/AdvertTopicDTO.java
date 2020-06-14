@@ -1,43 +1,23 @@
-package by.rudenko.imarket.model;
+package by.rudenko.imarket.dto;
 
-import javax.persistence.*;
-
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 /**
- * класс описывает модель Раздела объявления  AdvertTopic
+ * класс описывает DTO Раздела объявления  AdvertTopic
  */
 
-@javax.persistence.Entity
-@Table(name = "advert_topics")
-public class AdvertTopic implements Entity {
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class AdvertTopicDTO {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-
-    @Column(name = "topic_name")
+    private Long id;
     private String topicName;
-
-    @Column(name = "topic_sub_name")
     private String topicSubName;
 
-
-    public AdvertTopic() {
-    }
-
-    public AdvertTopic(long id, String topicName, String topicSubName) {
-        this.id = id;
-        this.topicName = topicName;
-        this.topicSubName = topicSubName;
-    }
-
-    @Override
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    @Override
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -57,12 +37,4 @@ public class AdvertTopic implements Entity {
         this.topicSubName = topicSubName;
     }
 
-    @Override
-    public String toString() {
-        return "AdvertTopic{" +
-                "id=" + id +
-                ", topicName='" + topicName + '\'' +
-                ", topicSubName='" + topicSubName + '\'' +
-                '}';
-    }
 }

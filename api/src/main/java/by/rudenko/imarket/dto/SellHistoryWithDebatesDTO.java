@@ -1,44 +1,29 @@
-package by.rudenko.imarket.model;
-
-import by.rudenko.imarket.utils.Utils;
-
-import javax.persistence.*;
-import java.time.LocalDate;
-import java.util.List;
-
-
-/**
- * класс описывает модель Истории продаж  SellHistory
- */
-
-@javax.persistence.Entity
-@Table(name = "sell_histories")
-public class SellHistoryWithDebates extends SellHistory {
-
-    //TODO поверить маппинг (sell_histories)!!!
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "sell_histories")
-    private List<Debate> debates;
-
-
-    public SellHistoryWithDebates() {
-    }
-
-    public SellHistoryWithDebates(List<Debate> debates) {
-        this.debates = debates;
-    }
-
-    public List<Debate> getDebates() {
-        return debates;
-    }
-
-    public void setDebates(List<Debate> debates) {
-        this.debates = debates;
-    }
-
-    @Override
-    public String toString() {
-        return "SellHistoryWithDebates{" +
-                "debates=" + debates +
-                '}';
-    }
-}
+//package by.rudenko.imarket.dto;
+//
+//import by.rudenko.imarket.model.Debate;
+//import by.rudenko.imarket.model.SellHistory;
+//import com.fasterxml.jackson.annotation.JsonInclude;
+//import com.fasterxml.jackson.annotation.JsonManagedReference;
+//
+//import java.util.List;
+//
+//
+///**
+// * класс описывает DTO Истории продаж  SellHistory
+// */
+//
+//@JsonInclude(JsonInclude.Include.NON_NULL)
+//public class SellHistoryWithDebatesDTO extends SellHistory {
+//
+//    @JsonManagedReference
+//    private List<Debate> debates;
+//
+//    public List<Debate> getDebates() {
+//        return debates;
+//    }
+//
+//    public void setDebates(List<Debate> debates) {
+//        this.debates = debates;
+//    }
+//
+//}

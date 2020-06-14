@@ -1,44 +1,35 @@
-package by.rudenko.imarket.model;
+/*
+package by.rudenko.imarket.dto;
 
-import javax.persistence.CascadeType;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import by.rudenko.imarket.model.Comment;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import java.util.List;
 
 
+*/
 /**
- * класс описывает модель Объявления с комментариями  AdvertWithComments
- */
-
-@javax.persistence.Entity
-@Table(name = "adverts")
-public class AdvertWithComments extends Advert {
+ * класс описывает DTO Объявления с комментариями  AdvertWithComments
+ *//*
 
 
-    //TODO поверить маппинг (adverts)!!!
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "adverts")
-    private List<Comments> comments;
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class AdvertWithCommentsDTO extends AdvertDTO {
 
-    public AdvertWithComments() {
-    }
+   @JsonManagedReference
+   private List<Comment> comments;
 
-    public AdvertWithComments(List<Comments> comments) {
-        this.comments = comments;
-    }
 
-    public List<Comments> getComments() {
+
+    public List<Comment> getComments() {
         return comments;
     }
 
-    public void setComments(List<Comments> comments) {
+    public void setComments(List<Comment> comments) {
         this.comments = comments;
     }
 
-    @Override
-    public String toString() {
-        return "AdvertWithComments{" +
-                "comments=" + comments +
-                '}';
-    }
+
 }
+*/

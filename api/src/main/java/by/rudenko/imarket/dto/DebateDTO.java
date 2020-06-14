@@ -1,54 +1,33 @@
-package by.rudenko.imarket.model;
+package by.rudenko.imarket.dto;
+
+import by.rudenko.imarket.model.SellHistory;
+import by.rudenko.imarket.model.User;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 
 
 /**
- * класс описывает модель Дебаты по проданным товарам Debates
+ * класс описывает DTO Дебаты по проданным товарам Debates
  */
 
-@javax.persistence.Entity
-@Table(name = "debates")
-public class Debate implements Entity {
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class DebateDTO {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "sell_history_id")
+    private Long id;
     private SellHistory sellHistory;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
     private User user;
-
-    @Column(name = "debate_date")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private LocalDate debateDate;
-
-    @Column(name = "debate_text")
     private String debateText;
 
-    public Debate() {
-    }
-
-    public Debate(long id, User user, SellHistory sellHistory, LocalDate debateDate, String debateText) {
-        this.id = id;
-        this.user = user;
-        this.sellHistory = sellHistory;
-        this.debateDate = debateDate;
-        this.debateText = debateText;
-
-    }
-
-    @Override
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    @Override
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -82,16 +61,5 @@ public class Debate implements Entity {
 
     public void setDebateText(String debateText) {
         this.debateText = debateText;
-    }
-
-    @Override
-    public String toString() {
-        return "Debate{" +
-                "id=" + id +
-                ", sellHistory=" + sellHistory +
-                ", user=" + user +
-                ", debateDate=" + debateDate +
-                ", debateText='" + debateText + '\'' +
-                '}';
     }
 }

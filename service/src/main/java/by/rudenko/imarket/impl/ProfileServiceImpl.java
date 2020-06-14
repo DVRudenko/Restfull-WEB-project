@@ -1,10 +1,10 @@
 package by.rudenko.imarket.impl;
 
-import by.rudenko.imarket.UserDao;
-import by.rudenko.imarket.UserService;
-import by.rudenko.imarket.dto.UserDTO;
+import by.rudenko.imarket.ProfileDao;
+import by.rudenko.imarket.ProfileService;
+import by.rudenko.imarket.dto.ProfileDTO;
 import by.rudenko.imarket.exception.NoSuchIdException;
-import by.rudenko.imarket.model.User;
+import by.rudenko.imarket.model.Profile;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,54 +15,62 @@ import java.util.stream.Collectors;
 
 @Service
 @Transactional
-public class UserServiceImpl implements UserService {
+public class ProfileServiceImpl implements ProfileService {
 
     @Autowired
-    private  final UserDao userDao;
+    private  final ProfileDao profileDao;
     private  final ModelMapper modelMapper;
 
-    public UserServiceImpl(UserDao userDao, ModelMapper modelMapper) {
-        this.userDao = userDao;
+    public ProfileServiceImpl(ProfileDao profileDao, ModelMapper modelMapper) {
+        this.profileDao = profileDao;
         this.modelMapper = modelMapper;
     }
 
 
     @Override
-    public boolean addNewUser(UserDTO userDTO) {
+    public boolean addNewProfile(ProfileDTO profileDTO) {
         // маппинг из ДТО в  Entity
-        final User user = modelMapper.map(userDTO, User.class);
-        userDao.save(user);
+        final Profile profile = modelMapper.map(profileDTO, Profile.class);
+        profileDao.save(profile);
         return true;
     }
 
 
     @Override
-    public UserDTO findById(long id) throws NoSuchIdException {
-        final User userEntity = userDao.findByID(id);
+    public ProfileDTO findById(Long id) throws NoSuchIdException {
+        final Profile profileEntity = profileDao.getFullProfileByID(id);
 
-        return modelMapper.map (userEntity, UserDTO.class);
+        return modelMapper.map (profileEntity, ProfileDTO.class);
     }
 
     @Override
-    public List<UserDTO> getAllUsersList(int pageNumber, int pageSize) {
+    public List<ProfileDTO> getAllProfilesList(int pageNumber, int pageSize) {
 
-        return userDao.getAll(pageNumber, pageSize).stream()
-                .map(x -> modelMapper.map(x, UserDTO.class))
+        return profileDao.getAll(pageNumber, pageSize).stream()
+                .map(x -> modelMapper.map(x, ProfileDTO.class))
                 .collect(Collectors.toList());
     }
 
     @Override
-    public boolean deleteUser(UserDTO userDTO) {
+    public List<ProfileDTO> getFullProfiles(int pageNumber, int pageSize) {
+        return profileDao.getFullProfiles(pageNumber, pageSize).stream()
+                .map(x -> modelMapper.map(x, ProfileDTO.class))
+                .collect(Collectors.toList());
+    }
 
-        final User user = modelMapper.map(userDTO, User.class);
-        userDao.delete(user);
+
+    @Override
+    public boolean deleteProfile(ProfileDTO profileDTO) {
+
+        final Profile profile = modelMapper.map(profileDTO, Profile.class);
+        profileDao.delete(profile);
         return true;
     }
 
     @Override
-    public boolean update(UserDTO userDTO) {
-        final User user = modelMapper.map(userDTO, User.class);
-        userDao.update(user);
+    public boolean update(ProfileDTO profileDTO) {
+        final Profile profile = modelMapper.map(profileDTO, Profile.class);
+        profileDao.update(profile);
         return true;
     }
 }

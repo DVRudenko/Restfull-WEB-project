@@ -1,21 +1,24 @@
 package by.rudenko.imarket;
 
-import by.rudenko.imarket.dto.UserDTO;
+import by.rudenko.imarket.dto.CommentDTO;
 import by.rudenko.imarket.exception.NoSuchIdException;
 
 import java.util.List;
 
 
-public interface UserService {
-    UserDTO findById(long id) throws NoSuchIdException;
+public interface CommentService {
+    //вывести полный список объявлений с вложениями
+    List<CommentDTO> getFullCommentsList(int pageNumber, int pageSize);
 
-    List<UserDTO> getAllUsersList(int pageNumber, int pageSize);
+    CommentDTO findById(Long id) throws NoSuchIdException;
 
-    boolean addNewUser(UserDTO userDTO);
+    List<CommentDTO> getAllCommentsList(int pageNumber, int pageSize);
 
-    boolean deleteUser(UserDTO userDTO);
+    boolean addNewComment(CommentDTO commentDTO);
 
-    boolean update(UserDTO userDTO);
+    boolean deleteComment(CommentDTO commentDTO);
+
+    boolean update(CommentDTO commentDTO);
 }
 
 

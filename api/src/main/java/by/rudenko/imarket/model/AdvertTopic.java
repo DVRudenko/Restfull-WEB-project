@@ -1,72 +1,68 @@
-
 package by.rudenko.imarket.model;
 
-import by.rudenko.imarket.utils.Utils;
-
 import javax.persistence.*;
+import java.util.List;
 
 
 /**
- * класс описывает Ранг Объявления  AdvertRank и его методы
+ * класс описывает модель Раздела объявления  AdvertTopic
  */
 
 @javax.persistence.Entity
-@Table(name = "advert_ranks")
-public class AdvertRank implements Entity {
+@Table(name = "advert_topics")
+public class AdvertTopic implements Entity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
-    @Column(name = "rank_price")
-    private int rankPrice;
+    @Column(name = "topic_name")
+    private String topicName;
 
-    @Column(name = "rank_name")
-    @Enumerated(EnumType.STRING)
-    private Utils.RankName rankName;
+    @Column(name = "topic_sub_name")
+    private String topicSubName;
 
-
-    public AdvertRank() {
+    public AdvertTopic() {
     }
 
-    public AdvertRank(long id, int rankPrice, Utils.RankName rankName) {
+    public AdvertTopic(Long id, String topicName, String topicSubName) {
         this.id = id;
-        this.rankPrice = rankPrice;
-        this.rankName = rankName;
+        this.topicName = topicName;
+        this.topicSubName = topicSubName;
     }
 
     @Override
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
     @Override
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public int getRankPrice() {
-        return rankPrice;
+    public String getTopicName() {
+        return topicName;
     }
 
-    public void setRankPrice(int rankPrice) {
-        this.rankPrice = rankPrice;
+    public void setTopicName(String topicName) {
+        this.topicName = topicName;
     }
 
-    public Utils.RankName getRankName() {
-        return rankName;
+    public String getTopicSubName() {
+        return topicSubName;
     }
 
-    public void setRankName(Utils.RankName rankName) {
-        this.rankName = rankName;
+    public void setTopicSubName(String topicSubName) {
+        this.topicSubName = topicSubName;
     }
 
     @Override
     public String toString() {
-        return "AdvertRank{" +
+        return "AdvertTopic{" +
                 "id=" + id +
-                ", rankPrice=" + rankPrice +
-                ", rankName='" + rankName + '\'' +
+                ", topicName='" + topicName + '\'' +
+                ", topicSubName='" + topicSubName + '\'' +
                 '}';
     }
 }

@@ -1,10 +1,10 @@
 package by.rudenko.imarket.impl;
 
-import by.rudenko.imarket.UserDao;
-import by.rudenko.imarket.UserService;
-import by.rudenko.imarket.dto.UserDTO;
+import by.rudenko.imarket.AdvertTopicDao;
+import by.rudenko.imarket.AdvertTopicService;
+import by.rudenko.imarket.dto.AdvertTopicDTO;
 import by.rudenko.imarket.exception.NoSuchIdException;
-import by.rudenko.imarket.model.User;
+import by.rudenko.imarket.model.AdvertTopic;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,54 +15,54 @@ import java.util.stream.Collectors;
 
 @Service
 @Transactional
-public class UserServiceImpl implements UserService {
+public class AdvertTopicServiceImpl implements AdvertTopicService {
 
     @Autowired
-    private  final UserDao userDao;
+    private  final AdvertTopicDao advertTopicDao;
     private  final ModelMapper modelMapper;
 
-    public UserServiceImpl(UserDao userDao, ModelMapper modelMapper) {
-        this.userDao = userDao;
+    public AdvertTopicServiceImpl(AdvertTopicDao advertTopicDao, ModelMapper modelMapper) {
+        this.advertTopicDao = advertTopicDao;
         this.modelMapper = modelMapper;
     }
 
 
     @Override
-    public boolean addNewUser(UserDTO userDTO) {
+    public boolean addNewAdvertTopic(AdvertTopicDTO advertTopicDTO) {
         // маппинг из ДТО в  Entity
-        final User user = modelMapper.map(userDTO, User.class);
-        userDao.save(user);
+        final AdvertTopic advertTopic = modelMapper.map(advertTopicDTO, AdvertTopic.class);
+        advertTopicDao.save(advertTopic);
         return true;
     }
 
 
     @Override
-    public UserDTO findById(long id) throws NoSuchIdException {
-        final User userEntity = userDao.findByID(id);
+    public AdvertTopicDTO findById(Long id) throws NoSuchIdException {
+        final AdvertTopic advertTopicEntity = advertTopicDao.findByID(id);
 
-        return modelMapper.map (userEntity, UserDTO.class);
+        return modelMapper.map (advertTopicEntity, AdvertTopicDTO.class);
     }
 
     @Override
-    public List<UserDTO> getAllUsersList(int pageNumber, int pageSize) {
+    public List<AdvertTopicDTO> getAllAdvertTopicsList(int pageNumber, int pageSize) {
 
-        return userDao.getAll(pageNumber, pageSize).stream()
-                .map(x -> modelMapper.map(x, UserDTO.class))
+        return advertTopicDao.getAll(pageNumber, pageSize).stream()
+                .map(x -> modelMapper.map(x, AdvertTopicDTO.class))
                 .collect(Collectors.toList());
     }
 
     @Override
-    public boolean deleteUser(UserDTO userDTO) {
+    public boolean deleteAdvertTopic(AdvertTopicDTO advertTopicDTO) {
 
-        final User user = modelMapper.map(userDTO, User.class);
-        userDao.delete(user);
+        final AdvertTopic advertTopic = modelMapper.map(advertTopicDTO, AdvertTopic.class);
+        advertTopicDao.delete(advertTopic);
         return true;
     }
 
     @Override
-    public boolean update(UserDTO userDTO) {
-        final User user = modelMapper.map(userDTO, User.class);
-        userDao.update(user);
+    public boolean update(AdvertTopicDTO advertTopicDTO) {
+        final AdvertTopic advertTopic = modelMapper.map(advertTopicDTO, AdvertTopic.class);
+        advertTopicDao.update(advertTopic);
         return true;
     }
 }

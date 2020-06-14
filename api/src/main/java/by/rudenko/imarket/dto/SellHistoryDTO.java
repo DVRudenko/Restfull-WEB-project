@@ -1,66 +1,35 @@
-package by.rudenko.imarket.model;
+package by.rudenko.imarket.dto;
 
-import by.rudenko.imarket.utils.Utils;
+import by.rudenko.imarket.model.Advert;
+import by.rudenko.imarket.model.User;
+import by.rudenko.imarket.utils.Enumes;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
-import javax.persistence.*;
 import java.time.LocalDate;
 
 
 /**
- * класс описывает модель Истории продаж  SellHistory
+ * класс описывает DTO Истории продаж  SellHistory
  */
 
-@javax.persistence.Entity
-@Table(name = "sell_histories")
-public class SellHistory implements Entity {
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class SellHistoryDTO implements by.rudenko.imarket.model.Entity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "buyer_id")
+    private Long id;
     private User buyer;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "seller_id")
     private User seller;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "adv_id")
     private Advert advert;
-
-    @Column(name = "sell_status")
-    @Enumerated(EnumType.STRING)
-    private Utils.SellStatus sellStatus;
-
-    @Column(name = "sell_date")
+    private Enumes.SellStatus sellStatus;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private LocalDate sellDate;
-
-    @Column(name = "sell_price")
     private int sellPrice;
 
-
-    public SellHistory() {
-    }
-
-    public SellHistory(long id, User buyer, User seller, Advert advert, Utils.SellStatus sellStatus, LocalDate sellDate, int sellPrice) {
-        this.id = id;
-        this.buyer = buyer;
-        this.seller = seller;
-        this.advert = advert;
-        this.sellStatus = sellStatus;
-        this.sellDate = sellDate;
-        this.sellPrice = sellPrice;
-    }
-
-    @Override
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    @Override
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -88,11 +57,11 @@ public class SellHistory implements Entity {
         this.advert = advert;
     }
 
-    public Utils.SellStatus getSellStatus() {
+    public Enumes.SellStatus getSellStatus() {
         return sellStatus;
     }
 
-    public void setSellStatus(Utils.SellStatus sellStatus) {
+    public void setSellStatus(Enumes.SellStatus sellStatus) {
         this.sellStatus = sellStatus;
     }
 
@@ -112,16 +81,4 @@ public class SellHistory implements Entity {
         this.sellPrice = sellPrice;
     }
 
-    @Override
-    public String toString() {
-        return "SellHistory{" +
-                "id=" + id +
-                ", buyer=" + buyer +
-                ", seller=" + seller +
-                ", advert=" + advert +
-                ", sellStatus=" + sellStatus +
-                ", sellDate=" + sellDate +
-                ", sellPrice=" + sellPrice +
-                '}';
-    }
 }

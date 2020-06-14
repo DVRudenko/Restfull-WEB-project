@@ -1,10 +1,10 @@
 package by.rudenko.imarket.impl;
 
-import by.rudenko.imarket.UserDao;
-import by.rudenko.imarket.UserService;
-import by.rudenko.imarket.dto.UserDTO;
+import by.rudenko.imarket.DebateDao;
+import by.rudenko.imarket.DebateService;
+import by.rudenko.imarket.dto.DebateDTO;
 import by.rudenko.imarket.exception.NoSuchIdException;
-import by.rudenko.imarket.model.User;
+import by.rudenko.imarket.model.Debate;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,54 +15,54 @@ import java.util.stream.Collectors;
 
 @Service
 @Transactional
-public class UserServiceImpl implements UserService {
+public class DebateServiceImpl implements DebateService {
 
     @Autowired
-    private  final UserDao userDao;
+    private  final DebateDao debateDao;
     private  final ModelMapper modelMapper;
 
-    public UserServiceImpl(UserDao userDao, ModelMapper modelMapper) {
-        this.userDao = userDao;
+    public DebateServiceImpl(DebateDao debateDao, ModelMapper modelMapper) {
+        this.debateDao = debateDao;
         this.modelMapper = modelMapper;
     }
 
 
     @Override
-    public boolean addNewUser(UserDTO userDTO) {
+    public boolean addNewDebate(DebateDTO debateDTO) {
         // маппинг из ДТО в  Entity
-        final User user = modelMapper.map(userDTO, User.class);
-        userDao.save(user);
+        final Debate debate = modelMapper.map(debateDTO, Debate.class);
+        debateDao.save(debate);
         return true;
     }
 
 
     @Override
-    public UserDTO findById(long id) throws NoSuchIdException {
-        final User userEntity = userDao.findByID(id);
+    public DebateDTO findById(Long id) throws NoSuchIdException {
+        final Debate debateEntity = debateDao.findByID(id);
 
-        return modelMapper.map (userEntity, UserDTO.class);
+        return modelMapper.map (debateEntity, DebateDTO.class);
     }
 
     @Override
-    public List<UserDTO> getAllUsersList(int pageNumber, int pageSize) {
+    public List<DebateDTO> getAllDebatesList(int pageNumber, int pageSize) {
 
-        return userDao.getAll(pageNumber, pageSize).stream()
-                .map(x -> modelMapper.map(x, UserDTO.class))
+        return debateDao.getAll(pageNumber, pageSize).stream()
+                .map(x -> modelMapper.map(x, DebateDTO.class))
                 .collect(Collectors.toList());
     }
 
     @Override
-    public boolean deleteUser(UserDTO userDTO) {
+    public boolean deleteDebate(DebateDTO debateDTO) {
 
-        final User user = modelMapper.map(userDTO, User.class);
-        userDao.delete(user);
+        final Debate debate = modelMapper.map(debateDTO, Debate.class);
+        debateDao.delete(debate);
         return true;
     }
 
     @Override
-    public boolean update(UserDTO userDTO) {
-        final User user = modelMapper.map(userDTO, User.class);
-        userDao.update(user);
+    public boolean update(DebateDTO debateDTO) {
+        final Debate debate = modelMapper.map(debateDTO, Debate.class);
+        debateDao.update(debate);
         return true;
     }
 }

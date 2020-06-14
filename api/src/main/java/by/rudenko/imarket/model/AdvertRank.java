@@ -1,87 +1,72 @@
-
 package by.rudenko.imarket.model;
 
-import by.rudenko.imarket.utils.Utils;
+import by.rudenko.imarket.utils.Enumes;
 
 import javax.persistence.*;
-import java.time.LocalDate;
-import java.util.Objects;
+import java.util.List;
 
 
 /**
- * класс описывает Скидочные купоны  Coupons и его методы
+ * класс описывает модель Ранга объявления  AdvertRank
  */
 
 @javax.persistence.Entity
-@Table(name = "coupons")
-public class Coupon implements Entity {
+@Table(name = "advert_ranks")
+public class AdvertRank implements Entity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY )
-    @JoinColumn(name = "user_id")
-    private User user;
+    @Column(name = "rank_price")
+    private int rankPrice;
 
-    @Column(name = "discount")
-    private int discount;
+    @Column(name = "rank_name")
+    @Enumerated(EnumType.STRING)
+    private Enumes.RankName rankName;
 
-    @Column(name = "coupon_name")
-    private String couponName;
-
-
-    public Coupon() {
+    public AdvertRank() {
     }
 
-    public Coupon(long id, User user, int discount, String couponName) {
+    public AdvertRank(Long id, int rankPrice, Enumes.RankName rankName) {
         this.id = id;
-        this.user = user;
-        this.discount = discount;
-        this.couponName = couponName;
+        this.rankPrice = rankPrice;
+        this.rankName = rankName;
     }
 
     @Override
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
     @Override
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public User getUser() {
-        return user;
+    public int getRankPrice() {
+        return rankPrice;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setRankPrice(int rankPrice) {
+        this.rankPrice = rankPrice;
     }
 
-    public int getDiscount() {
-        return discount;
+    public Enumes.RankName getRankName() {
+        return rankName;
     }
 
-    public void setDiscount(int discount) {
-        this.discount = discount;
+    public void setRankName(Enumes.RankName rankName) {
+        this.rankName = rankName;
     }
 
-    public String getCouponName() {
-        return couponName;
-    }
-
-    public void setCouponName(String couponName) {
-        this.couponName = couponName;
-    }
 
     @Override
     public String toString() {
-        return "Coupon{" +
+        return "AdvertRank{" +
                 "id=" + id +
-                ", user=" + user +
-                ", discount=" + discount +
-                ", couponName='" + couponName + '\'' +
+                ", rankPrice=" + rankPrice +
+                ", rankName='" + rankName + '\'' +
                 '}';
     }
 }

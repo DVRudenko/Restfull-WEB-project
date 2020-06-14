@@ -1,75 +1,49 @@
-package by.rudenko.imarket.model;
+package by.rudenko.imarket.dto;
 
-import by.rudenko.imarket.utils.Utils;
+import by.rudenko.imarket.model.AdvertRank;
+import by.rudenko.imarket.model.AdvertTopic;
+import by.rudenko.imarket.model.User;
+import by.rudenko.imarket.utils.Enumes;
+import com.fasterxml.jackson.annotation.*;
 
-import javax.persistence.*;
 import java.time.LocalDate;
 
 
 /**
- * класс описывает модель Объявления  Advert
+ * класс описывает DTO Объявления  Advert
  */
 
-@javax.persistence.Entity
-@Table(name = "adverts")
-public class AdvertDTO implements Entity {
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class AdvertDTO {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
+    private Long id;
+//    @JsonIgnore
+//    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    //@JsonManagedReference
     private User user;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "adv_topic_id")
+//    @JsonIgnore
+//    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    //@JsonManagedReference
     private AdvertTopic advertTopic;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "adv_rank_id")
+//    @JsonIgnore
+//    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    //@JsonManagedReference
     private AdvertRank advertRank;
-
-    @Column(name = "adv_type")
-    @Enumerated(EnumType.STRING)
-    private Utils.AdverType adverType;
-
-    @Column(name = "adv_text")
+    private Enumes.AdverType adverType;
     private String advText;
-
-    @Column(name = "adv_price")
     private int advPrice;
 
-    @Column(name = "adv_date")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    //@JsonDeserialize(using = LocalDateDeserializer.class)
+    //@JsonSerialize(using = LocalDateSerializer.class)
     private LocalDate advDate;
+    private Enumes.AdverStatus adverStatus;
 
-    @Column(name = "adv_status")
-    @Enumerated(EnumType.STRING)
-    private Utils.AdverStatus adverStatus;
-
-
-    public AdvertDTO() {
-    }
-
-    public AdvertDTO(User user, AdvertTopic advertTopic, AdvertRank advertRank, Utils.AdverType adverType,
-                     String advText, int advPrice, LocalDate advDate, Utils.AdverStatus adverStatus) {
-        this.user = user;
-        this.advertTopic = advertTopic;
-        this.advertRank = advertRank;
-        this.adverType = adverType;
-        this.advText = advText;
-        this.advPrice = advPrice;
-        this.advDate = advDate;
-        this.adverStatus = adverStatus;
-    }
-
-    @Override
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    @Override
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -97,11 +71,11 @@ public class AdvertDTO implements Entity {
         this.advertRank = advertRank;
     }
 
-    public Utils.AdverType getAdverType() {
+    public Enumes.AdverType getAdverType() {
         return adverType;
     }
 
-    public void setAdverType(Utils.AdverType adverType) {
+    public void setAdverType(Enumes.AdverType adverType) {
         this.adverType = adverType;
     }
 
@@ -129,26 +103,13 @@ public class AdvertDTO implements Entity {
         this.advDate = advDate;
     }
 
-    public Utils.AdverStatus getAdverStatus() {
+    public Enumes.AdverStatus getAdverStatus() {
         return adverStatus;
     }
 
-    public void setAdverStatus(Utils.AdverStatus adverStatus) {
+    public void setAdverStatus(Enumes.AdverStatus adverStatus) {
         this.adverStatus = adverStatus;
     }
 
-    @Override
-    public String toString() {
-        return "Adverts{" +
-                "id=" + id +
-                ", user=" + user +
-                ", advertTopic=" + advertTopic +
-                ", advertRank=" + advertRank +
-                ", adverType=" + adverType +
-                ", advText='" + advText + '\'' +
-                ", advPrice=" + advPrice +
-                ", advDate=" + advDate +
-                ", adverStatus=" + adverStatus +
-                '}';
-    }
+
 }

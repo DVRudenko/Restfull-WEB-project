@@ -1,10 +1,11 @@
 package by.rudenko.imarket.impl;
 
-import by.rudenko.imarket.UserDao;
-import by.rudenko.imarket.UserService;
-import by.rudenko.imarket.dto.UserDTO;
+import by.rudenko.imarket.AdvertDao;
+import by.rudenko.imarket.AdvertService;
+import by.rudenko.imarket.dto.AdvertDTO;
+import by.rudenko.imarket.dto.AdvertShortDTO;
 import by.rudenko.imarket.exception.NoSuchIdException;
-import by.rudenko.imarket.model.User;
+import by.rudenko.imarket.model.Advert;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,54 +16,71 @@ import java.util.stream.Collectors;
 
 @Service
 @Transactional
-public class UserServiceImpl implements UserService {
+public class AdvertServiceImpl implements AdvertService {
 
     @Autowired
-    private  final UserDao userDao;
+    private  final AdvertDao advertDao;
     private  final ModelMapper modelMapper;
 
-    public UserServiceImpl(UserDao userDao, ModelMapper modelMapper) {
-        this.userDao = userDao;
+    public AdvertServiceImpl(AdvertDao advertDao, ModelMapper modelMapper) {
+        this.advertDao = advertDao;
         this.modelMapper = modelMapper;
     }
 
 
     @Override
-    public boolean addNewUser(UserDTO userDTO) {
+    public boolean addNewAdvert(AdvertDTO advertDTO) {
         // маппинг из ДТО в  Entity
-        final User user = modelMapper.map(userDTO, User.class);
-        userDao.save(user);
+        final Advert advert = modelMapper.map(advertDTO, Advert.class);
+        advertDao.save(advert);
         return true;
     }
 
 
     @Override
-    public UserDTO findById(long id) throws NoSuchIdException {
-        final User userEntity = userDao.findByID(id);
+    public AdvertDTO findById(Long id) throws NoSuchIdException {
+        final Advert advertEntity = advertDao.findByID(id);
 
-        return modelMapper.map (userEntity, UserDTO.class);
+        return modelMapper.map (advertEntity, AdvertDTO.class);
     }
 
+    //вывести сокращенный вариант объявлений
     @Override
-    public List<UserDTO> getAllUsersList(int pageNumber, int pageSize) {
+    public List<AdvertShortDTO> getAllAdvertsList(int pageNumber, int pageSize) {
 
-        return userDao.getAll(pageNumber, pageSize).stream()
-                .map(x -> modelMapper.map(x, UserDTO.class))
+        return advertDao.getAll(pageNumber, pageSize).stream()
+                .map(x -> modelMapper.map(x, AdvertShortDTO.class))
+                .collect(Collectors.toList());
+    }
+
+    //вывести полный список объявлений с вложениями
+    @Override
+    public List<AdvertDTO> getFullAdvertsList(int pageNumber, int pageSize) {
+
+        return advertDao.getFullAdverts(pageNumber, pageSize).stream()
+                .map(x -> modelMapper.map(x, AdvertDTO.class))
                 .collect(Collectors.toList());
     }
 
     @Override
-    public boolean deleteUser(UserDTO userDTO) {
+    public AdvertDTO getFullAdvertByID(Long id) throws NoSuchIdException {
+        final Advert advertEntity = advertDao.getFullAdvertByID(id);
 
-        final User user = modelMapper.map(userDTO, User.class);
-        userDao.delete(user);
+        return modelMapper.map(advertEntity, AdvertDTO.class);
+    }
+
+    @Override
+    public boolean deleteAdvert(AdvertDTO advertDTO) {
+
+        final Advert advert = modelMapper.map(advertDTO, Advert.class);
+        advertDao.delete(advert);
         return true;
     }
 
     @Override
-    public boolean update(UserDTO userDTO) {
-        final User user = modelMapper.map(userDTO, User.class);
-        userDao.update(user);
+    public boolean update(AdvertDTO advertDTO) {
+        final Advert advert = modelMapper.map(advertDTO, Advert.class);
+        advertDao.update(advert);
         return true;
     }
 }

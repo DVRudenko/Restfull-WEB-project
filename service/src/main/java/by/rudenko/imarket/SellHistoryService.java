@@ -1,21 +1,23 @@
 package by.rudenko.imarket;
 
-import by.rudenko.imarket.dto.UserDTO;
+import by.rudenko.imarket.dto.SellHistoryDTO;
 import by.rudenko.imarket.exception.NoSuchIdException;
 
 import java.util.List;
 
 
-public interface UserService {
-    UserDTO findById(long id) throws NoSuchIdException;
+public interface SellHistoryService {
+    //вывести полный список историй продаж с вложениями
+    List<SellHistoryDTO> getFullSellHistoriesList(int pageNumber, int pageSize);
 
-    List<UserDTO> getAllUsersList(int pageNumber, int pageSize);
+    SellHistoryDTO findById(Long id) throws NoSuchIdException;
 
-    boolean addNewUser(UserDTO userDTO);
 
-    boolean deleteUser(UserDTO userDTO);
+    boolean addNewSellHistory(SellHistoryDTO sellHistoryDTO);
 
-    boolean update(UserDTO userDTO);
+    boolean deleteSellHistory(SellHistoryDTO sellHistoryDTO);
+
+    boolean update(SellHistoryDTO sellHistoryDTO);
 }
 
 

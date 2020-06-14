@@ -1,21 +1,24 @@
 package by.rudenko.imarket;
 
-import by.rudenko.imarket.dto.UserDTO;
+import by.rudenko.imarket.dto.ProfileDTO;
 import by.rudenko.imarket.exception.NoSuchIdException;
+import by.rudenko.imarket.model.Profile;
 
 import java.util.List;
 
 
-public interface UserService {
-    UserDTO findById(long id) throws NoSuchIdException;
+public interface ProfileService {
+    ProfileDTO findById(Long id) throws NoSuchIdException;
 
-    List<UserDTO> getAllUsersList(int pageNumber, int pageSize);
+    List<ProfileDTO> getAllProfilesList(int pageNumber, int pageSize);
 
-    boolean addNewUser(UserDTO userDTO);
+    List<ProfileDTO> getFullProfiles(int pageNumber, int pageSize);
 
-    boolean deleteUser(UserDTO userDTO);
+    boolean addNewProfile(ProfileDTO profileDTO);
 
-    boolean update(UserDTO userDTO);
+    boolean deleteProfile(ProfileDTO profileDTO);
+
+    boolean update(ProfileDTO profileDTO);
 }
 
 

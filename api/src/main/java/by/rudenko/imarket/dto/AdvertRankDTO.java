@@ -1,46 +1,26 @@
-package by.rudenko.imarket.model;
+package by.rudenko.imarket.dto;
 
-import by.rudenko.imarket.utils.Utils;
+import by.rudenko.imarket.utils.Enumes;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
-import javax.persistence.*;
 
 
 /**
- * класс описывает модель Ранга объявления  AdvertRank
+ * класс описывает DTO Ранга объявления  AdvertRank
  */
 
-@javax.persistence.Entity
-@Table(name = "advert_ranks")
-public class AdvertRank implements Entity {
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class AdvertRankDTO  {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-
-    @Column(name = "rank_price")
+    private Long id;
     private int rankPrice;
+    private Enumes.RankName rankName;
 
-    @Column(name = "rank_name")
-    @Enumerated(EnumType.STRING)
-    private Utils.RankName rankName;
-
-
-    public AdvertRank() {
-    }
-
-    public AdvertRank(long id, int rankPrice, Utils.RankName rankName) {
-        this.id = id;
-        this.rankPrice = rankPrice;
-        this.rankName = rankName;
-    }
-
-    @Override
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    @Override
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -52,20 +32,12 @@ public class AdvertRank implements Entity {
         this.rankPrice = rankPrice;
     }
 
-    public Utils.RankName getRankName() {
+    public Enumes.RankName getRankName() {
         return rankName;
     }
 
-    public void setRankName(Utils.RankName rankName) {
+    public void setRankName(Enumes.RankName rankName) {
         this.rankName = rankName;
     }
 
-    @Override
-    public String toString() {
-        return "AdvertRank{" +
-                "id=" + id +
-                ", rankPrice=" + rankPrice +
-                ", rankName='" + rankName + '\'' +
-                '}';
-    }
 }

@@ -1,155 +1,127 @@
-
 package by.rudenko.imarket.model;
 
-import by.rudenko.imarket.utils.Utils;
+import by.rudenko.imarket.utils.Enumes;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 
 
 /**
- * класс описывает Раздел Объявления  AdvertTopic и его методы
+ * класс описывает модель Истории продаж  SellHistory
  */
 
 @javax.persistence.Entity
-@Table(name = "adverts")
-public class Advert implements Entity {
+@Table(name = "sell_histories")
+public class SellHistory implements Entity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY )
-    @JoinColumn(name = "user_id")
-    private User user;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "buyer_id")
+    private User buyer;
 
-    @ManyToOne(fetch = FetchType.LAZY )
-    @JoinColumn(name = "adv_topic_id")
-    private AdvertTopic advertTopic;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "seller_id")
+    private User seller;
 
-    @ManyToOne(fetch = FetchType.LAZY )
-    @JoinColumn(name = "adv_rank_id")
-    private AdvertRank  advertRank;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "adv_id")
+    private Advert advert;
 
-    @Column(name = "adv_type")
+    @Column(name = "sell_status")
     @Enumerated(EnumType.STRING)
-    private Utils.AdverType adverType;
+    private Enumes.SellStatus sellStatus;
 
-    @Column(name = "adv_text")
-    private String advText;
+    @Column(name = "sell_date")
+    private LocalDate sellDate;
 
-    @Column(name = "adv_price")
-    private int advPrice;
-
-    @Column(name = "adv_date")
-    private LocalDate advDate;
-
-    @Column(name = "adv_status")
-    @Enumerated(EnumType.STRING)
-    private Utils.AdverStatus adverStatus;
+    @Column(name = "sell_price")
+    private int sellPrice;
 
 
-    public Advert() {
+    public SellHistory() {
     }
 
-    public Advert(User user, AdvertTopic advertTopic, AdvertRank advertRank, Utils.AdverType adverType,
-                  String advText, int advPrice, LocalDate advDate, Utils.AdverStatus adverStatus) {
-        this.user = user;
-        this.advertTopic = advertTopic;
-        this.advertRank = advertRank;
-        this.adverType = adverType;
-        this.advText = advText;
-        this.advPrice = advPrice;
-        this.advDate = advDate;
-        this.adverStatus = adverStatus;
+    public SellHistory(Long id, User buyer, User seller, Advert advert, Enumes.SellStatus sellStatus, LocalDate sellDate, int sellPrice) {
+        this.id = id;
+        this.buyer = buyer;
+        this.seller = seller;
+        this.advert = advert;
+        this.sellStatus = sellStatus;
+        this.sellDate = sellDate;
+        this.sellPrice = sellPrice;
     }
 
     @Override
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
     @Override
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public User getUser() {
-        return user;
+    public User getBuyer() {
+        return buyer;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setBuyer(User buyer) {
+        this.buyer = buyer;
     }
 
-    public AdvertTopic getAdvertTopic() {
-        return advertTopic;
+    public User getSeller() {
+        return seller;
     }
 
-    public void setAdvertTopic(AdvertTopic advertTopic) {
-        this.advertTopic = advertTopic;
+    public void setSeller(User seller) {
+        this.seller = seller;
     }
 
-    public AdvertRank getAdvertRank() {
-        return advertRank;
+    public Advert getAdvert() {
+        return advert;
     }
 
-    public void setAdvertRank(AdvertRank advertRank) {
-        this.advertRank = advertRank;
+    public void setAdvert(Advert advert) {
+        this.advert = advert;
     }
 
-    public Utils.AdverType getAdverType() {
-        return adverType;
+    public Enumes.SellStatus getSellStatus() {
+        return sellStatus;
     }
 
-    public void setAdverType(Utils.AdverType adverType) {
-        this.adverType = adverType;
+    public void setSellStatus(Enumes.SellStatus sellStatus) {
+        this.sellStatus = sellStatus;
     }
 
-    public String getAdvText() {
-        return advText;
+    public LocalDate getSellDate() {
+        return sellDate;
     }
 
-    public void setAdvText(String advText) {
-        this.advText = advText;
+    public void setSellDate(LocalDate sellDate) {
+        this.sellDate = sellDate;
     }
 
-    public int getAdvPrice() {
-        return advPrice;
+    public int getSellPrice() {
+        return sellPrice;
     }
 
-    public void setAdvPrice(int advPrice) {
-        this.advPrice = advPrice;
-    }
-
-    public LocalDate getAdvDate() {
-        return advDate;
-    }
-
-    public void setAdvDate(LocalDate advDate) {
-        this.advDate = advDate;
-    }
-
-    public Utils.AdverStatus getAdverStatus() {
-        return adverStatus;
-    }
-
-    public void setAdverStatus(Utils.AdverStatus adverStatus) {
-        this.adverStatus = adverStatus;
+    public void setSellPrice(int sellPrice) {
+        this.sellPrice = sellPrice;
     }
 
     @Override
     public String toString() {
-        return "Adverts{" +
+        return "SellHistory{" +
                 "id=" + id +
-                ", user=" + user +
-                ", advertTopic=" + advertTopic +
-                ", advertRank=" + advertRank +
-                ", adverType=" + adverType +
-                ", advText='" + advText + '\'' +
-                ", advPrice=" + advPrice +
-                ", advDate=" + advDate +
-                ", adverStatus=" + adverStatus +
+                ", buyer=" + buyer +
+                ", seller=" + seller +
+                ", advert=" + advert +
+                ", sellStatus=" + sellStatus +
+                ", sellDate=" + sellDate +
+                ", sellPrice=" + sellPrice +
                 '}';
     }
 }

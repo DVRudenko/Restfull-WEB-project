@@ -10,11 +10,11 @@ import java.time.LocalDate;
 
 @javax.persistence.Entity
 @Table(name = "comments")
-public class Comments implements Entity {
+public class Comment implements Entity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "adv_id")
@@ -30,10 +30,10 @@ public class Comments implements Entity {
     @Column(name = "comment_text")
     private String commentText;
 
-    public Comments() {
+    public Comment() {
     }
 
-    public Comments(long id, User user, Advert advert, LocalDate commentDate, String commentText) {
+    public Comment(Long id, User user, Advert advert, LocalDate commentDate, String commentText) {
         this.id = id;
         this.user = user;
         this.advert = advert;
@@ -42,12 +42,12 @@ public class Comments implements Entity {
     }
 
     @Override
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
     @Override
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

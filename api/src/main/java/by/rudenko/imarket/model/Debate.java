@@ -1,46 +1,59 @@
-
 package by.rudenko.imarket.model;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.util.List;
 
 
 /**
- * класс описывает Комментарии к объявлениям Comments и его методы
+ * класс описывает модель Дебаты по проданным товарам Debates
  */
 
 @javax.persistence.Entity
-@Table(name = "comments")
-public class Comments implements Entity {
+@Table(name = "debates")
+public class Debate implements Entity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY )
-    @JoinColumn(name = "adv_id")
-    private Advert advert;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "sell_history_id")
+    private SellHistory sellHistory;
 
-    @ManyToOne(fetch = FetchType.LAZY )
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
 
+    @Column(name = "debate_date")
+    private LocalDate debateDate;
 
-    public Comments() {
+    @Column(name = "debate_text")
+    private String debateText;
+
+//    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL//, mappedBy = "adverts"
+//    )
+//    private List<Advert> advert;
+
+    public Debate() {
     }
 
-    public Comments(long id, User user, Advert advert) {
+    public Debate(Long id, User user, SellHistory sellHistory, LocalDate debateDate, String debateText) {
         this.id = id;
         this.user = user;
-        this.advert = advert;
+        this.sellHistory = sellHistory;
+        this.debateDate = debateDate;
+        this.debateText = debateText;
+
     }
 
     @Override
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
     @Override
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -52,31 +65,38 @@ public class Comments implements Entity {
         this.user = user;
     }
 
-    public Advert getAdvert() {
-        return advert;
+    public SellHistory getSellHistory() {
+        return sellHistory;
     }
 
-    public void setAdvert(Advert advert) {
-        this.advert = advert;
+    public void setSellHistory(SellHistory sellHistory) {
+        this.sellHistory = sellHistory;
+    }
+
+    public LocalDate getDebateDate() {
+        return debateDate;
+    }
+
+    public void setDebateDate(LocalDate debateDate) {
+        this.debateDate = debateDate;
+    }
+
+    public String getDebateText() {
+        return debateText;
+    }
+
+    public void setDebateText(String debateText) {
+        this.debateText = debateText;
     }
 
     @Override
     public String toString() {
-        return "Comments{" +
+        return "Debate{" +
                 "id=" + id +
-                ", adverts=" + advert +
+                ", sellHistory=" + sellHistory +
                 ", user=" + user +
+                ", debateDate=" + debateDate +
+                ", debateText='" + debateText + '\'' +
                 '}';
-    }
-
-    @ManyToOne(optional = false)
-    private AdvertWithComments advertWithComments;
-
-    public AdvertWithComments getAdvertWithComments() {
-        return advertWithComments;
-    }
-
-    public void setAdvertWithComments(AdvertWithComments advertWithComments) {
-        this.advertWithComments = advertWithComments;
     }
 }

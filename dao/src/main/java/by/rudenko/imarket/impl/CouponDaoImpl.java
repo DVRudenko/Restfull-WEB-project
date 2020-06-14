@@ -1,21 +1,19 @@
 package by.rudenko.imarket.impl;
 
-import by.rudenko.imarket.UserDao;
-import by.rudenko.imarket.model.User;
+import by.rudenko.imarket.CouponDao;
+import by.rudenko.imarket.model.Coupon;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class UserDaoImpl extends AbstractDao <User, Long> implements UserDao {
+public class CouponDaoImpl extends AbstractDao <Coupon, Long> implements CouponDao {
 
-    private static final Logger LOGGER = LogManager.getLogger("imarketUser");
+    private static final Logger LOGGER = LogManager.getLogger("imarketCoupon");
 
-    public UserDaoImpl() {
-        super(User.class);
+    public CouponDaoImpl() {
+        super(Coupon.class);
     }
-
-
 
 
 }

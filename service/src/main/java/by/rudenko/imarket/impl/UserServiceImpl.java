@@ -1,12 +1,10 @@
 package by.rudenko.imarket.impl;
 
-import by.rudenko.imarket.RoomDao;
-import by.rudenko.imarket.dto.RoomDTO;
+import by.rudenko.imarket.UserDao;
+import by.rudenko.imarket.UserService;
+import by.rudenko.imarket.dto.UserDTO;
 import by.rudenko.imarket.exception.NoSuchIdException;
-import by.rudenko.imarket.model.Room;
-
-import by.rudenko.imarket.RoomService;
-import by.rudenko.imarket.utils.Utils;
+import by.rudenko.imarket.model.User;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,86 +15,54 @@ import java.util.stream.Collectors;
 
 @Service
 @Transactional
-public class RoomServiceImpl implements RoomService {
+public class UserServiceImpl implements UserService {
 
     @Autowired
-    private  final RoomDao roomDao;
+    private  final UserDao userDao;
     private  final ModelMapper modelMapper;
 
-    public RoomServiceImpl(RoomDao roomDao, ModelMapper modelMapper) {
-        this.roomDao = roomDao;
+    public UserServiceImpl(UserDao userDao, ModelMapper modelMapper) {
+        this.userDao = userDao;
         this.modelMapper = modelMapper;
     }
 
 
     @Override
-    public boolean addNewRoom(RoomDTO roomDTO) {
+    public boolean addNewUser(UserDTO userDTO) {
         // маппинг из ДТО в  Entity
-        final Room room = modelMapper.map(roomDTO, Room.class);
-        roomDao.save(room);
+        final User user = modelMapper.map(userDTO, User.class);
+        userDao.save(user);
         return true;
     }
 
 
     @Override
-    public RoomDTO findById(long id) throws NoSuchIdException {
-        final Room roomEntity = roomDao.findByID(id);
+    public UserDTO findById(Long id) throws NoSuchIdException {
+        final User userEntity = userDao.findByID(id);
 
-        return modelMapper.map (roomEntity, RoomDTO.class);
-    }
-
-
-
-    @Override
-    public List<RoomDTO> getAllRooms(int pageNumber, int pageSize) {
-
-        return roomDao.getAll(pageNumber, pageSize).stream()
-                .map(x -> modelMapper.map(x, RoomDTO.class))
-                .collect(Collectors.toList());        
- 
+        return modelMapper.map (userEntity, UserDTO.class);
     }
 
     @Override
-    public List<RoomDTO> getAllRoomsByStatus(Utils.RoomStatus status) {
+    public List<UserDTO> getAllUsersList(int pageNumber, int pageSize) {
 
-        return roomDao.getAllRoomsByStatus(status).stream()
-                .map(x -> modelMapper.map(x, RoomDTO.class))
+        return userDao.getAll(pageNumber, pageSize).stream()
+                .map(x -> modelMapper.map(x, UserDTO.class))
                 .collect(Collectors.toList());
     }
 
-    public int getRoomsNumberByStatus(Utils.RoomStatus status) {
-
-        return roomDao.getRoomsNumberByStatus(status);
-    }
-
-
     @Override
-    public boolean deleteRoom(RoomDTO roomDTO) {
-        // маппинг из ДТО в Entity
-        final Room room = modelMapper.map(roomDTO, Room.class);
-        roomDao.delete(room);
+    public boolean deleteUser(UserDTO userDTO) {
+
+        final User user = modelMapper.map(userDTO, User.class);
+        userDao.delete(user);
         return true;
     }
 
     @Override
-    public List<RoomDTO> getFreeRoomsSortedByPrice() {
-        return roomDao.getFreeRoomsSortedByPrice().stream()
-                .map(x -> modelMapper.map(x, RoomDTO.class))
-                .collect(Collectors.toList());
+    public boolean update(UserDTO userDTO) {
+        final User user = modelMapper.map(userDTO, User.class);
+        userDao.update(user);
+        return true;
     }
-
-    @Override
-    public List<RoomDTO> getFreeRoomsSortedByBed() {
-        return roomDao.getFreeRoomsSortedByBed().stream()
-                .map(x -> modelMapper.map(x, RoomDTO.class))
-                .collect(Collectors.toList());
-    }
-
-    @Override
-    public List<RoomDTO> getFreeRoomsSortedByStars() {
-        return roomDao.getFreeRoomsSortedByStar().stream()
-                .map(x -> modelMapper.map(x, RoomDTO.class))
-                .collect(Collectors.toList());
-    }
-
 }

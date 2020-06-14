@@ -1,10 +1,12 @@
 package by.rudenko.imarket.impl;
 
-import by.rudenko.imarket.UserDao;
-import by.rudenko.imarket.UserService;
-import by.rudenko.imarket.dto.UserDTO;
+import by.rudenko.imarket.SellHistoryDao;
+import by.rudenko.imarket.SellHistoryService;
+import by.rudenko.imarket.dto.SellHistoryDTO;
+import by.rudenko.imarket.dto.SellHistoryDTO;
 import by.rudenko.imarket.exception.NoSuchIdException;
-import by.rudenko.imarket.model.User;
+import by.rudenko.imarket.model.SellHistory;
+import by.rudenko.imarket.model.SellHistory;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,54 +17,57 @@ import java.util.stream.Collectors;
 
 @Service
 @Transactional
-public class UserServiceImpl implements UserService {
+public class SellHistoryServiceImpl implements SellHistoryService {
 
     @Autowired
-    private  final UserDao userDao;
+    private  final SellHistoryDao sellHistoryDao;
     private  final ModelMapper modelMapper;
 
-    public UserServiceImpl(UserDao userDao, ModelMapper modelMapper) {
-        this.userDao = userDao;
+    public SellHistoryServiceImpl(SellHistoryDao sellHistoryDao, ModelMapper modelMapper) {
+        this.sellHistoryDao = sellHistoryDao;
         this.modelMapper = modelMapper;
     }
 
 
     @Override
-    public boolean addNewUser(UserDTO userDTO) {
+    public boolean addNewSellHistory(SellHistoryDTO sellHistoryDTO) {
         // маппинг из ДТО в  Entity
-        final User user = modelMapper.map(userDTO, User.class);
-        userDao.save(user);
+        final SellHistory sellHistory = modelMapper.map(sellHistoryDTO, SellHistory.class);
+        sellHistoryDao.save(sellHistory);
         return true;
     }
 
 
+    //вывести полный список историй продаж с вложениями
     @Override
-    public UserDTO findById(long id) throws NoSuchIdException {
-        final User userEntity = userDao.findByID(id);
+    public List<SellHistoryDTO> getFullSellHistoriesList(int pageNumber, int pageSize) {
 
-        return modelMapper.map (userEntity, UserDTO.class);
-    }
-
-    @Override
-    public List<UserDTO> getAllUsersList(int pageNumber, int pageSize) {
-
-        return userDao.getAll(pageNumber, pageSize).stream()
-                .map(x -> modelMapper.map(x, UserDTO.class))
+        return sellHistoryDao.getFullSellHistories(pageNumber, pageSize).stream()
+                .map(x -> modelMapper.map(x, SellHistoryDTO.class))
                 .collect(Collectors.toList());
     }
 
-    @Override
-    public boolean deleteUser(UserDTO userDTO) {
 
-        final User user = modelMapper.map(userDTO, User.class);
-        userDao.delete(user);
+    //вывести полную историю продаж с вложениями по Id
+    @Override
+    public SellHistoryDTO findById(Long id) throws NoSuchIdException {
+        final SellHistory sellHistoryEntity = sellHistoryDao.getFullSellHistoryByID(id);
+
+        return modelMapper.map (sellHistoryEntity, SellHistoryDTO.class);
+    }
+
+    @Override
+    public boolean deleteSellHistory(SellHistoryDTO sellHistoryDTO) {
+
+        final SellHistory sellHistory = modelMapper.map(sellHistoryDTO, SellHistory.class);
+        sellHistoryDao.delete(sellHistory);
         return true;
     }
 
     @Override
-    public boolean update(UserDTO userDTO) {
-        final User user = modelMapper.map(userDTO, User.class);
-        userDao.update(user);
+    public boolean update(SellHistoryDTO sellHistoryDTO) {
+        final SellHistory sellHistory = modelMapper.map(sellHistoryDTO, SellHistory.class);
+        sellHistoryDao.update(sellHistory);
         return true;
     }
 }

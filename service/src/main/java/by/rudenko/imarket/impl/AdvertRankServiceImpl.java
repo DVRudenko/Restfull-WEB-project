@@ -1,10 +1,10 @@
 package by.rudenko.imarket.impl;
 
-import by.rudenko.imarket.UserDao;
-import by.rudenko.imarket.UserService;
-import by.rudenko.imarket.dto.UserDTO;
+import by.rudenko.imarket.AdvertRankDao;
+import by.rudenko.imarket.AdvertRankService;
+import by.rudenko.imarket.dto.AdvertRankDTO;
 import by.rudenko.imarket.exception.NoSuchIdException;
-import by.rudenko.imarket.model.User;
+import by.rudenko.imarket.model.AdvertRank;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,54 +15,54 @@ import java.util.stream.Collectors;
 
 @Service
 @Transactional
-public class UserServiceImpl implements UserService {
+public class AdvertRankServiceImpl implements AdvertRankService {
 
     @Autowired
-    private  final UserDao userDao;
+    private  final AdvertRankDao advertRankDao;
     private  final ModelMapper modelMapper;
 
-    public UserServiceImpl(UserDao userDao, ModelMapper modelMapper) {
-        this.userDao = userDao;
+    public AdvertRankServiceImpl(AdvertRankDao advertRankDao, ModelMapper modelMapper) {
+        this.advertRankDao = advertRankDao;
         this.modelMapper = modelMapper;
     }
 
 
     @Override
-    public boolean addNewUser(UserDTO userDTO) {
+    public boolean addNewAdvertRank(AdvertRankDTO advertRankDTO) {
         // маппинг из ДТО в  Entity
-        final User user = modelMapper.map(userDTO, User.class);
-        userDao.save(user);
+        final AdvertRank advertRank = modelMapper.map(advertRankDTO, AdvertRank.class);
+        advertRankDao.save(advertRank);
         return true;
     }
 
 
     @Override
-    public UserDTO findById(long id) throws NoSuchIdException {
-        final User userEntity = userDao.findByID(id);
+    public AdvertRankDTO findById(Long id) throws NoSuchIdException {
+        final AdvertRank advertRankEntity = advertRankDao.findByID(id);
 
-        return modelMapper.map (userEntity, UserDTO.class);
+        return modelMapper.map (advertRankEntity, AdvertRankDTO.class);
     }
 
     @Override
-    public List<UserDTO> getAllUsersList(int pageNumber, int pageSize) {
+    public List<AdvertRankDTO> getAllAdvertRanksList(int pageNumber, int pageSize) {
 
-        return userDao.getAll(pageNumber, pageSize).stream()
-                .map(x -> modelMapper.map(x, UserDTO.class))
+        return advertRankDao.getAll(pageNumber, pageSize).stream()
+                .map(x -> modelMapper.map(x, AdvertRankDTO.class))
                 .collect(Collectors.toList());
     }
 
     @Override
-    public boolean deleteUser(UserDTO userDTO) {
+    public boolean deleteAdvertRank(AdvertRankDTO advertRankDTO) {
 
-        final User user = modelMapper.map(userDTO, User.class);
-        userDao.delete(user);
+        final AdvertRank advertRank = modelMapper.map(advertRankDTO, AdvertRank.class);
+        advertRankDao.delete(advertRank);
         return true;
     }
 
     @Override
-    public boolean update(UserDTO userDTO) {
-        final User user = modelMapper.map(userDTO, User.class);
-        userDao.update(user);
+    public boolean update(AdvertRankDTO advertRankDTO) {
+        final AdvertRank advertRank = modelMapper.map(advertRankDTO, AdvertRank.class);
+        advertRankDao.update(advertRank);
         return true;
     }
 }

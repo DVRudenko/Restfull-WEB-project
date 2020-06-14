@@ -1,9 +1,9 @@
 package by.rudenko.imarket;
 
-import by.rudenko.imarket.model.User;
+import by.rudenko.imarket.model.Coupon;
 
 
-public interface UserDao extends GenericDao <User, Long> {
+public interface CouponDao extends GenericDao <Coupon, Long> {
 
 
 }

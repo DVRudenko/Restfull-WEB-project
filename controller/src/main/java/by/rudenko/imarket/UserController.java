@@ -1,60 +1,67 @@
 package by.rudenko.imarket;
 
-import by.rudenko.imarket.dto.OrderDTO;
-import by.rudenko.imarket.dto.OrderShortDTO;
+import by.rudenko.imarket.dto.UserDTO;
 import by.rudenko.imarket.exception.NoSuchIdException;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/orders")
-public class OrderController <T extends OrderShortDTO> {
+@RequestMapping("/users")
+public class UserController<T extends UserDTO> {
 
-    private final OrderService orderService;
+    private final UserService userService;
 
-    public OrderController(final OrderService orderService) {
-        this.orderService = orderService;
+    //TODO как добавить зависимость из модуля Launcher без циклической ссылки???
+    //private final IMarketConfig iMarketConfig;
+    //IMarketConfig.defaultPageSize //количество записей на страницу по умолчанию (из файла свойств)
+
+    public UserController(final UserService userService) {
+        this.userService = userService;
     }
 
-    //тип Get /orders/ - получить список всех заказов
+
+    //тип Get /users/ - получить весь список с пагинацией
     @GetMapping
-    public List<OrderDTO> getOrders(int pageNumber, int pageSize) {
-        return orderService.getAllOrdersList( pageNumber, pageSize);
+    public List<UserDTO> getAllUsers(
+            @RequestParam(value = "pageNumber", defaultValue = "1") int pageNumber,
+            @RequestParam(value = "pageSize", defaultValue = "10") int pageSize) {
+        return userService.getAllUsersList(pageNumber, pageSize);
     }
 
-    //тип Get /orders/id
+    //тип Get /guests/id - получить сущность по Id
     @GetMapping(value = "/{id}")
-    public <T extends OrderShortDTO> T  getOrders(@PathVariable(value = "id") Long id,
-                       @RequestParam(required = false, name = "fetch") String param
-    ) throws NoSuchIdException {
-        if (param.equals("short")) {
-            return (T) orderService.findShortById(id);
-        } else {
-            return (T) orderService.findById(id);
-        }
-
+    public UserDTO getAllUsers(@PathVariable(value = "id") Long id) throws NoSuchIdException {
+        return userService.findById(id);
     }
 
-    //тип Get /orders/id
-    @GetMapping(value = "cost/{id}")
-    public int getOrdersCost (@PathVariable(value = "id") Long id) throws NoSuchIdException {
-        return orderService.getOrderCost(orderService.findById(id));
-    }
-
-    //тип Post /orders/JSON
+    //тип Post /users/JSON добавить новую запись
+    // TODO посмотреть как отрабатывает возврат ответа
     @PostMapping
     @ResponseStatus(HttpStatus.OK)
-    public void addNewOrder (@RequestBody OrderDTO orderDTO) {
-        orderService.addNewOrder(orderDTO);
+    public ResponseEntity<?> addNewUser (@RequestBody UserDTO userDTO) {
+        userService.addNewUser(userDTO);
+        return ResponseEntity.ok("user saved");
     }
 
-    //тип Delete /rooms/id
+
+
+    //тип Delete /rooms/id удалить запись по Id
     @DeleteMapping(value = "/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public void deleteOrder(@PathVariable(value = "id") Long id) throws NoSuchIdException {
+    public void deleteUser(@PathVariable(value = "id") Long id) throws NoSuchIdException {
 
-        orderService.deleteOrder(orderService.findById(id));
+        userService.deleteUser(userService.findById(id));
     }
+
+    //тип Put /users/JSON обновить запись
+    //TODO как лучше через POST или PUT
+    @PutMapping
+    @ResponseStatus(HttpStatus.OK)
+    public void updateUser (@RequestBody UserDTO userDTO) {
+        userService.update(userDTO);
+    }
+
 }

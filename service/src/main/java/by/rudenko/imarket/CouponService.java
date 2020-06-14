@@ -1,21 +1,21 @@
 package by.rudenko.imarket;
 
-import by.rudenko.imarket.dto.UserDTO;
+import by.rudenko.imarket.dto.CouponDTO;
 import by.rudenko.imarket.exception.NoSuchIdException;
 
 import java.util.List;
 
 
-public interface UserService {
-    UserDTO findById(long id) throws NoSuchIdException;
+public interface CouponService {
+    CouponDTO findById(Long id) throws NoSuchIdException;
 
-    List<UserDTO> getAllUsersList(int pageNumber, int pageSize);
+    List<CouponDTO> getAllCouponsList(int pageNumber, int pageSize);
 
-    boolean addNewUser(UserDTO userDTO);
+    boolean addNewCoupon(CouponDTO couponDTO);
 
-    boolean deleteUser(UserDTO userDTO);
+    boolean deleteCoupon(CouponDTO couponDTO);
 
-    boolean update(UserDTO userDTO);
+    boolean update(CouponDTO couponDTO);
 }
 
 

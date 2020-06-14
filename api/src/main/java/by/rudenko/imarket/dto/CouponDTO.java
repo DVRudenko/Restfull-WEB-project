@@ -1,48 +1,28 @@
-package by.rudenko.imarket.model;
+package by.rudenko.imarket.dto;
+
+import by.rudenko.imarket.model.User;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 import javax.persistence.*;
 
 
 /**
- * класс описывает модель Скидочного купона  Coupons
+ * класс описывает DTO Скидочного купона  Coupons
  */
 
-@javax.persistence.Entity
-@Table(name = "coupons")
-public class Coupon implements Entity {
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class CouponDTO  {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
+    private Long id;
     private User user;
-
-    @Column(name = "discount")
     private int discount;
-
-    @Column(name = "coupon_name")
     private String couponName;
 
-
-    public Coupon() {
-    }
-
-    public Coupon(long id, User user, int discount, String couponName) {
-        this.id = id;
-        this.user = user;
-        this.discount = discount;
-        this.couponName = couponName;
-    }
-
-    @Override
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    @Override
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -70,13 +50,5 @@ public class Coupon implements Entity {
         this.couponName = couponName;
     }
 
-    @Override
-    public String toString() {
-        return "Coupon{" +
-                "id=" + id +
-                ", user=" + user +
-                ", discount=" + discount +
-                ", couponName='" + couponName + '\'' +
-                '}';
-    }
+
 }

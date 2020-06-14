@@ -1,73 +1,48 @@
-
 package by.rudenko.imarket.model;
 
 import javax.persistence.*;
-import java.time.LocalDate;
-import java.util.Objects;
 
 
 /**
- * класс описывает Профили пользователя Profiles и его методы
+ * класс описывает модель Скидочного купона  Coupons
  */
 
 @javax.persistence.Entity
-@Table(name = "profiles")
-public class Profiles implements Entity {
+@Table(name = "coupons")
+public class Coupon implements Entity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY )
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
 
-    @Column(name = "first_name")
-    private String firstName;
+    @Column(name = "discount")
+    private int discount;
 
-    @Column(name = "last_name")
-    private String lastName;
-
-    @Column(name = "date_of_birth")
-    private LocalDate dateOfBirth;
-
-    @Column(name = "city")
-    private String city;
-
-    @Column(name = "avatar")
-    private String avatar;
-
-    @Column(name = "money_balance")
-    private int moneyBalance;
-
-    @Column(name = "user_rank")
-    private int userRank;
+    @Column(name = "coupon_name")
+    private String couponName;
 
 
-
-    public Profiles() {
+    public Coupon() {
     }
 
-
-
-
-    public Profiles(long id, User user, LocalDate dateOfBirth, String city, String avatar, int moneyBalance, int userRank) {
+    public Coupon(Long id, User user, int discount, String couponName) {
         this.id = id;
         this.user = user;
-        this.dateOfBirth = dateOfBirth;
-        this.city = city;
-        this.avatar = avatar;
-        this.moneyBalance = moneyBalance;
-        this.userRank = userRank;
+        this.discount = discount;
+        this.couponName = couponName;
     }
 
     @Override
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
     @Override
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -79,92 +54,29 @@ public class Profiles implements Entity {
         this.user = user;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public int getDiscount() {
+        return discount;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setDiscount(int discount) {
+        this.discount = discount;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getCouponName() {
+        return couponName;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setCouponName(String couponName) {
+        this.couponName = couponName;
     }
-
-    public LocalDate getDateOfBirth() {
-        return dateOfBirth;
-    }
-
-    public void setDateOfBirth(LocalDate dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getAvatar() {
-        return avatar;
-    }
-
-    public void setAvatar(String avatar) {
-        this.avatar = avatar;
-    }
-
-    public int getMoneyBalance() {
-        return moneyBalance;
-    }
-
-    public void setMoneyBalance(int moneyBalance) {
-        this.moneyBalance = moneyBalance;
-    }
-
-    public int getUserRank() {
-        return userRank;
-    }
-
-    public void setUserRank(int userRank) {
-        this.userRank = userRank;
-    }
-
 
     @Override
     public String toString() {
-        return "Profiles{" +
+        return "Coupon{" +
                 "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", dateOfBirth=" + dateOfBirth +
-                ", city='" + city + '\'' +
-                ", avatar='" + avatar + '\'' +
-                ", moneyBalance=" + moneyBalance +
-                ", userRank=" + userRank +
+                ", user=" + user +
+                ", discount=" + discount +
+                ", couponName='" + couponName + '\'' +
                 '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Profiles)) return false;
-        Profiles profiles = (Profiles) o;
-        return getId() == profiles.getId() &&
-                getUser().equals(profiles.getUser()) &&
-                Objects.equals(getFirstName(), profiles.getFirstName()) &&
-                Objects.equals(getLastName(), profiles.getLastName()) &&
-                Objects.equals(getDateOfBirth(), profiles.getDateOfBirth()) &&
-                Objects.equals(getCity(), profiles.getCity());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getId(), getUser(), getFirstName(), getLastName(), getDateOfBirth(), getCity());
     }
 }

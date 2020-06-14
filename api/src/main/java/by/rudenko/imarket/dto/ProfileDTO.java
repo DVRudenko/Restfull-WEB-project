@@ -1,68 +1,37 @@
-package by.rudenko.imarket.model;
+package by.rudenko.imarket.dto;
 
-import javax.persistence.*;
+import by.rudenko.imarket.model.User;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonInclude;
+
+
 import java.time.LocalDate;
-import java.util.Objects;
+
 
 
 /**
- * класс описывает модель Профиля пользователя Profiles
+ * класс описывает DTO Профиля пользователя Profiles
  */
 
-@javax.persistence.Entity
-@Table(name = "profiles")
-public class Profile implements Entity {
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class ProfileDTO {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
+    private Long id;
     private User user;
-
-    @Column(name = "first_name")
     private String firstName;
-
-    @Column(name = "last_name")
     private String lastName;
-
-    @Column(name = "date_of_birth")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private LocalDate dateOfBirth;
-
-    @Column(name = "city")
     private String city;
-
-    @Column(name = "avatar")
     private String avatar;
-
-    @Column(name = "money_balance")
     private int moneyBalance;
-
-    @Column(name = "user_rank")
     private int userRank;
 
-
-    public Profile() {
-    }
-
-    public Profile(long id, User user, LocalDate dateOfBirth, String city, String avatar, int moneyBalance, int userRank) {
-        this.id = id;
-        this.user = user;
-        this.dateOfBirth = dateOfBirth;
-        this.city = city;
-        this.avatar = avatar;
-        this.moneyBalance = moneyBalance;
-        this.userRank = userRank;
-    }
-
-    @Override
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    @Override
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -131,35 +100,4 @@ public class Profile implements Entity {
     }
 
 
-    @Override
-    public String toString() {
-        return "Profiles{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", dateOfBirth=" + dateOfBirth +
-                ", city='" + city + '\'' +
-                ", avatar='" + avatar + '\'' +
-                ", moneyBalance=" + moneyBalance +
-                ", userRank=" + userRank +
-                '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Profile)) return false;
-        Profile profile = (Profile) o;
-        return getId() == profile.getId() &&
-                getUser().equals(profile.getUser()) &&
-                Objects.equals(getFirstName(), profile.getFirstName()) &&
-                Objects.equals(getLastName(), profile.getLastName()) &&
-                Objects.equals(getDateOfBirth(), profile.getDateOfBirth()) &&
-                Objects.equals(getCity(), profile.getCity());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getId(), getUser(), getFirstName(), getLastName(), getDateOfBirth(), getCity());
-    }
 }

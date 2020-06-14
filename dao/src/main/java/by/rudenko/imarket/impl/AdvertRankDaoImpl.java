@@ -1,21 +1,21 @@
 package by.rudenko.imarket.impl;
 
-import by.rudenko.imarket.UserDao;
-import by.rudenko.imarket.model.User;
+import by.rudenko.imarket.AdvertRankDao;
+import by.rudenko.imarket.model.AdvertRank;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class UserDaoImpl extends AbstractDao <User, Long> implements UserDao {
+public class AdvertRankDaoImpl extends AbstractDao <AdvertRank, Long> implements AdvertRankDao {
 
-    private static final Logger LOGGER = LogManager.getLogger("imarketUser");
+    private static final Logger LOGGER = LogManager.getLogger("imarketAdvertRank");
 
-    public UserDaoImpl() {
-        super(User.class);
+    public AdvertRankDaoImpl() {
+        super(AdvertRank.class);
     }
 
-
+    
 
 
 }

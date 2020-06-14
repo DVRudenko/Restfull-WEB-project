@@ -1,39 +1,39 @@
-
 package by.rudenko.imarket.model;
 
-import by.rudenko.imarket.utils.Utils;
+import by.rudenko.imarket.utils.Enumes;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 
 
 /**
- * класс описывает Раздел Объявления  AdvertTopic и его методы
+ * класс описывает модель Объявления  Advert
  */
 
 @javax.persistence.Entity
 @Table(name = "adverts")
-public class Adverts implements Entity {
+public class Advert implements Entity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY )
+     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
 
-    @ManyToOne(fetch = FetchType.LAZY )
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "adv_topic_id")
     private AdvertTopic advertTopic;
 
-    @ManyToOne(fetch = FetchType.LAZY )
+     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "adv_rank_id")
-    private AdvertRank  advertRank;
+    private AdvertRank advertRank;
 
     @Column(name = "adv_type")
     @Enumerated(EnumType.STRING)
-    private Utils.AdverType adverType;
+    private Enumes.AdverType adverType;
 
     @Column(name = "adv_text")
     private String advText;
@@ -46,14 +46,14 @@ public class Adverts implements Entity {
 
     @Column(name = "adv_status")
     @Enumerated(EnumType.STRING)
-    private Utils.AdverStatus adverStatus;
+    private Enumes.AdverStatus adverStatus;
 
 
-    public Adverts() {
+    public Advert() {
     }
 
-    public Adverts(User user, AdvertTopic advertTopic, AdvertRank advertRank, Utils.AdverType adverType,
-                   String advText, int advPrice, LocalDate advDate, Utils.AdverStatus adverStatus) {
+    public Advert(User user, AdvertTopic advertTopic, AdvertRank advertRank, Enumes.AdverType adverType,
+                  String advText, int advPrice, LocalDate advDate, Enumes.AdverStatus adverStatus) {
         this.user = user;
         this.advertTopic = advertTopic;
         this.advertRank = advertRank;
@@ -65,12 +65,12 @@ public class Adverts implements Entity {
     }
 
     @Override
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
     @Override
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -98,11 +98,11 @@ public class Adverts implements Entity {
         this.advertRank = advertRank;
     }
 
-    public Utils.AdverType getAdverType() {
+    public Enumes.AdverType getAdverType() {
         return adverType;
     }
 
-    public void setAdverType(Utils.AdverType adverType) {
+    public void setAdverType(Enumes.AdverType adverType) {
         this.adverType = adverType;
     }
 
@@ -130,11 +130,11 @@ public class Adverts implements Entity {
         this.advDate = advDate;
     }
 
-    public Utils.AdverStatus getAdverStatus() {
+    public Enumes.AdverStatus getAdverStatus() {
         return adverStatus;
     }
 
-    public void setAdverStatus(Utils.AdverStatus adverStatus) {
+    public void setAdverStatus(Enumes.AdverStatus adverStatus) {
         this.adverStatus = adverStatus;
     }
 
@@ -152,4 +152,6 @@ public class Adverts implements Entity {
                 ", adverStatus=" + adverStatus +
                 '}';
     }
+
+
 }

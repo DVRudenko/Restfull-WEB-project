@@ -1,4 +1,3 @@
-
 package by.rudenko.imarket.model;
 
 import javax.persistence.*;
@@ -7,18 +6,18 @@ import java.util.Objects;
 
 
 /**
- * класс описывает Профили пользователя Profiles и его методы
+ * класс описывает модель Профиля пользователя Profiles
  */
 
 @javax.persistence.Entity
 @Table(name = "profiles")
-public class Profiles implements Entity {
+public class Profile implements Entity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY )
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
 
@@ -44,14 +43,10 @@ public class Profiles implements Entity {
     private int userRank;
 
 
-
-    public Profiles() {
+    public Profile() {
     }
 
-
-
-
-    public Profiles(long id, User user, LocalDate dateOfBirth, String city, String avatar, int moneyBalance, int userRank) {
+    public Profile(Long id, User user, LocalDate dateOfBirth, String city, String avatar, int moneyBalance, int userRank) {
         this.id = id;
         this.user = user;
         this.dateOfBirth = dateOfBirth;
@@ -62,12 +57,12 @@ public class Profiles implements Entity {
     }
 
     @Override
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
     @Override
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -153,14 +148,14 @@ public class Profiles implements Entity {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Profiles)) return false;
-        Profiles profiles = (Profiles) o;
-        return getId() == profiles.getId() &&
-                getUser().equals(profiles.getUser()) &&
-                Objects.equals(getFirstName(), profiles.getFirstName()) &&
-                Objects.equals(getLastName(), profiles.getLastName()) &&
-                Objects.equals(getDateOfBirth(), profiles.getDateOfBirth()) &&
-                Objects.equals(getCity(), profiles.getCity());
+        if (!(o instanceof Profile)) return false;
+        Profile profile = (Profile) o;
+        return getId() == profile.getId() &&
+                getUser().equals(profile.getUser()) &&
+                Objects.equals(getFirstName(), profile.getFirstName()) &&
+                Objects.equals(getLastName(), profile.getLastName()) &&
+                Objects.equals(getDateOfBirth(), profile.getDateOfBirth()) &&
+                Objects.equals(getCity(), profile.getCity());
     }
 
     @Override
