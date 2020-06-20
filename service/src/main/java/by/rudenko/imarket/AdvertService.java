@@ -22,6 +22,10 @@ public interface AdvertService {
     boolean deleteAdvert(AdvertDTO advertDTO);
 
     boolean update(AdvertDTO advertDTO);
+
+
+
+    List<AdvertDTO> getAllSortedAdverts(int pageNumber, int pageSize);
 }
 
 

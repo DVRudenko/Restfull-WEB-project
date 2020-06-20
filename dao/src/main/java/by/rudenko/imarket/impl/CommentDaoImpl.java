@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.*;
-import javax.transaction.Transactional;
 import java.util.List;
 
 @Repository
@@ -47,6 +46,7 @@ public class CommentDaoImpl extends AbstractDao <Comment, Long> implements Comme
         Fetch<Advert, User> userRoot = advRoot.fetch(Advert_.user);
         Fetch<Advert, AdvertTopic> topicRoot = advRoot.fetch(Advert_.advertTopic);
         Fetch<Advert, AdvertRank> rankRoot = advRoot.fetch(Advert_.advertRank);
+
 
         return root;
     }

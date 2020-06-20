@@ -1,6 +1,7 @@
 package by.rudenko.imarket.impl;
 
 import by.rudenko.imarket.AdvertDao;
+import by.rudenko.imarket.ProfileDao;
 import by.rudenko.imarket.exception.NoSuchIdException;
 import by.rudenko.imarket.model.*;
 import org.apache.logging.log4j.LogManager;
@@ -79,15 +80,18 @@ public class AdvertDaoImpl extends AbstractDao<Advert, Long> implements AdvertDa
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Advert> cq = cb.createQuery(Advert.class);
         Root<Advert> root = getAdvertRoot(cq);
-/*
-        //запрос
+
+        //делаем join 2-го уровня
         CriteriaQuery<Profile> cq2 = cb.createQuery(Profile.class);
-        Root<Profile> profile = cq2.from(Profile);
+        Root<Profile> profileRoot = cq2.from(Profile.class);
+        //Join<Profile, User> profileRoot = root.join(String.valueOf(Profile_.user));
 
-        Join<Profile, Advert> prof = profile.join(Profile.class);
-        profile.fetch(Profile_.user, JoinType.LEFT);*/
+//        Subquery sub = cq.subquery(Long.class);
+//        Root subRoot = sub.from(Profile.class);
+//        SetJoin<Profile, User> subUsers = (SetJoin<Profile, User>) subRoot.join(Profile_.user);
+//        sub.select(cb.count(subRoot.get(Profile_.id)));
+//        sub.where(cb.equal(root.get(String.valueOf(User_.id)), subUsers.get(User_.id)));
 
-        //конец join
 
         //сортируем с учетом статуса объявлений (1-ми идут VIP)
         CriteriaQuery<Advert> select =
@@ -95,7 +99,8 @@ public class AdvertDaoImpl extends AbstractDao<Advert, Long> implements AdvertDa
                         .orderBy(
                                 cb.desc(root.get(Advert_.advertRank)),
                                 // TODO как тут сделать Join из таблицы Profiles_userRank по user???
-                                cb.desc(root.get(Advert_.advertTopic))
+                                // TODO InvalidPathException: Invalid path: 'generatedAlias4.userRank'
+                                cb.desc(profileRoot.get(Profile_.userRank))
 
                         );
         //используем пагинацию

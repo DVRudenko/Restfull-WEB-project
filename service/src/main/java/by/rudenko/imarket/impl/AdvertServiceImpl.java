@@ -83,4 +83,12 @@ public class AdvertServiceImpl implements AdvertService {
         advertDao.update(advert);
         return true;
     }
+
+    @Override
+    public List<AdvertDTO> getAllSortedAdverts(int pageNumber, int pageSize) {
+        return advertDao.getSortedAdverts(pageNumber, pageSize).stream()
+                .map(x -> modelMapper.map(x, AdvertDTO.class))
+                .collect(Collectors.toList());
+
+    }
 }

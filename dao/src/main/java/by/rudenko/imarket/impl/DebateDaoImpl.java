@@ -46,6 +46,10 @@ public class DebateDaoImpl extends AbstractDao <Debate, Long> implements DebateD
         Fetch<SellHistory, User> buyerRoot = sellHistoryRoot.fetch(SellHistory_.buyer);
         Fetch<SellHistory, User> sellerRoot = sellHistoryRoot.fetch(SellHistory_.seller);
         Fetch<SellHistory, Advert> advRoot = sellHistoryRoot.fetch(SellHistory_.advert);
+        //делаем вложенный fetch 3-го уровня
+        Fetch<Advert, User> userRoot = advRoot.fetch(Advert_.user);
+        Fetch<Advert, AdvertTopic> topicRoot = advRoot.fetch(Advert_.advertTopic);
+        Fetch<Advert, AdvertRank> rankRoot = advRoot.fetch(Advert_.advertRank);
 
         return root;
     }

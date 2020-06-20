@@ -17,25 +17,13 @@ import java.time.LocalDate;
 public class AdvertDTO {
 
     private Long id;
-//    @JsonIgnore
-//    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    //@JsonManagedReference
     private User user;
-//    @JsonIgnore
-//    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    //@JsonManagedReference
     private AdvertTopic advertTopic;
-//    @JsonIgnore
-//    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    //@JsonManagedReference
     private AdvertRank advertRank;
     private Enumes.AdverType adverType;
     private String advText;
     private int advPrice;
-
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-    //@JsonDeserialize(using = LocalDateDeserializer.class)
-    //@JsonSerialize(using = LocalDateSerializer.class)
     private LocalDate advDate;
     private Enumes.AdverStatus adverStatus;
 

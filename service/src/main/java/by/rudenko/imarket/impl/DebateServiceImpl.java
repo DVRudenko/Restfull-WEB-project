@@ -3,6 +3,7 @@ package by.rudenko.imarket.impl;
 import by.rudenko.imarket.DebateDao;
 import by.rudenko.imarket.DebateService;
 import by.rudenko.imarket.dto.DebateDTO;
+import by.rudenko.imarket.dto.DebateDTO;
 import by.rudenko.imarket.exception.NoSuchIdException;
 import by.rudenko.imarket.model.Debate;
 import org.modelmapper.ModelMapper;
@@ -27,6 +28,15 @@ public class DebateServiceImpl implements DebateService {
     }
 
 
+    //вывести полный список объявлений с вложениями
+    @Override
+    public List<DebateDTO> getFullDebatesList(int pageNumber, int pageSize) {
+
+        return debateDao.getFullDebates(pageNumber, pageSize).stream()
+                .map(x -> modelMapper.map(x, DebateDTO.class))
+                .collect(Collectors.toList());
+    }
+
     @Override
     public boolean addNewDebate(DebateDTO debateDTO) {
         // маппинг из ДТО в  Entity
@@ -38,7 +48,7 @@ public class DebateServiceImpl implements DebateService {
 
     @Override
     public DebateDTO findById(Long id) throws NoSuchIdException {
-        final Debate debateEntity = debateDao.findByID(id);
+        final Debate debateEntity = debateDao.getFullDebateByID(id);
 
         return modelMapper.map (debateEntity, DebateDTO.class);
     }
