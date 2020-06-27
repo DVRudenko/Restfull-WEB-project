@@ -7,7 +7,7 @@ USE iMarket ;
 -- -----------------------------------------------------
 -- fill users
 -- -----------------------------------------------------
-INSERT INTO users (login, password, role) values ( 'admin','pass_admin','ADMIN');
+INSERT INTO users (login, password, role) values ( 'admin','$2a$04$UoIv/26fwNnjmPB0D5JkI.rFkrUxUArF7zXfMz1cs4zEvgXfEBEiO','ADMIN'); -- password - admin
 INSERT INTO users (login, password, role) values ( 'user1','pass1','USER');
 INSERT INTO users (login, password, role) values ( 'user2','pass2','USER');
 INSERT INTO users (login, password, role) values ( 'user3','pass3','USER');
@@ -20,7 +20,7 @@ INSERT INTO users (login, password, role) values ( 'user5','pass5','USER');
 INSERT INTO profile (user_id, avatar, money_balance, user_rank) values ( 1,'Master of market', 0, 1000);		-- 1
 INSERT INTO profile (user_id, money_balance, user_rank) values ( 2,1000,10);									-- 2
 INSERT INTO profile (user_id, money_balance, user_rank) values ( 3,500,5);										-- 3
-INSERT INTO profile (user_id, money_balance, user_rank) values ( 4,800,15);									-- 4
+INSERT INTO profile (user_id, money_balance, user_rank) values ( 4,800,15);									    -- 4
 INSERT INTO profile (user_id, first_name, last_name, date_of_birth, city, avatar, money_balance, user_rank) 	-- 5
 	values (5,'Vasiliy', 'Ivanov', '2000-03-02', 'Minsk', 'Partizan', 5000,20);
 INSERT INTO profile (user_id, first_name, last_name, date_of_birth, city, avatar, money_balance, user_rank) 	-- 6

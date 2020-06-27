@@ -12,7 +12,7 @@ DROP TABLE IF EXISTS `iMarket`.`users` ;
 CREATE TABLE IF NOT EXISTS `iMarket`.`users` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `login` VARCHAR(45) NOT NULL,
-  `password` VARCHAR(45) NOT NULL,
+  `password` VARCHAR(200) NOT NULL,
   `role`  ENUM ('USER', 'ADMIN') NOT NULL DEFAULT 'USER',
   PRIMARY KEY (`id`))
 ;

@@ -8,8 +8,11 @@ import by.rudenko.imarket.model.User;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -20,12 +23,13 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private  final UserDao userDao;
     private  final ModelMapper modelMapper;
+    private final BCryptPasswordEncoder passwordEncoder;
 
-    public UserServiceImpl(UserDao userDao, ModelMapper modelMapper) {
+    public UserServiceImpl(UserDao userDao, ModelMapper modelMapper, BCryptPasswordEncoder passwordEncoder) {
         this.userDao = userDao;
         this.modelMapper = modelMapper;
+        this.passwordEncoder = passwordEncoder;
     }
-
 
     @Override
     public boolean addNewUser(UserDTO userDTO) {
@@ -35,6 +39,22 @@ public class UserServiceImpl implements UserService {
         return true;
     }
 
+    //регистрируем пользователя
+    @Override
+    public User register(User user) {
+
+        // надо ли устанавливать роли???
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        return user;
+    }
+
+    @Override
+    public User findByUsername(String username) {
+        User result = userDao.findByUsername(username);
+        //log.info("IN findByUsername - user: {} found by username: {}", result, username);
+        return result;
+    }
+
 
     @Override
     public UserDTO findById(Long id) throws NoSuchIdException {
@@ -42,6 +62,9 @@ public class UserServiceImpl implements UserService {
 
         return modelMapper.map (userEntity, UserDTO.class);
     }
+
+
+
 
     @Override
     public List<UserDTO> getAllUsersList(int pageNumber, int pageSize) {
