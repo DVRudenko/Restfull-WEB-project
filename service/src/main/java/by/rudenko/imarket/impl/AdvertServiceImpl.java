@@ -46,7 +46,7 @@ public class AdvertServiceImpl implements AdvertService {
 
     //вывести сокращенный вариант объявлений
     @Override
-    public List<AdvertShortDTO> getAllAdvertsList(int pageNumber, int pageSize) {
+    public List<AdvertShortDTO> getAllShortAdverts (int pageNumber, int pageSize) {
 
         return advertDao.getAll(pageNumber, pageSize).stream()
                 .map(x -> modelMapper.map(x, AdvertShortDTO.class))

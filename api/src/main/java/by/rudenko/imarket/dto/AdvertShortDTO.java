@@ -1,12 +1,7 @@
 package by.rudenko.imarket.dto;
 
-import by.rudenko.imarket.model.AdvertRank;
-import by.rudenko.imarket.model.AdvertTopic;
-import by.rudenko.imarket.model.User;
 import by.rudenko.imarket.utils.Enumes;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import java.time.LocalDate;
@@ -20,18 +15,15 @@ import java.time.LocalDate;
 public class AdvertShortDTO {
 
     private Long id;
-    @JsonIgnore
     private Long userId;
-    @JsonIgnore
     private Long advertTopicId;
-    @JsonIgnore
     private Long advertRankId;
-    private Enumes.AdverType adverType;
+    private Enumes.AdverType advType;
     private String advText;
     private int advPrice;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private LocalDate advDate;
-    private Enumes.AdverStatus adverStatus;
+    private Enumes.AdverStatus advStatus;
 
     public Long getId() {
         return id;
@@ -65,12 +57,12 @@ public class AdvertShortDTO {
         this.advertRankId = advertRankId;
     }
 
-    public Enumes.AdverType getAdverType() {
-        return adverType;
+    public Enumes.AdverType getAdvType() {
+        return advType;
     }
 
-    public void setAdverType(Enumes.AdverType adverType) {
-        this.adverType = adverType;
+    public void setAdvType(Enumes.AdverType advType) {
+        this.advType = advType;
     }
 
     public String getAdvText() {
@@ -97,12 +89,12 @@ public class AdvertShortDTO {
         this.advDate = advDate;
     }
 
-    public Enumes.AdverStatus getAdverStatus() {
-        return adverStatus;
+    public Enumes.AdverStatus getAdvStatus() {
+        return advStatus;
     }
 
-    public void setAdverStatus(Enumes.AdverStatus adverStatus) {
-        this.adverStatus = adverStatus;
+    public void setAdvStatus(Enumes.AdverStatus advStatus) {
+        this.advStatus = advStatus;
     }
 
 

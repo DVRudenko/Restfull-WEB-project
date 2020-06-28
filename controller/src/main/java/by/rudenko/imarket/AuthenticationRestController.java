@@ -47,6 +47,7 @@ public class AuthenticationRestController {
         try {
             String username = requestDto.getUsername();
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, requestDto.getPassword()));
+
             User user = userService.findByUsername(username);
 
             if (user == null) {
@@ -55,7 +56,7 @@ public class AuthenticationRestController {
 
             String token = jwtTokenProvider.createToken(username, user.getRole());
 
-            //TODO менять на стринг???
+            //TODO менять ли на стринг???
             Map<Object, Object> response = new HashMap<>();
             response.put("username", username);
             response.put("token", token);

@@ -11,7 +11,7 @@ import java.util.List;
 public interface AdvertService {
     AdvertDTO findById(Long id) throws NoSuchIdException;
 
-    List<AdvertShortDTO> getAllAdvertsList(int pageNumber, int pageSize);
+
 
     List<AdvertDTO> getFullAdvertsList(int pageNumber, int pageSize);
 
@@ -26,6 +26,8 @@ public interface AdvertService {
 
 
     List<AdvertDTO> getAllSortedAdverts(int pageNumber, int pageSize);
+
+    List<AdvertShortDTO> getAllShortAdverts(int pageNumber, int pageSize);
 }
 
 

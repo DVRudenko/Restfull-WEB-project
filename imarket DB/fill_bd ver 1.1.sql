@@ -10,9 +10,9 @@ USE iMarket ;
 INSERT INTO users (login, password, role) values ( 'admin','$2a$04$UoIv/26fwNnjmPB0D5JkI.rFkrUxUArF7zXfMz1cs4zEvgXfEBEiO','ADMIN'); -- password - admin
 INSERT INTO users (login, password, role) values ( 'user1','$2a$04$cvLPhDFUMgn7tkkEziFde./hIrax5WQcWWB/Dka.texOAUITKpEwm','USER');	-- password - user1
 INSERT INTO users (login, password, role) values ( 'user2','$2a$04$b1WxKsOUR7WktR0fI8Nnfe269Beuwz43Ja6CbmDvgIGhXYOOT5m0S','USER');	-- password - user2
-INSERT INTO users (login, password, role) values ( 'user3','$2a$04$/FgFUjmQGpideWx6cUrNqOYZc3FhA66VM9XbxJ5SDhajZPva2uLju','USER');
-INSERT INTO users (login, password, role) values ( 'user4','$2a$04$nf6cUE9VgOoDGneG8H0kKOdz4O.76LNvHz5EWwb8LsQJQLTyJm71K','USER');
-INSERT INTO users (login, password, role) values ( 'user5','$2a$04$CtTBQZAABC4FpjsHFg5Pdu5GBa4H2XH7HXMlh5nBS0ZFH1Lb9FEA2','USER');
+INSERT INTO users (login, password, role) values ( 'user3','$2a$04$/FgFUjmQGpideWx6cUrNqOYZc3FhA66VM9XbxJ5SDhajZPva2uLju','USER');	-- password - user3
+INSERT INTO users (login, password, role) values ( 'user4','$2a$04$nf6cUE9VgOoDGneG8H0kKOdz4O.76LNvHz5EWwb8LsQJQLTyJm71K','USER');	-- password - user4
+INSERT INTO users (login, password, role) values ( 'user5','$2a$04$CtTBQZAABC4FpjsHFg5Pdu5GBa4H2XH7HXMlh5nBS0ZFH1Lb9FEA2','USER');	-- password - user5
 
 -- -----------------------------------------------------
 -- fill profiles
@@ -44,8 +44,9 @@ INSERT INTO advert_topics (topic_name) values ( 'Real Estate');		-- 2
 INSERT INTO advert_topics (topic_name) values ( 'Phones');			-- 3
 INSERT INTO advert_topics (topic_name) values ( 'Appliances');		-- 4
 INSERT INTO advert_topics (topic_name) values ( 'Electronics');		-- 5
-INSERT INTO advert_topics (topic_name) values ( 'Clothes');			-- 6
-INSERT INTO advert_topics (topic_name) values ( 'Pets');			-- 7
+INSERT INTO advert_topics (topic_name, topic_sub_name) values ( 'Clothes', 'Men');			-- 6
+INSERT INTO advert_topics (topic_name, topic_sub_name) values ( 'Clothes', 'Women');
+INSERT INTO advert_topics (topic_name, topic_sub_name) values ( 'Clothes', 'Children');
 INSERT INTO advert_topics (topic_name) values ( 'Home');			-- 8
 INSERT INTO advert_topics (topic_name) values ( 'Office');			-- 9
 INSERT INTO advert_topics (topic_name) values ( 'Services');		-- 10

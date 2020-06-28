@@ -4,8 +4,10 @@ import by.rudenko.imarket.dto.UserDTO;
 import by.rudenko.imarket.exception.NoSuchIdException;
 import by.rudenko.imarket.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,9 +22,17 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(value = "/admin/")
+//TODO проверить работу ???
+//@PreAuthorize("hasAuthority('ADMIN')")
+//@PreAuthorize("hasRole('ADMIN')")
+//@PreAuthorize("hasAnyRole('ADMIN')")
 public class AdminRestController {
 
     private final UserService userService;
+
+    @Value("${allowChangeMoneyBalance}")
+    //разрешено ли менять баланс денег (по умолчанию нельзя)
+    public Boolean allowChangeMoneyBalance;
 
     @Autowired
     public AdminRestController(UserService userService) {
@@ -31,15 +41,12 @@ public class AdminRestController {
 
     @GetMapping(value = "users/{id}")
     public ResponseEntity<UserDTO> getUserById(@PathVariable(name = "id") Long id) throws NoSuchIdException {
-        UserDTO user = userService.findById(id);
+        UserDTO userDTO = userService.findById(id);
 
-        if (user == null) {
+        if (userDTO == null) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
 
-        // у нас сразу возвращает юзерДТО
-        //UserDTO result = UserDTO.fromUser(user);
-
-        return new ResponseEntity<>(user, HttpStatus.OK);
+        return new ResponseEntity<>(userDTO, HttpStatus.OK);
     }
 }

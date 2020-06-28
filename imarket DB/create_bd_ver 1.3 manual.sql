@@ -12,15 +12,15 @@ DROP TABLE IF EXISTS `iMarket`.`users` ;
 CREATE TABLE IF NOT EXISTS `iMarket`.`users` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `login` VARCHAR(45) NOT NULL,
-  `password` VARCHAR(200) NOT NULL,
+  `password` VARCHAR(150) NOT NULL,
   `role`  ENUM ('USER', 'ADMIN') NOT NULL DEFAULT 'USER',
   PRIMARY KEY (`id`))
 ;
 -- -----------------------------------------------------
--- Table `iMarket`.`profile`
+-- Table `iMarket`.`profiles`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `iMarket`.`profile` ;
-CREATE TABLE IF NOT EXISTS `iMarket`.`profile` (
+DROP TABLE IF EXISTS `iMarket`.`profiles` ;
+CREATE TABLE IF NOT EXISTS `iMarket`.`profiles` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `user_id` INT NOT NULL,
   `first_name` VARCHAR(45) NULL,
@@ -64,6 +64,7 @@ DROP TABLE IF EXISTS `iMarket`.`advert_topics` ;
 CREATE TABLE IF NOT EXISTS `iMarket`.`advert_topics` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `topic_name` VARCHAR(45) NOT NULL,
+  `topic_sub_name` VARCHAR(45) NULL,
   PRIMARY KEY (`id`))
 ;
 
@@ -80,11 +81,11 @@ CREATE TABLE IF NOT EXISTS `iMarket`.`advert_ranks` (
   PRIMARY KEY (`id`))
 ;
 -- -----------------------------------------------------
--- Table `iMarket`.`advert`
+-- Table `iMarket`.`adverts`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `iMarket`.`advert` ;
+DROP TABLE IF EXISTS `iMarket`.`adverts` ;
 
-CREATE TABLE IF NOT EXISTS `iMarket`.`advert` (
+CREATE TABLE IF NOT EXISTS `iMarket`.`adverts` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `user_id` INT NOT NULL,
   `adv_topic_id` INT NOT NULL,
@@ -131,7 +132,7 @@ CREATE TABLE IF NOT EXISTS `iMarket`.`comments` (
   INDEX `fk_comments_users1_idx` (`user_id` ASC) ,
   CONSTRAINT `fk_comments_adverts1`
     FOREIGN KEY (`adv_id`)
-    REFERENCES `iMarket`.`advert` (`id`)
+    REFERENCES `iMarket`.`adverts` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_comments_users1`
@@ -171,7 +172,7 @@ CREATE TABLE IF NOT EXISTS `iMarket`.`sell_histories` (
     ON UPDATE NO ACTION,
 CONSTRAINT `fk_sell_histories_adverts1_idx`
     FOREIGN KEY (`adv_id`)
-    REFERENCES `iMarket`.`advert` (`id`)
+    REFERENCES `iMarket`.`adverts` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ;

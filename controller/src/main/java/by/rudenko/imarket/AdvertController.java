@@ -1,7 +1,9 @@
 package by.rudenko.imarket;
 
 import by.rudenko.imarket.dto.AdvertDTO;
+import by.rudenko.imarket.dto.AdvertShortDTO;
 import by.rudenko.imarket.exception.NoSuchIdException;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -9,22 +11,33 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/adverts")
+//пробуем
+@RequestMapping(value = {"/", "/adverts"})
+//@RequestMapping("/adverts")
 public class AdvertController<T extends AdvertDTO> {
 
     private final AdvertService advertService;
-    
-    //TODO как добавить зависимость из модуля Launcher без циклической ссылки???
-    //private final IMarketConfig iMarketConfig;
-    //IMarketConfig.defaultPageSize //количество записей на страницу по умолчанию (из файла свойств)
 
     public AdvertController(final AdvertService advertService) {
         this.advertService = advertService;
     }
 
+    @Value("${defaultPageSize}")
+    public Integer defaultPageSize;
+    //количество записей на страницу (по умолчанию 10)
+    //public final String defPage = defaultPageSize.toString();
+    //TODO defaultValue = defPage - не разрешает*/
+
+    //тип Get /guests/id - получить "краткие" объявления
+    @GetMapping
+    public List<AdvertShortDTO> getAllShortAdverts (
+            @RequestParam(value = "pageNumber", defaultValue = "1") int pageNumber,
+            @RequestParam(value = "pageSize", defaultValue = "10") int pageSize) {
+        return advertService.getAllShortAdverts(pageNumber, pageSize);
+    }
 
     //тип Get /adverts/ - получить весь список объявлений с пагинацией (без сортировки)
-    @GetMapping
+    @GetMapping(value = "/full")
     public List<AdvertDTO> getAllAdverts(
             @RequestParam(value = "pageNumber", defaultValue = "1") int pageNumber,
             @RequestParam(value = "pageSize", defaultValue = "10") int pageSize) {
@@ -44,6 +57,8 @@ public class AdvertController<T extends AdvertDTO> {
             @RequestParam(value = "pageSize", defaultValue = "10") int pageSize) {
         return advertService.getAllSortedAdverts(pageNumber, pageSize);
     }
+
+
 
     //тип Post /adverts/JSON добавить новую запись
      @PostMapping

@@ -47,7 +47,6 @@ public class CommentDaoImpl extends AbstractDao <Comment, Long> implements Comme
         Fetch<Advert, AdvertTopic> topicRoot = advRoot.fetch(Advert_.advertTopic);
         Fetch<Advert, AdvertRank> rankRoot = advRoot.fetch(Advert_.advertRank);
 
-
         return root;
     }
 
