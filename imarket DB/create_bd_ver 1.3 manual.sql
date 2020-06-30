@@ -35,8 +35,8 @@ CREATE TABLE IF NOT EXISTS `iMarket`.`profiles` (
   PRIMARY KEY (`id`),
   FOREIGN KEY (`user_id`)
     REFERENCES `iMarket`.`users` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ;
 
 -- -----------------------------------------------------
@@ -52,8 +52,8 @@ CREATE TABLE IF NOT EXISTS `imarket`.`coupons` (
   CONSTRAINT `fk_credit_cards_users1`
     FOREIGN KEY (`user_id`)
     REFERENCES `imarket`.`users` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ;
 
 -- -----------------------------------------------------
@@ -103,18 +103,18 @@ CREATE TABLE IF NOT EXISTS `iMarket`.`adverts` (
   CONSTRAINT `fk_adverts_users1`
     FOREIGN KEY (`user_id`)
     REFERENCES `iMarket`.`users` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
   CONSTRAINT `fk_adverts_advert_topics1`
     FOREIGN KEY (`adv_topic_id`)
     REFERENCES `iMarket`.`advert_topics` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
  CONSTRAINT `fk_adverts_advert_ranks1`
     FOREIGN KEY (`adv_rank_id`)
     REFERENCES `iMarket`.`advert_ranks` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ;
 -- -----------------------------------------------------
 -- Table `iMarket`.`comments`
@@ -122,7 +122,7 @@ CREATE TABLE IF NOT EXISTS `iMarket`.`adverts` (
 DROP TABLE IF EXISTS `iMarket`.`comments` ;
 
 CREATE TABLE IF NOT EXISTS `iMarket`.`comments` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `adv_id` INT NOT NULL,
   `user_id` INT NOT NULL,
   `comment_date` DATE NOT NULL,
@@ -133,13 +133,13 @@ CREATE TABLE IF NOT EXISTS `iMarket`.`comments` (
   CONSTRAINT `fk_comments_adverts1`
     FOREIGN KEY (`adv_id`)
     REFERENCES `iMarket`.`adverts` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
   CONSTRAINT `fk_comments_users1`
     FOREIGN KEY (`user_id`)
     REFERENCES `iMarket`.`users` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ;
 -- -----------------------------------------------------
 -- Table `iMarket`.`sell_histories`
@@ -163,18 +163,18 @@ CREATE TABLE IF NOT EXISTS `iMarket`.`sell_histories` (
   CONSTRAINT `fk_sell_histories_users1_idx`
     FOREIGN KEY (`seller_id`)
     REFERENCES `iMarket`.`users` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+   ON DELETE CASCADE
+    ON UPDATE CASCADE,
   CONSTRAINT `fk_sell_histories_users2_idx`
     FOREIGN KEY (`buyer_id`)
     REFERENCES `iMarket`.`users` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
 CONSTRAINT `fk_sell_histories_adverts1_idx`
     FOREIGN KEY (`adv_id`)
     REFERENCES `iMarket`.`adverts` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ;
 -- -----------------------------------------------------
 -- Table `iMarket`.`debates`
@@ -182,7 +182,7 @@ CONSTRAINT `fk_sell_histories_adverts1_idx`
 DROP TABLE IF EXISTS `iMarket`.`debates` ;
 
 CREATE TABLE IF NOT EXISTS `iMarket`.`debates` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `sell_history_id` INT NOT NULL,
   `user_id` INT NOT NULL,
   `debate_date` DATE NOT NULL,
@@ -193,12 +193,12 @@ CREATE TABLE IF NOT EXISTS `iMarket`.`debates` (
   CONSTRAINT `fk_debates_users1`
     FOREIGN KEY (`user_id`)
     REFERENCES `iMarket`.`users` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
   CONSTRAINT `fk_debates_sell_histories1`
     FOREIGN KEY (`sell_history_id`)
     REFERENCES `iMarket`.`sell_histories` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ;
 
