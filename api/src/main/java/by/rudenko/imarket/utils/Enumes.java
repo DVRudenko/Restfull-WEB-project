@@ -14,7 +14,7 @@ public class Enumes {
     public static final String ANSI_WHITE = "\u001B[37m";
 
     // роль пользователя: юзер или администратор
-    public enum UserRole {USER, ADMIN}
+    public enum UserRole {ROLE_USER, ROLE_ADMIN}
 
     // ранг объявления: для сортировке при показе объявления
     public enum RankName {USUAL, PRIOR, VIP}

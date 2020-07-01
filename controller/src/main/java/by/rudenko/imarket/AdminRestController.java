@@ -22,10 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(value = "/admin/")
-//TODO проверить работу ???
-//@PreAuthorize("hasAuthority('ADMIN')")
-//@PreAuthorize("hasRole('ADMIN')")
-//@PreAuthorize("hasAnyRole('ADMIN')")
+
 public class AdminRestController {
 
     private final UserService userService;

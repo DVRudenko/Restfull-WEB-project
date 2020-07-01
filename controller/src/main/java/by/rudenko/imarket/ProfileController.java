@@ -14,10 +14,6 @@ public class ProfileController<T extends ProfileDTO> {
 
     private final ProfileService profileService;
 
-    //TODO как добавить зависимость из модуля Launcher без циклической ссылки???
-    //private final IMarketConfig iMarketConfig;
-    //IMarketConfig.defaultPageSize //количество записей на страницу по умолчанию (из файла свойств)
-
     public ProfileController(final ProfileService profileService) {
         this.profileService = profileService;
     }

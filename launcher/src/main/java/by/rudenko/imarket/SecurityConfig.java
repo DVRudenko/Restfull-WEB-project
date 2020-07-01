@@ -68,17 +68,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
-                .authorizeRequests()
-                .antMatchers(LOGIN_ENDPOINT).permitAll()
-//               .antMatchers(ADMIN_ENDPOINT).hasRole("ADMIN")
-                .antMatchers(ADMIN_ENDPOINT).authenticated()
-//                .anyRequest().authenticated()
-                .anyRequest().permitAll()
+                    .authorizeRequests()
+                    .antMatchers(LOGIN_ENDPOINT).permitAll()
+                    .antMatchers(ADMIN_ENDPOINT).hasRole("ADMIN")
+//              .anyRequest().authenticated()
+//              .anyRequest().permitAll()
                 .and()
-                .apply(new JwtConfigurer(jwtTokenProvider));
+                    .apply(new JwtConfigurer(jwtTokenProvider));
     }
 
-    //что это дает???
     @Configuration
     protected static class AuthenticationConfiguration extends
             GlobalAuthenticationConfigurerAdapter {

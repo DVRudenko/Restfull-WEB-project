@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS `iMarket`.`users` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `login` VARCHAR(45) NOT NULL,
   `password` VARCHAR(150) NOT NULL,
-  `role`  ENUM ('USER', 'ADMIN') NOT NULL DEFAULT 'USER',
+  `role`  ENUM ('ROLE_USER', 'ROLE_ADMIN') NOT NULL DEFAULT 'ROLE_USER',
   PRIMARY KEY (`id`))
 ;
 -- -----------------------------------------------------

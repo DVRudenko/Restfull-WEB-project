@@ -7,12 +7,12 @@ USE iMarket ;
 -- -----------------------------------------------------
 -- fill users
 -- -----------------------------------------------------
-INSERT INTO users (login, password, role) values ( 'admin','$2a$04$UoIv/26fwNnjmPB0D5JkI.rFkrUxUArF7zXfMz1cs4zEvgXfEBEiO','ADMIN'); -- password - admin
-INSERT INTO users (login, password, role) values ( 'user1','$2a$04$cvLPhDFUMgn7tkkEziFde./hIrax5WQcWWB/Dka.texOAUITKpEwm','USER');	-- password - user1
-INSERT INTO users (login, password, role) values ( 'user2','$2a$04$b1WxKsOUR7WktR0fI8Nnfe269Beuwz43Ja6CbmDvgIGhXYOOT5m0S','USER');	-- password - user2
-INSERT INTO users (login, password, role) values ( 'user3','$2a$04$/FgFUjmQGpideWx6cUrNqOYZc3FhA66VM9XbxJ5SDhajZPva2uLju','USER');	-- password - user3
-INSERT INTO users (login, password, role) values ( 'user4','$2a$04$nf6cUE9VgOoDGneG8H0kKOdz4O.76LNvHz5EWwb8LsQJQLTyJm71K','USER');	-- password - user4
-INSERT INTO users (login, password, role) values ( 'user5','$2a$04$CtTBQZAABC4FpjsHFg5Pdu5GBa4H2XH7HXMlh5nBS0ZFH1Lb9FEA2','USER');	-- password - user5
+INSERT INTO users (login, password, role) values ( 'admin','$2a$04$UoIv/26fwNnjmPB0D5JkI.rFkrUxUArF7zXfMz1cs4zEvgXfEBEiO','ROLE_ADMIN'); -- password - admin
+INSERT INTO users (login, password, role) values ( 'user1','$2a$04$cvLPhDFUMgn7tkkEziFde./hIrax5WQcWWB/Dka.texOAUITKpEwm','ROLE_USER');	-- password - user1
+INSERT INTO users (login, password, role) values ( 'user2','$2a$04$b1WxKsOUR7WktR0fI8Nnfe269Beuwz43Ja6CbmDvgIGhXYOOT5m0S','ROLE_USER');	-- password - user2
+INSERT INTO users (login, password, role) values ( 'user3','$2a$04$/FgFUjmQGpideWx6cUrNqOYZc3FhA66VM9XbxJ5SDhajZPva2uLju','ROLE_USER');	-- password - user3
+INSERT INTO users (login, password, role) values ( 'user4','$2a$04$nf6cUE9VgOoDGneG8H0kKOdz4O.76LNvHz5EWwb8LsQJQLTyJm71K','ROLE_USER');	-- password - user4
+INSERT INTO users (login, password, role) values ( 'user5','$2a$04$CtTBQZAABC4FpjsHFg5Pdu5GBa4H2XH7HXMlh5nBS0ZFH1Lb9FEA2','ROLE_USER');	-- password - user5
 
 -- -----------------------------------------------------
 -- fill profiles
