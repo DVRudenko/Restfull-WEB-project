@@ -149,8 +149,8 @@
 
     </dependencies>
 
-    <build>
-        <!-- добавлено 28.04 -->
+ <!--   <build>
+        &lt;!&ndash; добавлено 28.04 &ndash;&gt;
         <plugins>
 
             <plugin>
@@ -165,7 +165,7 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
                 <configuration>
-                    <!-- не падать, если нет WebXml -->
+                    &lt;!&ndash; не падать, если нет WebXml &ndash;&gt;
                     <failOnMissingWebXml>false</failOnMissingWebXml>
                 </configuration>
             </plugin>
@@ -178,7 +178,7 @@
                 </configuration>
             </plugin>
         </plugins>
-    </build>
+    </build>-->
 
 
 

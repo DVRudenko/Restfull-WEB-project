@@ -10,7 +10,6 @@
      <!-- для агрегирующей - pom -->
     <packaging>pom</packaging>
 
-
     <modules>
         <module>api</module>
         <module>dao</module>
@@ -64,6 +63,9 @@
     </dependencies>
 
     <build>
+
+        <finalName>imarket</finalName>
+
          <plugins>
 
             <plugin>

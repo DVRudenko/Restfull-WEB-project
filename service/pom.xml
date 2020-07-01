@@ -10,8 +10,6 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>service</artifactId>
-    <!-- добавлено 28.04 -->
-    <packaging>war</packaging>
 
     <dependencies>
 
@@ -43,8 +41,7 @@
             <version>2.3.0</version>
         </dependency>
 
-        <!-- добавлено 28.04 -->
-        <!-- web -->
+         <!-- web -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
@@ -71,36 +68,5 @@
         </dependency>
 
     </dependencies>
-
-    <build>
-        <!-- добавлено 28.04 -->
-        <plugins>
-
-            <plugin>
-                <groupId>org.apache.tomcat.maven</groupId>
-                <artifactId>tomcat7-maven-plugin</artifactId>
-                <version>2.2</version>
-                <configuration>
-                    <path>/</path>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
-                <configuration>
-                    <!-- не падать, если нет WebXml -->
-                    <failOnMissingWebXml>false</failOnMissingWebXml>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>8</source>
-                    <target>8</target>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
 
 </project>

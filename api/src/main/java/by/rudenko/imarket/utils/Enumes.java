@@ -2,7 +2,7 @@ package by.rudenko.imarket.utils;
 
 public class Enumes {
 
-    //цвета выода на консоль (просто для удобства)
+    //цвета выода на консоль (просто для удобства отладки)
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_BLACK = "\u001B[30m";
     public static final String ANSI_RED = "\u001B[31m";
@@ -25,6 +25,6 @@ public class Enumes {
     // статус объявления: новое/продано/удалено
     public enum AdverStatus {NEW, SOLD, DELETED}
 
-    // статус продаж: новое/продано/удалено
+    // статус продаж: оплачено/выслано/получено/отменено
     public enum SellStatus {PAID, SEND, RECEIVED, CANCELLED}
 }

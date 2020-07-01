@@ -10,9 +10,6 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>dao</artifactId>
-    <!-- добавлено 28.04 -->
-    <packaging>war</packaging>
-
 
     <dependencies>
 
@@ -68,7 +65,6 @@
             <version>2.11.2</version>
         </dependency>
 
-        <!-- добавлено 28.04 -->
         <!-- web -->
         <dependency>
             <groupId>org.springframework</groupId>
@@ -94,12 +90,6 @@
             <artifactId>jackson-dataformat-xml</artifactId>
             <version>2.11.0</version>
         </dependency>
-<!--        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter</artifactId>
-            <version>RELEASE</version>
-            <scope>test</scope>
-        </dependency>-->
 
         <dependency>
             <groupId>junit</groupId>
@@ -115,37 +105,5 @@
         </dependency>
 
     </dependencies>
-
-    <build>
-        <!-- добавлено 28.04 -->
-        <plugins>
-
-            <plugin>
-                <groupId>org.apache.tomcat.maven</groupId>
-                <artifactId>tomcat7-maven-plugin</artifactId>
-                <version>2.2</version>
-                <configuration>
-                    <path>/</path>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
-                <configuration>
-                    <!-- не падать, если нет WebXml -->
-                    <failOnMissingWebXml>false</failOnMissingWebXml>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>8</source>
-                    <target>8</target>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
-
 
 </project>

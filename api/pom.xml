@@ -10,8 +10,6 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>api</artifactId>
-    <!-- добавлено 28.04 -->
-    <packaging>war</packaging>
 
 
     <dependencies>
@@ -28,7 +26,7 @@
             <scope>provided</scope>
         </dependency>
 
-        <!-- добавлено 28.04 -->
+
         <!-- web -->
         <dependency>
             <groupId>org.springframework</groupId>
@@ -55,11 +53,7 @@
             <version>2.11.0</version>
         </dependency>
 
-        <!--        <dependency>-->
-        <!--            <groupId>com.fasterxml.jackson.core</groupId>-->
-        <!--            <artifactId>jackson-databind</artifactId>-->
-        <!--            <version>2.9.7</version>-->
-        <!--        </dependency>-->
+
         <dependency>
             <groupId>com.fasterxml.jackson.datatype</groupId>
             <artifactId>jackson-datatype-jsr310</artifactId>
@@ -67,36 +61,5 @@
         </dependency>
 
     </dependencies>
-
-    <build>
-        <!-- добавлено 28.04 -->
-        <plugins>
-
-            <plugin>
-                <groupId>org.apache.tomcat.maven</groupId>
-                <artifactId>tomcat7-maven-plugin</artifactId>
-                <version>2.2</version>
-                <configuration>
-                    <path>/</path>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
-                <configuration>
-                    <!-- не падать, если нет WebXml -->
-                    <failOnMissingWebXml>false</failOnMissingWebXml>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>8</source>
-                    <target>8</target>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
 
 </project>
