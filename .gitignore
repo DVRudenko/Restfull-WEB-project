@@ -75,6 +75,7 @@ nb-configuration.xml
 ##############################
 ## My files
 ##############################
-imarket*
+
+#imarket*
 /production/
 !imarket.properties
