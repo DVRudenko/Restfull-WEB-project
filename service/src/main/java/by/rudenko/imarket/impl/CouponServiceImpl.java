@@ -65,4 +65,9 @@ public class CouponServiceImpl implements CouponService {
         couponDao.update(coupon);
         return true;
     }
+
+    @Override
+    public Long entityCount() {
+        return couponDao.entityCount();
+    }
 }

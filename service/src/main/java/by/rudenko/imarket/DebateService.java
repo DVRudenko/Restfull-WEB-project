@@ -20,6 +20,8 @@ public interface DebateService {
     boolean deleteDebate(DebateDTO debateDTO);
 
     boolean update(DebateDTO debateDTO);
+
+    Long entityCount ();
 }
 
 

@@ -65,4 +65,9 @@ public class AdvertRankServiceImpl implements AdvertRankService {
         advertRankDao.update(advertRank);
         return true;
     }
+
+    @Override
+    public Long entityCount() {
+        return advertRankDao.entityCount();
+    }
 }

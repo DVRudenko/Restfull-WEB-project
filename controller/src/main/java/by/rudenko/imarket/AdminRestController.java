@@ -28,7 +28,7 @@ public class AdminRestController {
     private final UserService userService;
 
     @Value("${allowChangeMoneyBalance}")
-    //разрешено ли менять баланс денег (по умолчанию нельзя)
+    //разрешено ли админу менять баланс денег (по умолчанию нельзя)
     public Boolean allowChangeMoneyBalance;
 
     @Autowired

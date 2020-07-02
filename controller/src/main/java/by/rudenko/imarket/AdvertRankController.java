@@ -31,6 +31,13 @@ public class AdvertRankController<T extends AdvertRankDTO> {
         return advertRankService.getAllAdvertRanksList(pageNumber, pageSize);
     }
 
+    //тип Get /count - получить количество строк в таблице
+    @GetMapping(value = "/count")
+    public Long getUsersCount()  {
+        return advertRankService.entityCount();
+    }
+
+
     //тип Get /guests/id - получить сущность по Id
     @GetMapping(value = "/{id}")
     public AdvertRankDTO getAllAdvertRanks(@PathVariable(value = "id") Long id) throws NoSuchIdException {

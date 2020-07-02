@@ -19,6 +19,8 @@ public interface ProfileService {
     boolean deleteProfile(ProfileDTO profileDTO);
 
     boolean update(ProfileDTO profileDTO);
+
+    Long entityCount ();
 }
 
 

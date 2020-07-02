@@ -75,4 +75,9 @@ public class DebateServiceImpl implements DebateService {
         debateDao.update(debate);
         return true;
     }
+
+    @Override
+    public Long entityCount() {
+        return debateDao.entityCount();
+    }
 }

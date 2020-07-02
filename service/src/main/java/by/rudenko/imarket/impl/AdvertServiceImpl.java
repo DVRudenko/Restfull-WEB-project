@@ -91,4 +91,9 @@ public class AdvertServiceImpl implements AdvertService {
                 .collect(Collectors.toList());
 
     }
+
+    @Override
+    public Long entityCount() {
+        return advertDao.entityCount();
+    }
 }

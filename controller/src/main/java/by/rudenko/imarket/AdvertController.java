@@ -36,6 +36,12 @@ public class AdvertController<T extends AdvertDTO> {
         return advertService.getAllShortAdverts(pageNumber, pageSize);
     }
 
+    //тип Get /count - получить количество строк в таблице
+    @GetMapping(value = "/count")
+    public Long getUsersCount()  {
+        return advertService.entityCount();
+    }
+
     //тип Get /adverts/ - получить весь список объявлений с пагинацией (без сортировки)
     @GetMapping(value = "/full")
     public List<AdvertDTO> getAllAdverts(

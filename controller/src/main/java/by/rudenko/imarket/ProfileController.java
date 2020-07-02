@@ -27,6 +27,12 @@ public class ProfileController<T extends ProfileDTO> {
         return profileService.getFullProfiles(pageNumber, pageSize);
     }
 
+    //тип Get /guests/count - получить количество строк в таблице (пользователей)
+    @GetMapping(value = "/count")
+    public Long getUsersCount()  {
+        return profileService.entityCount();
+    }
+
     //тип Get /guests/id - получить сущность по Id
     @GetMapping(value = "/{id}")
     public ProfileDTO getAllProfiles(@PathVariable(value = "id") Long id) throws NoSuchIdException {

@@ -70,4 +70,9 @@ public class SellHistoryServiceImpl implements SellHistoryService {
         sellHistoryDao.update(sellHistory);
         return true;
     }
+
+    @Override
+    public Long entityCount() {
+        return sellHistoryDao.entityCount();
+    }
 }

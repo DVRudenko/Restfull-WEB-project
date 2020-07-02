@@ -19,6 +19,8 @@ public interface CommentService {
     boolean deleteComment(CommentDTO commentDTO);
 
     boolean update(CommentDTO commentDTO);
+
+    Long entityCount ();
 }
 
 

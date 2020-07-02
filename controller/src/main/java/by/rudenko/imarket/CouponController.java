@@ -31,6 +31,12 @@ public class CouponController<T extends CouponDTO> {
         return couponService.getAllCouponsList(pageNumber, pageSize);
     }
 
+    //тип Get /guests/count - получить количество строк в таблице (пользователей)
+    @GetMapping(value = "/count")
+    public Long getUsersCount()  {
+        return couponService.entityCount();
+    }
+
     //тип Get /guests/id - получить сущность по Id
     @GetMapping(value = "/{id}")
     public CouponDTO getAllCoupons(@PathVariable(value = "id") Long id) throws NoSuchIdException {

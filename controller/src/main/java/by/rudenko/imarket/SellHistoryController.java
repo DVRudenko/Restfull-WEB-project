@@ -37,6 +37,12 @@ public class SellHistoryController<T extends SellHistoryDTO> {
         return sellHistoryService.findById(id);
     }
 
+    //тип Get /guests/count - получить количество строк в таблице (пользователей)
+    @GetMapping(value = "/count")
+    public Long getUsersCount()  {
+        return sellHistoryService.entityCount();
+    }
+
     //тип Post /sellHistorys/JSON добавить новую запись
     // TODO посмотреть как отрабатывает возврат ответа
     @PostMapping

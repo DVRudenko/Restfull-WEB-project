@@ -76,4 +76,9 @@ public class CommentServiceImpl implements CommentService {
         commentDao.update(comment);
         return true;
     }
+
+    @Override
+    public Long entityCount() {
+        return commentDao.entityCount();
+    }
 }

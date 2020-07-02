@@ -29,19 +29,6 @@ public class User implements Entity {
     @Enumerated(EnumType.STRING)
     private Enumes.UserRole role;
 
-//    //TODO no Session
-//    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL//, mappedBy = "users"
-//    )
-//    private List<Advert> advert;
-//
-//    //TODO no Session
-//    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL//, mappedBy = "users"
-//    )
-//    private List<Comment> comment;
-
-
-
-
     public User() {
     }
 

@@ -37,6 +37,12 @@ public class UserController<T extends UserDTO> {
         return userService.findById(id);
     }
 
+    //тип Get /guests/count - получить количество строк в таблице (пользователей)
+    @GetMapping(value = "/count")
+    public Long getUsersCount()  {
+        return userService.entityCount();
+    }
+
     //тип Post /users/JSON добавить новую запись
     // TODO посмотреть как отрабатывает возврат ответа
     @PostMapping

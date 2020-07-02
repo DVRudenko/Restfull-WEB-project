@@ -31,6 +31,12 @@ public class DebateController<T extends DebateDTO> {
         return debateService.getFullDebatesList(pageNumber, pageSize);
     }
 
+    //тип Get /guests/count - получить количество строк в таблице (пользователей)
+    @GetMapping(value = "/count")
+    public Long getUsersCount()  {
+        return debateService.entityCount();
+    }
+
     //тип Get /guests/id - получить сущность по Id
     @GetMapping(value = "/{id}")
     public DebateDTO getAllDebates(@PathVariable(value = "id") Long id) throws NoSuchIdException {

@@ -39,15 +39,6 @@ public class UserServiceImpl implements UserService {
         return true;
     }
 
-    //регистрируем пользователя
-    @Override
-    public User register(User user) {
-
-        // надо ли устанавливать роли???
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        return user;
-    }
-
     @Override
     public User findByUsername(String username) {
         User result = userDao.findByUsername(username);
@@ -87,5 +78,10 @@ public class UserServiceImpl implements UserService {
         final User user = modelMapper.map(userDTO, User.class);
         userDao.update(user);
         return true;
+    }
+
+    @Override
+    public Long entityCount() {
+        return userDao.entityCount();
     }
 }

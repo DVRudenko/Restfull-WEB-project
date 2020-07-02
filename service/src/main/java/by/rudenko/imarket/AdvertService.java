@@ -23,11 +23,11 @@ public interface AdvertService {
 
     boolean update(AdvertDTO advertDTO);
 
-
-
     List<AdvertDTO> getAllSortedAdverts(int pageNumber, int pageSize);
 
     List<AdvertShortDTO> getAllShortAdverts(int pageNumber, int pageSize);
+
+    Long entityCount ();
 }
 
 

@@ -31,6 +31,12 @@ public class AdvertTopicController<T extends AdvertTopicDTO> {
         return advertTopicService.getAllAdvertTopicsList(pageNumber, pageSize);
     }
 
+    //тип Get /count - получить количество строк в таблице
+    @GetMapping(value = "/count")
+    public Long getUsersCount()  {
+        return advertTopicService.entityCount();
+    }
+
     //тип Get /guests/id - получить сущность по Id
     @GetMapping(value = "/{id}")
     public AdvertTopicDTO getAllAdvertTopics(@PathVariable(value = "id") Long id) throws NoSuchIdException {

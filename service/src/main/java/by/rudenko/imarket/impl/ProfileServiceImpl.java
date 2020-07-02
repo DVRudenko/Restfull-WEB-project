@@ -73,4 +73,9 @@ public class ProfileServiceImpl implements ProfileService {
         profileDao.update(profile);
         return true;
     }
+
+    @Override
+    public Long entityCount() {
+        return profileDao.entityCount();
+    }
 }

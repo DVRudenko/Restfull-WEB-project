@@ -1,8 +1,8 @@
 package by.rudenko.imarket.impl;
 
+import by.rudenko.imarket.GenericDao;
 import by.rudenko.imarket.exception.NoSuchIdException;
 import by.rudenko.imarket.model.Entity;
-import by.rudenko.imarket.GenericDao;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -12,7 +12,6 @@ import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-
 import java.util.List;
 
 public class AbstractDao <T extends Entity, PK extends Number> implements GenericDao<T , PK> {
@@ -25,6 +24,7 @@ public class AbstractDao <T extends Entity, PK extends Number> implements Generi
     private Class<T> entityClass;
 
     public AbstractDao(Class<T> entityClass) {
+
         this.entityClass = entityClass;
     }
 
@@ -40,6 +40,17 @@ public class AbstractDao <T extends Entity, PK extends Number> implements Generi
             throw new NoSuchIdException("No such ID" + id);
 
         }
+    }
+
+    //поиск количества элементов в классе (в таблице)
+    @Override
+    public Long entityCount() {
+        final CriteriaBuilder cb = em.getCriteriaBuilder();
+        final CriteriaQuery<Long> cq = cb.createQuery(Long.class);
+        cq.select(cb.count(cq.from(entityClass)));
+        //если вдруг понадобиться по отдельному условию
+        //cq.where(/*something stuff*/);
+        return em.createQuery(cq).getSingleResult();
     }
 
 

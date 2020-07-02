@@ -16,6 +16,8 @@ public interface CouponService {
     boolean deleteCoupon(CouponDTO couponDTO);
 
     boolean update(CouponDTO couponDTO);
+
+    Long entityCount ();
 }
 
 

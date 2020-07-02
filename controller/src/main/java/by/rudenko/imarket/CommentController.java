@@ -31,6 +31,12 @@ public class CommentController<T extends CommentDTO> {
         return commentService.getFullCommentsList(pageNumber, pageSize);
     }
 
+    //тип Get /guests/count - получить количество строк в таблице (пользователей)
+    @GetMapping(value = "/count")
+    public Long getUsersCount()  {
+        return commentService.entityCount();
+    }
+
     //тип Get /guests/id - получить сущность по Id
     @GetMapping(value = "/{id}")
     public CommentDTO getAllComments(@PathVariable(value = "id") Long id) throws NoSuchIdException {

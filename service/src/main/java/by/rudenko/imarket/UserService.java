@@ -9,9 +9,6 @@ import java.util.List;
 
 public interface UserService {
 
-    // из Сулейманов но переделан в DTO
-    User register(User user);
-
     User findByUsername(String username);
 
     UserDTO findById(Long id) throws NoSuchIdException;
@@ -23,6 +20,8 @@ public interface UserService {
     boolean deleteUser(UserDTO userDTO);
 
     boolean update(UserDTO userDTO);
+
+    Long entityCount ();
 }
 
 

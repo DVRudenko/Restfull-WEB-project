@@ -10,7 +10,7 @@ import java.util.List;
 public interface AdvertDao extends GenericDao <Advert, Long> {
 
     //получить все объявления с вложениями
-    public List<Advert> getFullAdverts(int pageNumber, int pageSize);
+    List<Advert> getFullAdverts(int pageNumber, int pageSize);
 
     //получить объявление с вложениями по Id
     Advert getFullAdvertByID (Long id) throws NoSuchIdException;
@@ -21,5 +21,7 @@ public interface AdvertDao extends GenericDao <Advert, Long> {
     // с учетом темы
     //с пагинацией
     List<Advert> getSortedAdvertsByTopic(AdvertTopic advertTopic, int pageNumber, int pageSize);
+
+
 }
 

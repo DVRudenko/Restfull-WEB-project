@@ -65,4 +65,9 @@ public class AdvertTopicServiceImpl implements AdvertTopicService {
         advertTopicDao.update(advertTopic);
         return true;
     }
+
+    @Override
+    public Long entityCount() {
+        return advertTopicDao.entityCount();
+    }
 }

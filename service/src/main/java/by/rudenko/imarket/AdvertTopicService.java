@@ -16,6 +16,8 @@ public interface AdvertTopicService {
     boolean deleteAdvertTopic(AdvertTopicDTO advertTopicDTO);
 
     boolean update(AdvertTopicDTO advertTopicDTO);
+
+    Long entityCount ();
 }
 
 

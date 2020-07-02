@@ -18,6 +18,8 @@ public interface SellHistoryService {
     boolean deleteSellHistory(SellHistoryDTO sellHistoryDTO);
 
     boolean update(SellHistoryDTO sellHistoryDTO);
+
+    Long entityCount ();
 }
 
 
