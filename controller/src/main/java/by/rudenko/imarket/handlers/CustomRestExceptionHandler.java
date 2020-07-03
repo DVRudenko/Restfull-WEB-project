@@ -64,7 +64,7 @@ public class CustomRestExceptionHandler extends ResponseEntityExceptionHandler {
     }
 
     // Аргумент метода не соответствует ожидаемому типу
-    @ExceptionHandler({ MethodArgumentTypeMismatchException.class })
+    @ExceptionHandler({MethodArgumentTypeMismatchException.class})
     public ResponseEntity<Object> handleMethodArgumentTypeMismatch(
             MethodArgumentTypeMismatchException ex, WebRequest request) {
         String error =
@@ -77,7 +77,7 @@ public class CustomRestExceptionHandler extends ResponseEntityExceptionHandler {
     }
 
     // любые другие исключения
-    @ExceptionHandler({ Exception.class })
+    @ExceptionHandler({Exception.class})
     public ResponseEntity<Object> handleAll(Exception ex, WebRequest request) {
         ApiError apiError = new ApiError(
                 HttpStatus.INTERNAL_SERVER_ERROR, ex.getLocalizedMessage(), "error occurred");

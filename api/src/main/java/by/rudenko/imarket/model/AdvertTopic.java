@@ -1,7 +1,7 @@
 package by.rudenko.imarket.model;
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.Objects;
 
 
 /**
@@ -64,5 +64,19 @@ public class AdvertTopic implements Entity {
                 ", topicName='" + topicName + '\'' +
                 ", topicSubName='" + topicSubName + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof AdvertTopic)) return false;
+        AdvertTopic that = (AdvertTopic) o;
+        return getTopicName().equals(that.getTopicName()) &&
+                Objects.equals(getTopicSubName(), that.getTopicSubName());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getTopicName(), getTopicSubName());
     }
 }

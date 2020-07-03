@@ -5,7 +5,6 @@ import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatche
 public class Launcher extends AbstractAnnotationConfigDispatcherServletInitializer {
 
 
-
     // класс где лежит конфиг приложения
     @Override
     protected Class<?>[] getRootConfigClasses() {

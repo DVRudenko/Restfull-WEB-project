@@ -4,7 +4,8 @@ import by.rudenko.imarket.model.AdvertRank;
 import by.rudenko.imarket.model.AdvertTopic;
 import by.rudenko.imarket.model.User;
 import by.rudenko.imarket.utils.Enumes;
-import com.fasterxml.jackson.annotation.*;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 import java.time.LocalDate;
 
@@ -98,6 +99,5 @@ public class AdvertDTO {
     public void setAdverStatus(Enumes.AdverStatus adverStatus) {
         this.adverStatus = adverStatus;
     }
-
 
 }

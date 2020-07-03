@@ -6,7 +6,7 @@ import by.rudenko.imarket.model.SellHistory;
 import java.util.List;
 
 
-public interface SellHistoryDao extends GenericDao <SellHistory, Long> {
+public interface SellHistoryDao extends GenericDao<SellHistory, Long> {
 
 
     // список всех SellHistory без сортировки

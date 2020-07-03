@@ -6,10 +6,6 @@ import by.rudenko.imarket.utils.Enumes;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-
 /**
  * Implementation of Factory Method for class {@link JwtUser}.
  *
@@ -33,9 +29,10 @@ public final class JwtUserFactory {
 
 
     }
-        private static GrantedAuthority mapToGrantedAuthorities ( Enumes.UserRole userRoles) {
-            return new SimpleGrantedAuthority(userRoles.name());
-        }
+
+    private static GrantedAuthority mapToGrantedAuthorities(Enumes.UserRole userRoles) {
+        return new SimpleGrantedAuthority(userRoles.name());
+    }
 
 
 }

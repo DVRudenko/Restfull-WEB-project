@@ -10,13 +10,9 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/advertTopics")
-public class AdvertTopicController<T extends AdvertTopicDTO> {
+public class AdvertTopicController {
 
     private final AdvertTopicService advertTopicService;
-
-    //TODO как добавить зависимость из модуля Launcher без циклической ссылки???
-    //private final IMarketConfig iMarketConfig;
-    //IMarketConfig.defaultPageSize //количество записей на страницу по умолчанию (из файла свойств)
 
     public AdvertTopicController(final AdvertTopicService advertTopicService) {
         this.advertTopicService = advertTopicService;
@@ -33,7 +29,7 @@ public class AdvertTopicController<T extends AdvertTopicDTO> {
 
     //тип Get /count - получить количество строк в таблице
     @GetMapping(value = "/count")
-    public Long getUsersCount()  {
+    public Long getUsersCount() {
         return advertTopicService.entityCount();
     }
 
@@ -47,11 +43,10 @@ public class AdvertTopicController<T extends AdvertTopicDTO> {
     // TODO посмотреть как отрабатывает возврат ответа
     @PostMapping
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<?> addNewAdvertTopic (@RequestBody AdvertTopicDTO advertTopicDTO) {
+    public ResponseEntity<?> addNewAdvertTopic(@RequestBody AdvertTopicDTO advertTopicDTO) {
         advertTopicService.addNewAdvertTopic(advertTopicDTO);
         return ResponseEntity.ok("advertTopic saved");
     }
-
 
 
     //тип Delete /rooms/id удалить запись по Id
@@ -66,7 +61,7 @@ public class AdvertTopicController<T extends AdvertTopicDTO> {
     //TODO как лучше через POST или PUT
     @PutMapping
     @ResponseStatus(HttpStatus.OK)
-    public void updateAdvertTopic (@RequestBody AdvertTopicDTO advertTopicDTO) {
+    public void updateAdvertTopic(@RequestBody AdvertTopicDTO advertTopicDTO) {
         advertTopicService.update(advertTopicDTO);
     }
 

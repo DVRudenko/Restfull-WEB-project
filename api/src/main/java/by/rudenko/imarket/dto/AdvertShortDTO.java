@@ -6,9 +6,8 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 
 import java.time.LocalDate;
 
-
 /**
- * класс описывает DTO Объявления  Advert
+ * класс описывает DTO сокращенного объявления  short Advert
  */
 
 @JsonInclude(JsonInclude.Include.NON_NULL)

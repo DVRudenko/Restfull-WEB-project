@@ -3,9 +3,7 @@ package by.rudenko.imarket.impl;
 import by.rudenko.imarket.SellHistoryDao;
 import by.rudenko.imarket.SellHistoryService;
 import by.rudenko.imarket.dto.SellHistoryDTO;
-import by.rudenko.imarket.dto.SellHistoryDTO;
 import by.rudenko.imarket.exception.NoSuchIdException;
-import by.rudenko.imarket.model.SellHistory;
 import by.rudenko.imarket.model.SellHistory;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +18,8 @@ import java.util.stream.Collectors;
 public class SellHistoryServiceImpl implements SellHistoryService {
 
     @Autowired
-    private  final SellHistoryDao sellHistoryDao;
-    private  final ModelMapper modelMapper;
+    private final SellHistoryDao sellHistoryDao;
+    private final ModelMapper modelMapper;
 
     public SellHistoryServiceImpl(SellHistoryDao sellHistoryDao, ModelMapper modelMapper) {
         this.sellHistoryDao = sellHistoryDao;
@@ -53,7 +51,7 @@ public class SellHistoryServiceImpl implements SellHistoryService {
     public SellHistoryDTO findById(Long id) throws NoSuchIdException {
         final SellHistory sellHistoryEntity = sellHistoryDao.getFullSellHistoryByID(id);
 
-        return modelMapper.map (sellHistoryEntity, SellHistoryDTO.class);
+        return modelMapper.map(sellHistoryEntity, SellHistoryDTO.class);
     }
 
     @Override

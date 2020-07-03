@@ -17,7 +17,7 @@ public interface CouponService {
 
     boolean update(CouponDTO couponDTO);
 
-    Long entityCount ();
+    Long entityCount();
 }
 
 

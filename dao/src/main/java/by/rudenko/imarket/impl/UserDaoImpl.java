@@ -1,8 +1,6 @@
 package by.rudenko.imarket.impl;
 
 import by.rudenko.imarket.UserDao;
-import by.rudenko.imarket.model.SellHistory;
-import by.rudenko.imarket.model.SellHistory_;
 import by.rudenko.imarket.model.User;
 import by.rudenko.imarket.model.User_;
 import org.apache.logging.log4j.LogManager;
@@ -14,7 +12,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
 @Repository
-public class UserDaoImpl extends AbstractDao <User, Long> implements UserDao {
+public class UserDaoImpl extends AbstractDao<User, Long> implements UserDao {
 
     private static final Logger LOGGER = LogManager.getLogger("imarketUser");
 

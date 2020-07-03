@@ -3,7 +3,6 @@ package by.rudenko.imarket.model;
 import by.rudenko.imarket.utils.Enumes;
 
 import javax.persistence.*;
-import java.util.List;
 
 
 /**

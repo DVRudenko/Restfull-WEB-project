@@ -2,24 +2,26 @@ package by.rudenko.imarket.impl;
 
 import by.rudenko.imarket.ProfileDao;
 import by.rudenko.imarket.exception.NoSuchIdException;
-import by.rudenko.imarket.model.*;
 import by.rudenko.imarket.model.Profile;
+import by.rudenko.imarket.model.Profile_;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.TypedQuery;
-import javax.persistence.criteria.*;
-import javax.transaction.Transactional;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.JoinType;
+import javax.persistence.criteria.Root;
 import java.util.List;
 
 @Repository
-public class ProfileDaoImpl extends AbstractDao <Profile, Long> implements ProfileDao {
+public class ProfileDaoImpl extends AbstractDao<Profile, Long> implements ProfileDao {
 
     private static final Logger LOGGER = LogManager.getLogger("imarketProfile");
 
     public ProfileDaoImpl() {
-        super (Profile.class);
+        super(Profile.class);
     }
 
     //получаем все поля Profile с ленивой инициализацией

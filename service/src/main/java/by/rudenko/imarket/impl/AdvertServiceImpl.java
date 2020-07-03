@@ -19,8 +19,8 @@ import java.util.stream.Collectors;
 public class AdvertServiceImpl implements AdvertService {
 
     @Autowired
-    private  final AdvertDao advertDao;
-    private  final ModelMapper modelMapper;
+    private final AdvertDao advertDao;
+    private final ModelMapper modelMapper;
 
     public AdvertServiceImpl(AdvertDao advertDao, ModelMapper modelMapper) {
         this.advertDao = advertDao;
@@ -41,12 +41,12 @@ public class AdvertServiceImpl implements AdvertService {
     public AdvertDTO findById(Long id) throws NoSuchIdException {
         final Advert advertEntity = advertDao.findByID(id);
 
-        return modelMapper.map (advertEntity, AdvertDTO.class);
+        return modelMapper.map(advertEntity, AdvertDTO.class);
     }
 
     //вывести сокращенный вариант объявлений
     @Override
-    public List<AdvertShortDTO> getAllShortAdverts (int pageNumber, int pageSize) {
+    public List<AdvertShortDTO> getAllShortAdverts(int pageNumber, int pageSize) {
 
         return advertDao.getAll(pageNumber, pageSize).stream()
                 .map(x -> modelMapper.map(x, AdvertShortDTO.class))
@@ -85,11 +85,18 @@ public class AdvertServiceImpl implements AdvertService {
     }
 
     @Override
-    public List<AdvertDTO> getAllSortedAdverts(int pageNumber, int pageSize) {
+    public List<AdvertShortDTO> getAllSortedAdverts(int pageNumber, int pageSize) {
         return advertDao.getSortedAdverts(pageNumber, pageSize).stream()
-                .map(x -> modelMapper.map(x, AdvertDTO.class))
+                .map(x -> modelMapper.map(x, AdvertShortDTO.class))
                 .collect(Collectors.toList());
 
+    }
+
+    @Override
+    public List<AdvertShortDTO> getAllSortedAdvertsByTopic(String topic, int pageNumber, int pageSize) {
+        return advertDao.getSortedAdvertsByTopic(topic, pageNumber, pageSize).stream()
+                .map(x -> modelMapper.map(x, AdvertShortDTO.class))
+                .collect(Collectors.toList());
     }
 
     @Override

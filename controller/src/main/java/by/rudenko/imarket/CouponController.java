@@ -10,13 +10,9 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/coupons")
-public class CouponController<T extends CouponDTO> {
+public class CouponController {
 
     private final CouponService couponService;
-
-    //TODO как добавить зависимость из модуля Launcher без циклической ссылки???
-    //private final IMarketConfig iMarketConfig;
-    //IMarketConfig.defaultPageSize //количество записей на страницу по умолчанию (из файла свойств)
 
     public CouponController(final CouponService couponService) {
         this.couponService = couponService;
@@ -33,7 +29,7 @@ public class CouponController<T extends CouponDTO> {
 
     //тип Get /guests/count - получить количество строк в таблице (пользователей)
     @GetMapping(value = "/count")
-    public Long getUsersCount()  {
+    public Long getUsersCount() {
         return couponService.entityCount();
     }
 
@@ -47,11 +43,10 @@ public class CouponController<T extends CouponDTO> {
     // TODO посмотреть как отрабатывает возврат ответа
     @PostMapping
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<?> addNewCoupon (@RequestBody CouponDTO couponDTO) {
+    public ResponseEntity<?> addNewCoupon(@RequestBody CouponDTO couponDTO) {
         couponService.addNewCoupon(couponDTO);
         return ResponseEntity.ok("coupon saved");
     }
-
 
 
     //тип Delete /rooms/id удалить запись по Id
@@ -66,7 +61,7 @@ public class CouponController<T extends CouponDTO> {
     //TODO как лучше через POST или PUT
     @PutMapping
     @ResponseStatus(HttpStatus.OK)
-    public void updateCoupon (@RequestBody CouponDTO couponDTO) {
+    public void updateCoupon(@RequestBody CouponDTO couponDTO) {
         couponService.update(couponDTO);
     }
 

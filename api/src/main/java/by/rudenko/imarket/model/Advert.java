@@ -26,7 +26,7 @@ public class Advert implements Entity {
     @JoinColumn(name = "adv_topic_id")
     private AdvertTopic advertTopic;
 
-     @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "adv_rank_id")
     private AdvertRank advertRank;
 

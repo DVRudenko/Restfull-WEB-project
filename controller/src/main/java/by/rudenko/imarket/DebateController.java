@@ -10,18 +10,13 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/debates")
-public class DebateController<T extends DebateDTO> {
+public class DebateController {
 
     private final DebateService debateService;
-
-    //TODO как добавить зависимость из модуля Launcher без циклической ссылки???
-    //private final IMarketConfig iMarketConfig;
-    //IMarketConfig.defaultPageSize //количество записей на страницу по умолчанию (из файла свойств)
 
     public DebateController(final DebateService debateService) {
         this.debateService = debateService;
     }
-
 
     //тип Get /debates/ - получить весь список с пагинацией
     @GetMapping
@@ -33,7 +28,7 @@ public class DebateController<T extends DebateDTO> {
 
     //тип Get /guests/count - получить количество строк в таблице (пользователей)
     @GetMapping(value = "/count")
-    public Long getUsersCount()  {
+    public Long getUsersCount() {
         return debateService.entityCount();
     }
 
@@ -47,11 +42,10 @@ public class DebateController<T extends DebateDTO> {
     // TODO посмотреть как отрабатывает возврат ответа
     @PostMapping
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<?> addNewDebate (@RequestBody DebateDTO debateDTO) {
+    public ResponseEntity<?> addNewDebate(@RequestBody DebateDTO debateDTO) {
         debateService.addNewDebate(debateDTO);
         return ResponseEntity.ok("debate saved");
     }
-
 
 
     //тип Delete /rooms/id удалить запись по Id
@@ -66,7 +60,7 @@ public class DebateController<T extends DebateDTO> {
     //TODO как лучше через POST или PUT
     @PutMapping
     @ResponseStatus(HttpStatus.OK)
-    public void updateDebate (@RequestBody DebateDTO debateDTO) {
+    public void updateDebate(@RequestBody DebateDTO debateDTO) {
         debateService.update(debateDTO);
     }
 

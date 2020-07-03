@@ -1,7 +1,6 @@
 package by.rudenko.imarket.impl;
 
 import by.rudenko.imarket.AdvertDao;
-import by.rudenko.imarket.ProfileDao;
 import by.rudenko.imarket.exception.NoSuchIdException;
 import by.rudenko.imarket.model.*;
 import org.apache.logging.log4j.LogManager;
@@ -30,20 +29,7 @@ public class AdvertDaoImpl extends AbstractDao<Advert, Long> implements AdvertDa
         CriteriaQuery<Advert> cq = cb.createQuery(Advert.class);
         Root<Advert> root = getAdvertRoot(cq);
         CriteriaQuery<Advert> select = cq.select(root);
-        //используем пагинацию
-        TypedQuery<Advert> typedQuery = em.createQuery(select);
-        typedQuery.setFirstResult((pageNumber - 1) * pageSize);
-        typedQuery.setMaxResults(pageSize);
-        return typedQuery.getResultList();
-    }
-
-    //внутренний метод сделать Join полей
-    private Root<Advert> getAdvertRoot(CriteriaQuery<Advert> cq) {
-        Root<Advert> root = cq.from(Advert.class);
-        root.fetch(Advert_.user, JoinType.INNER);
-        root.fetch(Advert_.advertTopic, JoinType.INNER);
-        root.fetch(Advert_.advertRank, JoinType.INNER);
-        return root;
+        return getWithPagination(pageNumber, pageSize, select).getResultList();
     }
 
     //получаем все поля Advert по ID с ленивой инициализацией
@@ -72,7 +58,7 @@ public class AdvertDaoImpl extends AbstractDao<Advert, Long> implements AdvertDa
     }
 
     // сортируем объявления по рангу (VIP,Prior,Usual)
-    // и рейтинга продавца
+    // и TODO рейтинга продавца
     @Override
     public List<Advert> getSortedAdverts(int pageNumber, int pageSize) {
         LOGGER.info("Get sorted adverts ");
@@ -80,71 +66,80 @@ public class AdvertDaoImpl extends AbstractDao<Advert, Long> implements AdvertDa
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Advert> cq = cb.createQuery(Advert.class);
         Root<Advert> root = getAdvertRoot(cq);
-
-        //делаем join 2-го уровня
-        CriteriaQuery<Profile> cq2 = cb.createQuery(Profile.class);
-        Root<Profile> profileRoot = cq2.from(Profile.class);
-        //Join<Profile, User> profileRoot = root.join(String.valueOf(Profile_.user));
-
-//        Subquery sub = cq.subquery(Long.class);
-//        Root subRoot = sub.from(Profile.class);
-//        SetJoin<Profile, User> subUsers = (SetJoin<Profile, User>) subRoot.join(Profile_.user);
-//        sub.select(cb.count(subRoot.get(Profile_.id)));
-//        sub.where(cb.equal(root.get(String.valueOf(User_.id)), subUsers.get(User_.id)));
-
-
         //сортируем с учетом статуса объявлений (1-ми идут VIP)
         CriteriaQuery<Advert> select =
                 cq.select(root)
                         .orderBy(
-                                cb.desc(root.get(Advert_.advertRank)),
-                                // TODO как тут сделать Join из таблицы Profiles_userRank по user???
-                                // TODO InvalidPathException: Invalid path: 'generatedAlias4.userRank'
-                                cb.desc(profileRoot.get(Profile_.userRank))
-
+                                cb.desc(root.get(Advert_.advertRank))
                         );
-        //используем пагинацию
-        TypedQuery<Advert> typedQuery = em.createQuery(select);
-        typedQuery.setFirstResult((pageNumber - 1) * pageSize);
-        typedQuery.setMaxResults(pageSize);
-        return typedQuery.getResultList();
+        return getWithPagination(pageNumber, pageSize, select).getResultList();
     }
 
+
     // сортируем объявления по рангу (VIP,Prior,Usual)
-    // с учетом темы
-    //с пагинацией
+    // с учетом темы объявления
     @Override
-    public List<Advert> getSortedAdvertsByTopic(AdvertTopic advertTopic, int pageNumber, int pageSize) {
-        LOGGER.info("Get sorted adverts ");
+    public List<Advert> getSortedAdvertsByTopic(String topic, int pageNumber, int pageSize) {
+        LOGGER.info("Get sorted adverts by topic");
+
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<Advert> cq = cb.createQuery(Advert.class);
+        Root<Advert> root = getAdvertRoot(cq);
+        //делаем Join с таблицей AdverTopic по advertTopic
+        Join<Advert, AdvertTopic> advTopicRoot = root.join(Advert_.advertTopic, JoinType.LEFT);
+
+        CriteriaQuery<Advert> select =
+                cq.select(root).where(
+                        cb.equal(
+                                advTopicRoot.get(AdvertTopic_.topicName), topic)) //по теме объявления
+                        .orderBy(
+                                cb.desc(root.get(Advert_.advertRank)) //сортируем по рангу объявления
+                        );
+        return getWithPagination(pageNumber, pageSize, select).getResultList();
+    }
+
+    public List<Advert> getSortedAdvertsByRank (int pageNumber, int pageSize) {
+        LOGGER.info("Get sorted adverts by Rank");
         //получаем все поля с ленивой инициализацией
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Advert> cq = cb.createQuery(Advert.class);
         Root<Advert> root = getAdvertRoot(cq);
-
-        /*Join<Advert, Profile> profile = cq.from(Profile.class);
-        profile.fetch(Profile_.user, JoinType.LEFT);*/
-
-        /*Subquery sub = cq.subquery(Long.class);
-        Root<AdvertTopic> subRoot = sub.from(AdvertTopic.class);
-        //
-        SetJoin<AdvertTopic,Advert> subTopic = subRoot.join(AdvertTopic_.id);*/
-
-
-        //сортируем с учетом статуса объявлений (1-ми идут VIP)
+        //делаем Join с таблицей User по user_id
+        Join<Advert, User> userRoot = root.join(Advert_.user, JoinType.LEFT);
+        //userRoot.join(User_.id, JoinType.LEFT);
+        //Join<User, Profile> profRoot = userRoot.join(Profile_.user, JoinType.LEFT);
+        //сортируем с учетом ранга пользователя
         CriteriaQuery<Advert> select =
                 cq.select(root)
-                        //.where(cb.equal(root.get(AdvertTopic_.topicName), advertTopic))
                         .orderBy(
-                                cb.desc(root.get(Advert_.advertRank)),
-                                // TODO как тут сделать Join из таблицы Profiles_userRank по user???
-                                cb.desc(root.get(Advert_.advertTopic))
-
+                                cb.desc(userRoot.get(User_.id)//.get(Profile_.userRank)
+                                        )
                         );
-        //используем пагинацию
+        /*CriteriaQuery<Advert> select =
+                cq.select(root)
+                        .orderBy(
+                                cb.desc(profRoot.get(Profile_.userRank))
+                        );*/
+
+        return getWithPagination(pageNumber, pageSize, select).getResultList();
+    }
+
+
+    //внутренний метод используем пагинацию
+    private TypedQuery<Advert> getWithPagination(int pageNumber, int pageSize, CriteriaQuery<Advert> select) {
         TypedQuery<Advert> typedQuery = em.createQuery(select);
         typedQuery.setFirstResult((pageNumber - 1) * pageSize);
         typedQuery.setMaxResults(pageSize);
-        return typedQuery.getResultList();
+        return typedQuery;
+    }
+
+    //внутренний метод сделать Join полей
+    private Root<Advert> getAdvertRoot(CriteriaQuery<Advert> cq) {
+        Root<Advert> root = cq.from(Advert.class);
+        root.fetch(Advert_.user, JoinType.LEFT);
+        root.fetch(Advert_.advertTopic, JoinType.LEFT);
+        root.fetch(Advert_.advertRank, JoinType.LEFT);
+        return root;
     }
 
 

@@ -12,7 +12,7 @@ import javax.persistence.criteria.*;
 import java.util.List;
 
 @Repository
-public class DebateDaoImpl extends AbstractDao <Debate, Long> implements DebateDao {
+public class DebateDaoImpl extends AbstractDao<Debate, Long> implements DebateDao {
 
     private static final Logger LOGGER = LogManager.getLogger("imarketDebate");
 
@@ -26,7 +26,7 @@ public class DebateDaoImpl extends AbstractDao <Debate, Long> implements DebateD
         LOGGER.info("Get full debates list ");
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Debate> cq = cb.createQuery(Debate.class);
-        Root<Debate> root = getDebateRoot (cq);
+        Root<Debate> root = getDebateRoot(cq);
 
         CriteriaQuery<Debate> select = cq.select(root);
         //используем пагинацию
@@ -78,8 +78,6 @@ public class DebateDaoImpl extends AbstractDao <Debate, Long> implements DebateD
             throw new NoSuchIdException("No such Debate ID" + id);
         }
     }
-
-
 
 
 }

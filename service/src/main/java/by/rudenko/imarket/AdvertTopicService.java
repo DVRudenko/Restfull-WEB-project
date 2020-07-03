@@ -17,7 +17,7 @@ public interface AdvertTopicService {
 
     boolean update(AdvertTopicDTO advertTopicDTO);
 
-    Long entityCount ();
+    Long entityCount();
 }
 
 

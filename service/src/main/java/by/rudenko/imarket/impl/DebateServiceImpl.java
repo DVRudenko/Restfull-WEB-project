@@ -3,7 +3,6 @@ package by.rudenko.imarket.impl;
 import by.rudenko.imarket.DebateDao;
 import by.rudenko.imarket.DebateService;
 import by.rudenko.imarket.dto.DebateDTO;
-import by.rudenko.imarket.dto.DebateDTO;
 import by.rudenko.imarket.exception.NoSuchIdException;
 import by.rudenko.imarket.model.Debate;
 import org.modelmapper.ModelMapper;
@@ -19,8 +18,8 @@ import java.util.stream.Collectors;
 public class DebateServiceImpl implements DebateService {
 
     @Autowired
-    private  final DebateDao debateDao;
-    private  final ModelMapper modelMapper;
+    private final DebateDao debateDao;
+    private final ModelMapper modelMapper;
 
     public DebateServiceImpl(DebateDao debateDao, ModelMapper modelMapper) {
         this.debateDao = debateDao;
@@ -50,7 +49,7 @@ public class DebateServiceImpl implements DebateService {
     public DebateDTO findById(Long id) throws NoSuchIdException {
         final Debate debateEntity = debateDao.getFullDebateByID(id);
 
-        return modelMapper.map (debateEntity, DebateDTO.class);
+        return modelMapper.map(debateEntity, DebateDTO.class);
     }
 
     @Override

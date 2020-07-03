@@ -6,7 +6,7 @@ import by.rudenko.imarket.model.Debate;
 
 import java.util.List;
 
-public interface DebateDao extends GenericDao <Debate, Long> {
+public interface DebateDao extends GenericDao<Debate, Long> {
 
 
     // список всех Debate без сортировки

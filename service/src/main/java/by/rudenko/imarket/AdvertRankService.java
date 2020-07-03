@@ -17,7 +17,7 @@ public interface AdvertRankService {
 
     boolean update(AdvertRankDTO advertRankDTO);
 
-    Long entityCount ();
+    Long entityCount();
 }
 
 

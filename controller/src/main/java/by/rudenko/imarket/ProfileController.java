@@ -10,14 +10,13 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/profiles")
-public class ProfileController<T extends ProfileDTO> {
+public class ProfileController {
 
     private final ProfileService profileService;
 
     public ProfileController(final ProfileService profileService) {
         this.profileService = profileService;
     }
-
 
     //тип Get /profiles/ - получить весь список с пагинацией
     @GetMapping
@@ -29,7 +28,7 @@ public class ProfileController<T extends ProfileDTO> {
 
     //тип Get /guests/count - получить количество строк в таблице (пользователей)
     @GetMapping(value = "/count")
-    public Long getUsersCount()  {
+    public Long getUsersCount() {
         return profileService.entityCount();
     }
 
@@ -43,11 +42,10 @@ public class ProfileController<T extends ProfileDTO> {
     // TODO посмотреть как отрабатывает возврат ответа
     @PostMapping
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<?> addNewProfile (@RequestBody ProfileDTO profileDTO) {
+    public ResponseEntity<?> addNewProfile(@RequestBody ProfileDTO profileDTO) {
         profileService.addNewProfile(profileDTO);
         return ResponseEntity.ok("profile saved");
     }
-
 
 
     //тип Delete /rooms/id удалить запись по Id
@@ -62,7 +60,7 @@ public class ProfileController<T extends ProfileDTO> {
     //TODO как лучше через POST или PUT
     @PutMapping
     @ResponseStatus(HttpStatus.OK)
-    public void updateProfile (@RequestBody ProfileDTO profileDTO) {
+    public void updateProfile(@RequestBody ProfileDTO profileDTO) {
         profileService.update(profileDTO);
     }
 

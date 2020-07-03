@@ -18,8 +18,8 @@ import java.util.stream.Collectors;
 public class CouponServiceImpl implements CouponService {
 
     @Autowired
-    private  final CouponDao couponDao;
-    private  final ModelMapper modelMapper;
+    private final CouponDao couponDao;
+    private final ModelMapper modelMapper;
 
     public CouponServiceImpl(CouponDao couponDao, ModelMapper modelMapper) {
         this.couponDao = couponDao;
@@ -40,7 +40,7 @@ public class CouponServiceImpl implements CouponService {
     public CouponDTO findById(Long id) throws NoSuchIdException {
         final Coupon couponEntity = couponDao.findByID(id);
 
-        return modelMapper.map (couponEntity, CouponDTO.class);
+        return modelMapper.map(couponEntity, CouponDTO.class);
     }
 
     @Override

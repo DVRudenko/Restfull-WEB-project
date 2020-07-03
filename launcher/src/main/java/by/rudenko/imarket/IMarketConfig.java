@@ -1,12 +1,12 @@
 package by.rudenko.imarket;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.modelmapper.ModelMapper;
-import java.util.Properties;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.*;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
@@ -18,6 +18,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
+import java.util.Properties;
 
 @Configuration
 @EnableTransactionManagement
@@ -27,16 +28,16 @@ import javax.sql.DataSource;
 public class IMarketConfig {
 
 
-
-
+    @Value("${defaultPageSize}")
+    public Integer defaultPageSize;
     // читаем значения из файла свойств
-    @Value ("${driverClassName}")
+    @Value("${driverClassName}")
     public String driverClassName;
-    @Value ("${url}")
+    @Value("${url}")
     public String url;
-    @Value ("${db_username}")
+    @Value("${db_username}")
     public String username;
-    @Value ("${db_password}")
+    @Value("${db_password}")
     public String password;
 
 
@@ -50,7 +51,7 @@ public class IMarketConfig {
     //Бины для создания транзакций
     @Bean
     public DriverManagerDataSource dataSource() {
-        DriverManagerDataSource driverManagerDataSource = new DriverManagerDataSource ();
+        DriverManagerDataSource driverManagerDataSource = new DriverManagerDataSource();
         driverManagerDataSource.setDriverClassName(driverClassName);
         driverManagerDataSource.setUrl(url);
         driverManagerDataSource.setUsername(username);
@@ -59,7 +60,7 @@ public class IMarketConfig {
     }
 
     @Bean
-    public LocalContainerEntityManagerFactoryBean entityManagerFactory (DataSource dataSource){
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource) {
         LocalContainerEntityManagerFactoryBean entityManagerFactoryBean =
                 new LocalContainerEntityManagerFactoryBean();
         entityManagerFactoryBean.setDataSource(dataSource);

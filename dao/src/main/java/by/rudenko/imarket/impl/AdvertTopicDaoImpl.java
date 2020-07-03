@@ -7,15 +7,13 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class AdvertTopicDaoImpl extends AbstractDao <AdvertTopic, Long> implements AdvertTopicDao {
+public class AdvertTopicDaoImpl extends AbstractDao<AdvertTopic, Long> implements AdvertTopicDao {
 
     private static final Logger LOGGER = LogManager.getLogger("imarketAdvertTopic");
 
     public AdvertTopicDaoImpl() {
         super(AdvertTopic.class);
     }
-
-
 
 
 }

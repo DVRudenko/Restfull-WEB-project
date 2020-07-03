@@ -12,7 +12,7 @@ import javax.persistence.criteria.*;
 import java.util.List;
 
 @Repository
-public class CommentDaoImpl extends AbstractDao <Comment, Long> implements CommentDao {
+public class CommentDaoImpl extends AbstractDao<Comment, Long> implements CommentDao {
 
     private static final Logger LOGGER = LogManager.getLogger("imarketComment");
 
@@ -26,7 +26,7 @@ public class CommentDaoImpl extends AbstractDao <Comment, Long> implements Comme
         LOGGER.info("Get full comments list ");
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Comment> cq = cb.createQuery(Comment.class);
-        Root<Comment> root = getCommentRoot (cq);
+        Root<Comment> root = getCommentRoot(cq);
 
         CriteriaQuery<Comment> select = cq.select(root);
         //используем пагинацию

@@ -14,9 +14,9 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import java.util.List;
 
-public class AbstractDao <T extends Entity, PK extends Number> implements GenericDao<T , PK> {
+public class AbstractDao<T extends Entity, PK extends Number> implements GenericDao<T, PK> {
 
-    private static final Logger LOGGER = LogManager.getLogger("imarketAbstract");
+    private static final Logger LOGGER = LogManager.getLogger("imarket");
 
     @PersistenceContext
     protected EntityManager em;
@@ -36,7 +36,7 @@ public class AbstractDao <T extends Entity, PK extends Number> implements Generi
         if (entity != null) {
             return entity;
         } else {
-            LOGGER.error("No such ID" + id,  entityClass.getSimpleName());
+            LOGGER.error("No such ID" + id, entityClass.getSimpleName());
             throw new NoSuchIdException("No such ID" + id);
 
         }
@@ -54,7 +54,6 @@ public class AbstractDao <T extends Entity, PK extends Number> implements Generi
     }
 
 
-
     //запрос с пагинацией
     @Override
     public List<T> getAll(int pageNumber, int pageSize) {
@@ -65,22 +64,21 @@ public class AbstractDao <T extends Entity, PK extends Number> implements Generi
         CriteriaQuery<T> select = cq.select(root);
 
         TypedQuery<T> typedQuery = em.createQuery(select);
-        typedQuery.setFirstResult((pageNumber-1) * pageSize);
+        typedQuery.setFirstResult((pageNumber - 1) * pageSize);
         typedQuery.setMaxResults(pageSize);
         return typedQuery.getResultList();
     }
 
 
     @Override
-     public boolean save(final T entity) {
-        em.persist(em.contains (entity) ? entity : em.merge(entity));
-        em.persist(entity);
+    public boolean save(final T entity) {
+        em.persist(em.contains(entity) ? entity : em.merge(entity));
         LOGGER.info("1 row added to DB. Add new " + entityClass.getSimpleName());
         return true;
     }
 
     @Override
- 
+
     public boolean delete(final T deleteEntity) {
         em.remove(em.contains(deleteEntity) ? deleteEntity : em.merge(deleteEntity));
         LOGGER.info("1 row remove from DB. by " + entityClass.getSimpleName());

@@ -18,8 +18,8 @@ import java.util.stream.Collectors;
 public class AdvertRankServiceImpl implements AdvertRankService {
 
     @Autowired
-    private  final AdvertRankDao advertRankDao;
-    private  final ModelMapper modelMapper;
+    private final AdvertRankDao advertRankDao;
+    private final ModelMapper modelMapper;
 
     public AdvertRankServiceImpl(AdvertRankDao advertRankDao, ModelMapper modelMapper) {
         this.advertRankDao = advertRankDao;
@@ -40,7 +40,7 @@ public class AdvertRankServiceImpl implements AdvertRankService {
     public AdvertRankDTO findById(Long id) throws NoSuchIdException {
         final AdvertRank advertRankEntity = advertRankDao.findByID(id);
 
-        return modelMapper.map (advertRankEntity, AdvertRankDTO.class);
+        return modelMapper.map(advertRankEntity, AdvertRankDTO.class);
     }
 
     @Override

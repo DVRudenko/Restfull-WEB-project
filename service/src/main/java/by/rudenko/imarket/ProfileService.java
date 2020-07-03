@@ -2,7 +2,6 @@ package by.rudenko.imarket;
 
 import by.rudenko.imarket.dto.ProfileDTO;
 import by.rudenko.imarket.exception.NoSuchIdException;
-import by.rudenko.imarket.model.Profile;
 
 import java.util.List;
 
@@ -20,7 +19,7 @@ public interface ProfileService {
 
     boolean update(ProfileDTO profileDTO);
 
-    Long entityCount ();
+    Long entityCount();
 }
 
 

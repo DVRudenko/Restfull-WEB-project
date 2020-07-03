@@ -10,18 +10,13 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/users")
-public class UserController<T extends UserDTO> {
+public class UserController {
 
     private final UserService userService;
-
-    //TODO как добавить зависимость из модуля Launcher без циклической ссылки???
-    //private final IMarketConfig iMarketConfig;
-    //IMarketConfig.defaultPageSize //количество записей на страницу по умолчанию (из файла свойств)
 
     public UserController(final UserService userService) {
         this.userService = userService;
     }
-
 
     //тип Get /users/ - получить весь список с пагинацией
     @GetMapping
@@ -39,7 +34,7 @@ public class UserController<T extends UserDTO> {
 
     //тип Get /guests/count - получить количество строк в таблице (пользователей)
     @GetMapping(value = "/count")
-    public Long getUsersCount()  {
+    public Long getUsersCount() {
         return userService.entityCount();
     }
 
@@ -47,26 +42,25 @@ public class UserController<T extends UserDTO> {
     // TODO посмотреть как отрабатывает возврат ответа
     @PostMapping
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<?> addNewUser (@RequestBody UserDTO userDTO) {
+    public ResponseEntity<?> addNewUser(@RequestBody UserDTO userDTO) {
         userService.addNewUser(userDTO);
         return ResponseEntity.ok("user saved");
     }
 
 
-
     //тип Delete /rooms/id удалить запись по Id
     @DeleteMapping(value = "/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public void deleteUser(@PathVariable(value = "id") Long id) throws NoSuchIdException {
-
+    public ResponseEntity<?> deleteUser(@PathVariable(value = "id") Long id) throws NoSuchIdException {
         userService.deleteUser(userService.findById(id));
+        return ResponseEntity.ok("user deleted");
     }
 
     //тип Put /users/JSON обновить запись
     //TODO как лучше через POST или PUT
     @PutMapping
     @ResponseStatus(HttpStatus.OK)
-    public void updateUser (@RequestBody UserDTO userDTO) {
+    public void updateUser(@RequestBody UserDTO userDTO) {
         userService.update(userDTO);
     }
 

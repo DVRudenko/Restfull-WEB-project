@@ -3,7 +3,6 @@ package by.rudenko.imarket.impl;
 import by.rudenko.imarket.SellHistoryDao;
 import by.rudenko.imarket.exception.NoSuchIdException;
 import by.rudenko.imarket.model.*;
-import by.rudenko.imarket.model.SellHistory;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Repository;
@@ -13,7 +12,7 @@ import javax.persistence.criteria.*;
 import java.util.List;
 
 @Repository
-public class SellHistoryDaoImpl extends AbstractDao <SellHistory, Long> implements SellHistoryDao {
+public class SellHistoryDaoImpl extends AbstractDao<SellHistory, Long> implements SellHistoryDao {
 
     private static final Logger LOGGER = LogManager.getLogger("imarketSellHistory");
 
@@ -76,7 +75,6 @@ public class SellHistoryDaoImpl extends AbstractDao <SellHistory, Long> implemen
             throw new NoSuchIdException("No such SellHistory ID" + id);
         }
     }
-
 
 
 }

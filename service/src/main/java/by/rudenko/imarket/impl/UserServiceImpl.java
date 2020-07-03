@@ -6,13 +6,10 @@ import by.rudenko.imarket.dto.UserDTO;
 import by.rudenko.imarket.exception.NoSuchIdException;
 import by.rudenko.imarket.model.User;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-
+import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -20,9 +17,8 @@ import java.util.stream.Collectors;
 @Transactional
 public class UserServiceImpl implements UserService {
 
-    @Autowired
-    private  final UserDao userDao;
-    private  final ModelMapper modelMapper;
+    private final UserDao userDao;
+    private final ModelMapper modelMapper;
     private final BCryptPasswordEncoder passwordEncoder;
 
     public UserServiceImpl(UserDao userDao, ModelMapper modelMapper, BCryptPasswordEncoder passwordEncoder) {
@@ -33,7 +29,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean addNewUser(UserDTO userDTO) {
-        // маппинг из ДТО в  Entity
         final User user = modelMapper.map(userDTO, User.class);
         userDao.save(user);
         return true;
@@ -51,10 +46,8 @@ public class UserServiceImpl implements UserService {
     public UserDTO findById(Long id) throws NoSuchIdException {
         final User userEntity = userDao.findByID(id);
 
-        return modelMapper.map (userEntity, UserDTO.class);
+        return modelMapper.map(userEntity, UserDTO.class);
     }
-
-
 
 
     @Override
@@ -67,17 +60,14 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean deleteUser(UserDTO userDTO) {
-
         final User user = modelMapper.map(userDTO, User.class);
-        userDao.delete(user);
-        return true;
+        return userDao.delete(user);
     }
 
     @Override
     public boolean update(UserDTO userDTO) {
         final User user = modelMapper.map(userDTO, User.class);
-        userDao.update(user);
-        return true;
+        return userDao.update(user);
     }
 
     @Override

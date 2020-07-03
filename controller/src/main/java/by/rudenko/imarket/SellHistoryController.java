@@ -10,18 +10,13 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/sellHistories")
-public class SellHistoryController<T extends SellHistoryDTO> {
+public class SellHistoryController {
 
     private final SellHistoryService sellHistoryService;
-
-    //TODO как добавить зависимость из модуля Launcher без циклической ссылки???
-    //private final IMarketConfig iMarketConfig;
-    //IMarketConfig.defaultPageSize //количество записей на страницу по умолчанию (из файла свойств)
 
     public SellHistoryController(final SellHistoryService sellHistoryService) {
         this.sellHistoryService = sellHistoryService;
     }
-
 
     //тип Get /sellHistories/ - получить весь список с пагинацией
     @GetMapping
@@ -39,20 +34,17 @@ public class SellHistoryController<T extends SellHistoryDTO> {
 
     //тип Get /guests/count - получить количество строк в таблице (пользователей)
     @GetMapping(value = "/count")
-    public Long getUsersCount()  {
+    public Long getUsersCount() {
         return sellHistoryService.entityCount();
     }
 
     //тип Post /sellHistorys/JSON добавить новую запись
-    // TODO посмотреть как отрабатывает возврат ответа
     @PostMapping
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<?> addNewSellHistory (@RequestBody SellHistoryDTO sellHistoryDTO) {
+    public ResponseEntity<?> addNewSellHistory(@RequestBody SellHistoryDTO sellHistoryDTO) {
         sellHistoryService.addNewSellHistory(sellHistoryDTO);
         return ResponseEntity.ok("sellHistory saved");
     }
-
-
 
     //тип Delete /rooms/id удалить запись по Id
     @DeleteMapping(value = "/{id}")
@@ -63,10 +55,9 @@ public class SellHistoryController<T extends SellHistoryDTO> {
     }
 
     //тип Put /sellHistorys/JSON обновить запись
-    //TODO как лучше через POST или PUT
     @PutMapping
     @ResponseStatus(HttpStatus.OK)
-    public void updateSellHistory (@RequestBody SellHistoryDTO sellHistoryDTO) {
+    public void updateSellHistory(@RequestBody SellHistoryDTO sellHistoryDTO) {
         sellHistoryService.update(sellHistoryDTO);
     }
 

@@ -14,7 +14,7 @@ import java.time.LocalDate;
  */
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class SellHistoryDTO implements by.rudenko.imarket.model.Entity {
+public class SellHistoryDTO {
 
     private Long id;
     private User buyer;

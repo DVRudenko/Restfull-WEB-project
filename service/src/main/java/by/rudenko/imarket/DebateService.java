@@ -1,6 +1,5 @@
 package by.rudenko.imarket;
 
-import by.rudenko.imarket.dto.CommentDTO;
 import by.rudenko.imarket.dto.DebateDTO;
 import by.rudenko.imarket.exception.NoSuchIdException;
 
@@ -21,7 +20,7 @@ public interface DebateService {
 
     boolean update(DebateDTO debateDTO);
 
-    Long entityCount ();
+    Long entityCount();
 }
 
 

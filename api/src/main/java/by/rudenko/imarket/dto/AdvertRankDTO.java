@@ -3,14 +3,12 @@ package by.rudenko.imarket.dto;
 import by.rudenko.imarket.utils.Enumes;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
-
-
 /**
  * класс описывает DTO Ранга объявления  AdvertRank
  */
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class AdvertRankDTO  {
+public class AdvertRankDTO {
 
     private Long id;
     private int rankPrice;

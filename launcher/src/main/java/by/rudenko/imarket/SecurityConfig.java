@@ -35,10 +35,10 @@ import org.springframework.security.web.firewall.HttpFirewall;
 
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private final JwtTokenProvider jwtTokenProvider;
-
     private static final String ADMIN_ENDPOINT = "/admin/**";
+    private static final String USER_ENDPOINT = "/users/**,/profiles/**";
     private static final String LOGIN_ENDPOINT = "/auth/**";
+    private final JwtTokenProvider jwtTokenProvider;
 
     @Autowired
     public SecurityConfig(JwtTokenProvider jwtTokenProvider) {
@@ -59,7 +59,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
 
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
@@ -68,13 +67,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
-                    .authorizeRequests()
-                    .antMatchers(LOGIN_ENDPOINT).permitAll()
-                    .antMatchers(ADMIN_ENDPOINT).hasRole("ADMIN")
+                .authorizeRequests()
+                .antMatchers(LOGIN_ENDPOINT).permitAll()
+                .antMatchers(ADMIN_ENDPOINT).hasRole("ADMIN")
+                .antMatchers(USER_ENDPOINT).hasRole("USER")
 //              .anyRequest().authenticated()
-//              .anyRequest().permitAll()
+                .anyRequest().permitAll()
                 .and()
-                    .apply(new JwtConfigurer(jwtTokenProvider));
+                .apply(new JwtConfigurer(jwtTokenProvider));
     }
 
     @Configuration

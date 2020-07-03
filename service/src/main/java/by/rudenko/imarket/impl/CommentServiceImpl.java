@@ -3,7 +3,7 @@ package by.rudenko.imarket.impl;
 import by.rudenko.imarket.CommentDao;
 import by.rudenko.imarket.CommentService;
 import by.rudenko.imarket.dto.CommentDTO;
-import by.rudenko.imarket.dto.CommentDTO;
+import by.rudenko.imarket.dto.CommentShortDTO;
 import by.rudenko.imarket.exception.NoSuchIdException;
 import by.rudenko.imarket.model.Comment;
 import org.modelmapper.ModelMapper;
@@ -19,8 +19,8 @@ import java.util.stream.Collectors;
 public class CommentServiceImpl implements CommentService {
 
     @Autowired
-    private  final CommentDao commentDao;
-    private  final ModelMapper modelMapper;
+    private final CommentDao commentDao;
+    private final ModelMapper modelMapper;
 
     public CommentServiceImpl(CommentDao commentDao, ModelMapper modelMapper) {
         this.commentDao = commentDao;
@@ -51,7 +51,7 @@ public class CommentServiceImpl implements CommentService {
     public CommentDTO findById(Long id) throws NoSuchIdException {
         final Comment commentEntity = commentDao.getFullCommentByID(id);
 
-        return modelMapper.map (commentEntity, CommentDTO.class);
+        return modelMapper.map(commentEntity, CommentDTO.class);
     }
 
     @Override
@@ -80,5 +80,13 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public Long entityCount() {
         return commentDao.entityCount();
+    }
+
+    @Override
+    public List<CommentShortDTO> getAllShortComments(int pageNumber, Integer pageSize) {
+
+        return commentDao.getAll(pageNumber, pageSize).stream()
+                .map(x -> modelMapper.map(x, CommentShortDTO.class))
+                .collect(Collectors.toList());
     }
 }

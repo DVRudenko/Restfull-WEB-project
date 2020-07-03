@@ -6,7 +6,7 @@ import by.rudenko.imarket.model.Comment;
 import java.util.List;
 
 
-public interface CommentDao extends GenericDao <Comment, Long> {
+public interface CommentDao extends GenericDao<Comment, Long> {
 
 
     // список всех Comment без сортировки

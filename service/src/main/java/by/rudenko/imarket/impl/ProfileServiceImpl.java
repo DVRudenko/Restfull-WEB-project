@@ -18,8 +18,8 @@ import java.util.stream.Collectors;
 public class ProfileServiceImpl implements ProfileService {
 
     @Autowired
-    private  final ProfileDao profileDao;
-    private  final ModelMapper modelMapper;
+    private final ProfileDao profileDao;
+    private final ModelMapper modelMapper;
 
     public ProfileServiceImpl(ProfileDao profileDao, ModelMapper modelMapper) {
         this.profileDao = profileDao;
@@ -40,7 +40,7 @@ public class ProfileServiceImpl implements ProfileService {
     public ProfileDTO findById(Long id) throws NoSuchIdException {
         final Profile profileEntity = profileDao.getFullProfileByID(id);
 
-        return modelMapper.map (profileEntity, ProfileDTO.class);
+        return modelMapper.map(profileEntity, ProfileDTO.class);
     }
 
     @Override

@@ -6,7 +6,7 @@ import by.rudenko.imarket.model.Profile;
 import java.util.List;
 
 
-public interface ProfileDao extends GenericDao <Profile, Long> {
+public interface ProfileDao extends GenericDao<Profile, Long> {
 
 
     //получаем все поля Profile с ленивой инициализацией

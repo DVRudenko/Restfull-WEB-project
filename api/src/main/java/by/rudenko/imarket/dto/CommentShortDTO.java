@@ -1,7 +1,5 @@
 package by.rudenko.imarket.dto;
 
-import by.rudenko.imarket.model.Advert;
-import by.rudenko.imarket.model.User;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
@@ -9,15 +7,15 @@ import java.time.LocalDate;
 
 
 /**
- * класс описывает DTO Комментария к объявлениям Comments
+ * класс описывает DTO сокращенного комментария  к объявления short Advert  Comments
  */
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class CommentDTO {
+public class CommentShortDTO {
 
     private Long id;
-    private Advert advert;
-    private User user;
+    private Long advertId;
+    private Long userId;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private LocalDate commentDate;
     private String commentText;
@@ -30,20 +28,20 @@ public class CommentDTO {
         this.id = id;
     }
 
-    public User getUser() {
-        return user;
+    public Long getAdvertId() {
+        return advertId;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setAdvertId(Long advertId) {
+        this.advertId = advertId;
     }
 
-    public Advert getAdvert() {
-        return advert;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setAdvert(Advert advert) {
-        this.advert = advert;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public LocalDate getCommentDate() {

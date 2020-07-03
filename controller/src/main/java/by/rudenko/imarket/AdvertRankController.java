@@ -10,13 +10,9 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/advertRanks")
-public class AdvertRankController<T extends AdvertRankDTO> {
+public class AdvertRankController {
 
     private final AdvertRankService advertRankService;
-
-    //TODO как добавить зависимость из модуля Launcher без циклической ссылки???
-    //private final IMarketConfig iMarketConfig;
-    //IMarketConfig.defaultPageSize //количество записей на страницу по умолчанию (из файла свойств)
 
     public AdvertRankController(final AdvertRankService advertRankService) {
         this.advertRankService = advertRankService;
@@ -33,7 +29,7 @@ public class AdvertRankController<T extends AdvertRankDTO> {
 
     //тип Get /count - получить количество строк в таблице
     @GetMapping(value = "/count")
-    public Long getUsersCount()  {
+    public Long getUsersCount() {
         return advertRankService.entityCount();
     }
 
@@ -48,11 +44,10 @@ public class AdvertRankController<T extends AdvertRankDTO> {
     // TODO посмотреть как отрабатывает возврат ответа
     @PostMapping
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<?> addNewAdvertRank (@RequestBody AdvertRankDTO advertRankDTO) {
+    public ResponseEntity<?> addNewAdvertRank(@RequestBody AdvertRankDTO advertRankDTO) {
         advertRankService.addNewAdvertRank(advertRankDTO);
         return ResponseEntity.ok("advertRank saved");
     }
-
 
 
     //тип Delete /rooms/id удалить запись по Id
@@ -67,7 +62,7 @@ public class AdvertRankController<T extends AdvertRankDTO> {
     //TODO как лучше через POST или PUT
     @PutMapping
     @ResponseStatus(HttpStatus.OK)
-    public void updateAdvertRank (@RequestBody AdvertRankDTO advertRankDTO) {
+    public void updateAdvertRank(@RequestBody AdvertRankDTO advertRankDTO) {
         advertRankService.update(advertRankDTO);
     }
 

@@ -18,8 +18,8 @@ import java.util.stream.Collectors;
 public class AdvertTopicServiceImpl implements AdvertTopicService {
 
     @Autowired
-    private  final AdvertTopicDao advertTopicDao;
-    private  final ModelMapper modelMapper;
+    private final AdvertTopicDao advertTopicDao;
+    private final ModelMapper modelMapper;
 
     public AdvertTopicServiceImpl(AdvertTopicDao advertTopicDao, ModelMapper modelMapper) {
         this.advertTopicDao = advertTopicDao;
@@ -40,7 +40,7 @@ public class AdvertTopicServiceImpl implements AdvertTopicService {
     public AdvertTopicDTO findById(Long id) throws NoSuchIdException {
         final AdvertTopic advertTopicEntity = advertTopicDao.findByID(id);
 
-        return modelMapper.map (advertTopicEntity, AdvertTopicDTO.class);
+        return modelMapper.map(advertTopicEntity, AdvertTopicDTO.class);
     }
 
     @Override

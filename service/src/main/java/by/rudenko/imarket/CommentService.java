@@ -1,6 +1,7 @@
 package by.rudenko.imarket;
 
 import by.rudenko.imarket.dto.CommentDTO;
+import by.rudenko.imarket.dto.CommentShortDTO;
 import by.rudenko.imarket.exception.NoSuchIdException;
 
 import java.util.List;
@@ -20,7 +21,9 @@ public interface CommentService {
 
     boolean update(CommentDTO commentDTO);
 
-    Long entityCount ();
+    Long entityCount();
+
+    List<CommentShortDTO> getAllShortComments(int pageNumber, Integer pageSize);
 }
 
 

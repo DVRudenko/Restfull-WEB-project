@@ -5,7 +5,6 @@ import by.rudenko.imarket.model.User;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
-import javax.persistence.*;
 import java.time.LocalDate;
 
 
