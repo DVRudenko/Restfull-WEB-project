@@ -91,7 +91,7 @@ public class AdvertDaoImpl extends AbstractDao<Advert, Long> implements AdvertDa
         CriteriaQuery<Advert> select =
                 cq.select(root).where(
                         cb.equal(
-                                advTopicRoot.get(AdvertTopic_.topicName), topic)) //по теме объявления
+                                advTopicRoot.get(AdvertTopic_.topicName), topic)) //выбираем тему
                         .orderBy(
                                 cb.desc(root.get(Advert_.advertRank)) //сортируем по рангу объявления
                         );
@@ -106,14 +106,21 @@ public class AdvertDaoImpl extends AbstractDao<Advert, Long> implements AdvertDa
         Root<Advert> root = getAdvertRoot(cq);
         //делаем Join с таблицей User по user_id
         Join<Advert, User> userRoot = root.join(Advert_.user, JoinType.LEFT);
-        //userRoot.join(User_.id, JoinType.LEFT);
-        //Join<User, Profile> profRoot = userRoot.join(Profile_.user, JoinType.LEFT);
-        //сортируем с учетом ранга пользователя
+
+        //Root<Profile> profRoot = cq.from(Profile.class);
+        Join<User, Profile> profRoot2 = userRoot.join(Profile_.user,JoinType.LEFT);
+
+
+        userRoot.join(User_.id, JoinType.LEFT);
+        //userRoot.join(Profile_.user, JoinType.LEFT);
+        //Join<User, Profile> profRoot2 = userRoot.join(Profile_.user, JoinType.LEFT);
+        //сортируем объявления с учетом рейтинга пользователя
         CriteriaQuery<Advert> select =
                 cq.select(root)
                         .orderBy(
-                                cb.desc(userRoot.get(User_.id)//.get(Profile_.userRank)
-                                        )
+                                cb.desc(//userRoot.get(User_.id)//.
+                                        root.get(Advert_.user).get(User_.id).get(Profile_.userRank)
+                                )                                        )
                         );
         /*CriteriaQuery<Advert> select =
                 cq.select(root)
