@@ -6,7 +6,6 @@ import by.rudenko.imarket.dto.AdvertRankDTO;
 import by.rudenko.imarket.exception.NoSuchIdException;
 import by.rudenko.imarket.model.AdvertRank;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -17,7 +16,6 @@ import java.util.stream.Collectors;
 @Transactional
 public class AdvertRankServiceImpl implements AdvertRankService {
 
-    @Autowired
     private final AdvertRankDao advertRankDao;
     private final ModelMapper modelMapper;
 

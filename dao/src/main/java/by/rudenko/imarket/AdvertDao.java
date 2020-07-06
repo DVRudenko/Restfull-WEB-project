@@ -22,5 +22,6 @@ public interface AdvertDao extends GenericDao<Advert, Long> {
     List<Advert> getSortedAdvertsByTopic(String topic, int pageNumber, int pageSize);
 
 
+    List<Advert> getSortedAdvertsByUserRank(int pageNumber, int pageSize);
 }
 

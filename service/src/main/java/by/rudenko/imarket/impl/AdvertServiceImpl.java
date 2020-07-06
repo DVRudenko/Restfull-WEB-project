@@ -7,7 +7,6 @@ import by.rudenko.imarket.dto.AdvertShortDTO;
 import by.rudenko.imarket.exception.NoSuchIdException;
 import by.rudenko.imarket.model.Advert;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -18,7 +17,6 @@ import java.util.stream.Collectors;
 @Transactional
 public class AdvertServiceImpl implements AdvertService {
 
-    @Autowired
     private final AdvertDao advertDao;
     private final ModelMapper modelMapper;
 
@@ -102,5 +100,12 @@ public class AdvertServiceImpl implements AdvertService {
     @Override
     public Long entityCount() {
         return advertDao.entityCount();
+    }
+
+    @Override
+    public List<AdvertShortDTO> getAllSortedAdvertsByUserRank(int pageNumber, int pageSize) {
+        return advertDao.getSortedAdvertsByUserRank(pageNumber, pageSize).stream()
+                .map(x -> modelMapper.map(x, AdvertShortDTO.class))
+                .collect(Collectors.toList());
     }
 }

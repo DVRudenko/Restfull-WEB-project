@@ -64,11 +64,18 @@ public class AdvertController {
     public List<AdvertShortDTO> getAllSortedAdverts(
             @RequestParam(value = "pageNumber", defaultValue = "1") int pageNumber,
             @RequestParam(value = "pageSize", defaultValue = "10") int pageSize,
-            @RequestParam(value = "topic", required = false) String topic) {
-        if (topic == null) {
-            return advertService.getAllSortedAdverts(pageNumber, pageSize);
+            @RequestParam(value = "topic", required = false) String topic,
+            @RequestParam(value = "date", required = false) String date,
+            @RequestParam(value = "price", required = false) String price,
+            @RequestParam(value = "userRank", required = false) boolean userRank) {
+        if (topic != null) {
+            return advertService.getAllSortedAdvertsByTopic(topic, pageNumber, pageSize);
         }
-        return advertService.getAllSortedAdvertsByTopic(topic, pageNumber, pageSize);
+        if (userRank) {
+            return advertService.getAllSortedAdvertsByUserRank(pageNumber, pageSize);
+        }
+
+        return advertService.getAllSortedAdverts(pageNumber, pageSize);
     }
 
     //тип Post /adverts/JSON добавить новую запись

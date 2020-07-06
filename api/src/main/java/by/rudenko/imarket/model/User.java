@@ -28,8 +28,19 @@ public class User implements Entity {
     @Enumerated(EnumType.STRING)
     private Enumes.UserRole role;
 
+/*    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
+    private Profile profile;*/
+
     public User() {
     }
+
+ /*   public User(Long id, String login, String password, Enumes.UserRole role, Profile profile) {
+        this.id = id;
+        this.login = login;
+        this.password = password;
+        this.role = role;
+        this.profile = profile;
+    }*/
 
     public User(Long id, String login, String password, Enumes.UserRole role) {
         this.id = id;
@@ -72,6 +83,14 @@ public class User implements Entity {
     public void setRole(Enumes.UserRole role) {
         this.role = role;
     }
+
+//    public Profile getProfile() {
+//        return profile;
+//    }
+//
+//    public void setProfile(Profile profile) {
+//        this.profile = profile;
+//    }
 
     @Override
     public String toString() {

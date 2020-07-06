@@ -23,16 +23,8 @@ import org.springframework.security.web.firewall.HttpFirewall;
  * @author Dmitry Rudenko
  * @version 1.0
  */
-
 @Configuration
 @EnableWebSecurity
-//TODO проверить работу !!! Что тут и как?
-//@EnableGlobalMethodSecurity(prePostEnabled = true)
-//@EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
-/*@EnableGlobalMethodSecurity(
-        securedEnabled = true
-)*/
-
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private static final String ADMIN_ENDPOINT = "/admin/**";
@@ -57,7 +49,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public HttpFirewall defaultHttpFirewall() {
         return new DefaultHttpFirewall();
     }
-
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -90,7 +81,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     //без него не работает
     protected static class SecurityInit extends AbstractSecurityWebApplicationInitializer {
-
 
     }
 }

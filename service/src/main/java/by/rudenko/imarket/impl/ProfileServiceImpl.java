@@ -6,7 +6,6 @@ import by.rudenko.imarket.dto.ProfileDTO;
 import by.rudenko.imarket.exception.NoSuchIdException;
 import by.rudenko.imarket.model.Profile;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -17,7 +16,6 @@ import java.util.stream.Collectors;
 @Transactional
 public class ProfileServiceImpl implements ProfileService {
 
-    @Autowired
     private final ProfileDao profileDao;
     private final ModelMapper modelMapper;
 

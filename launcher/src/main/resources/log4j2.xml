@@ -15,11 +15,11 @@
     </Appenders>
 
     <Loggers>
-        <Logger name="hotel" level="info" additivity="false">
+        <Logger name="imarket" level="info" additivity="false">
             <AppenderRef ref="LogToFile"/>
             <!--            <AppenderRef ref="LogToConsole"/>-->
         </Logger>
-        <Logger name="hotel_console" level="error" additivity="false">
+        <Logger name="imarket_console" level="error" additivity="false">
             <AppenderRef ref="LogToConsole"/>
         </Logger>
         <Root level="error">

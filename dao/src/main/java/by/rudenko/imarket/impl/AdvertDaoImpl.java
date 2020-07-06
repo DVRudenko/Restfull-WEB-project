@@ -2,7 +2,10 @@ package by.rudenko.imarket.impl;
 
 import by.rudenko.imarket.AdvertDao;
 import by.rudenko.imarket.exception.NoSuchIdException;
-import by.rudenko.imarket.model.*;
+import by.rudenko.imarket.model.Advert;
+import by.rudenko.imarket.model.AdvertTopic;
+import by.rudenko.imarket.model.AdvertTopic_;
+import by.rudenko.imarket.model.Advert_;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Repository;
@@ -14,7 +17,7 @@ import java.util.List;
 @Repository
 public class AdvertDaoImpl extends AbstractDao<Advert, Long> implements AdvertDao {
 
-    private static final Logger LOGGER = LogManager.getLogger("imarketAdvert");
+    private static final Logger LOGGER = LogManager.getLogger("imarket");
 
     public AdvertDaoImpl() {
         super(Advert.class);
@@ -98,37 +101,23 @@ public class AdvertDaoImpl extends AbstractDao<Advert, Long> implements AdvertDa
         return getWithPagination(pageNumber, pageSize, select).getResultList();
     }
 
-    public List<Advert> getSortedAdvertsByRank (int pageNumber, int pageSize) {
-        LOGGER.info("Get sorted adverts by Rank");
+    public List<Advert> getSortedAdvertsByUserRank(int pageNumber, int pageSize) {
+        LOGGER.info("Get sorted adverts by User Rank");
         //получаем все поля с ленивой инициализацией
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Advert> cq = cb.createQuery(Advert.class);
-        Root<Advert> root = getAdvertRoot(cq);
-        //делаем Join с таблицей User по user_id
-        Join<Advert, User> userRoot = root.join(Advert_.user, JoinType.LEFT);
+        Root<Advert> root = cq.from(Advert.class);
 
-        //Root<Profile> profRoot = cq.from(Profile.class);
-        Join<User, Profile> profRoot2 = userRoot.join(Profile_.user,JoinType.LEFT);
-
-
-        userRoot.join(User_.id, JoinType.LEFT);
-        //userRoot.join(Profile_.user, JoinType.LEFT);
-        //Join<User, Profile> profRoot2 = userRoot.join(Profile_.user, JoinType.LEFT);
-        //сортируем объявления с учетом рейтинга пользователя
         CriteriaQuery<Advert> select =
                 cq.select(root)
                         .orderBy(
-                                cb.desc(//userRoot.get(User_.id)//.
-                                        root.get(Advert_.user).get(User_.id).get(Profile_.userRank)
-                                )                                        )
+                                cb.desc(root.get("user").get("profile").get("userRank")),// сортировка по рангу пользователя
+                                cb.desc(root.get(Advert_.advertRank) //+сортируем по рангу объявления
+                                )
                         );
-        /*CriteriaQuery<Advert> select =
-                cq.select(root)
-                        .orderBy(
-                                cb.desc(profRoot.get(Profile_.userRank))
-                        );*/
 
         return getWithPagination(pageNumber, pageSize, select).getResultList();
+
     }
 
 

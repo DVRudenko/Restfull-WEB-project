@@ -14,7 +14,7 @@ import javax.persistence.criteria.Root;
 @Repository
 public class UserDaoImpl extends AbstractDao<User, Long> implements UserDao {
 
-    private static final Logger LOGGER = LogManager.getLogger("imarketUser");
+    private static final Logger LOGGER = LogManager.getLogger("imarket");
 
     public UserDaoImpl() {
         super(User.class);

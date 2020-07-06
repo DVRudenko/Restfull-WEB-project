@@ -27,7 +27,6 @@ import java.util.Properties;
 @PropertySource("classpath:imarket.properties")
 public class IMarketConfig {
 
-
     @Value("${defaultPageSize}")
     public Integer defaultPageSize;
     // читаем значения из файла свойств
@@ -85,13 +84,9 @@ public class IMarketConfig {
 
     private Properties getHibernateProperties() {
         Properties properties = new Properties();
-
         properties.put("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
         properties.put("hibernate.show_sql", "true");
-
         return properties;
     }
-
-
 }
 

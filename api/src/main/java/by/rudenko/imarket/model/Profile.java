@@ -17,9 +17,10 @@ public class Profile implements Entity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, optional = false)
     @JoinColumn(name = "user_id")
     private User user;
+    //mappedBy = "profiles",
 
     @Column(name = "first_name")
     private String firstName;

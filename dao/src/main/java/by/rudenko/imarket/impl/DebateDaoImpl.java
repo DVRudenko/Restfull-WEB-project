@@ -14,7 +14,7 @@ import java.util.List;
 @Repository
 public class DebateDaoImpl extends AbstractDao<Debate, Long> implements DebateDao {
 
-    private static final Logger LOGGER = LogManager.getLogger("imarketDebate");
+    private static final Logger LOGGER = LogManager.getLogger("imarket");
 
     public DebateDaoImpl() {
         super(Debate.class);

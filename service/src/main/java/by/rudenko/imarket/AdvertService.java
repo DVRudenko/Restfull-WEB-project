@@ -28,6 +28,8 @@ public interface AdvertService {
     List<AdvertShortDTO> getAllShortAdverts(int pageNumber, int pageSize);
 
     Long entityCount();
+
+    List<AdvertShortDTO> getAllSortedAdvertsByUserRank(int pageNumber, int pageSize);
 }
 
 
