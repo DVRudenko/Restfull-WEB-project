@@ -39,7 +39,6 @@ public class ProfileController {
     }
 
     //тип Post /profiles/JSON добавить новую запись
-    // TODO посмотреть как отрабатывает возврат ответа
     @PostMapping
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<?> addNewProfile(@RequestBody ProfileDTO profileDTO) {
@@ -57,7 +56,6 @@ public class ProfileController {
     }
 
     //тип Put /profiles/JSON обновить запись
-    //TODO как лучше через POST или PUT
     @PutMapping
     @ResponseStatus(HttpStatus.OK)
     public void updateProfile(@RequestBody ProfileDTO profileDTO) {

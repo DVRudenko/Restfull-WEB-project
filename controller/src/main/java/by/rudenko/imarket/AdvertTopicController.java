@@ -40,7 +40,6 @@ public class AdvertTopicController {
     }
 
     //тип Post /advertTopics/JSON добавить новую запись
-    // TODO посмотреть как отрабатывает возврат ответа
     @PostMapping
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<?> addNewAdvertTopic(@RequestBody AdvertTopicDTO advertTopicDTO) {
@@ -58,7 +57,6 @@ public class AdvertTopicController {
     }
 
     //тип Put /advertTopics/JSON обновить запись
-    //TODO как лучше через POST или PUT
     @PutMapping
     @ResponseStatus(HttpStatus.OK)
     public void updateAdvertTopic(@RequestBody AdvertTopicDTO advertTopicDTO) {

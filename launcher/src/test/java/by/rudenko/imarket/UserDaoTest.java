@@ -1,7 +1,7 @@
 package by.rudenko.imarket;
 
 import by.rudenko.imarket.model.User;
-import by.rudenko.imarket.utils.Enumes;
+import by.rudenko.imarket.enumes.Enumes;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;

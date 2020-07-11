@@ -2,6 +2,7 @@ package by.rudenko.imarket.model;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Objects;
 
 
 /**
@@ -92,5 +93,22 @@ public class Comment implements Entity {
                 ", commentDate=" + commentDate +
                 ", commentText='" + commentText + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Comment)) return false;
+        Comment comment = (Comment) o;
+        return getId().equals(comment.getId()) &&
+                getAdvert().equals(comment.getAdvert()) &&
+                getUser().equals(comment.getUser()) &&
+                getCommentDate().equals(comment.getCommentDate()) &&
+                Objects.equals(getCommentText(), comment.getCommentText());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getAdvert(), getUser(), getCommentDate(), getCommentText());
     }
 }

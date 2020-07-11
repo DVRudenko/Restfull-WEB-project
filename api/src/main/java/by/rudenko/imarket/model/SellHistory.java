@@ -1,9 +1,10 @@
 package by.rudenko.imarket.model;
 
-import by.rudenko.imarket.utils.Enumes;
+import by.rudenko.imarket.enumes.Enumes;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Objects;
 
 
 /**
@@ -123,5 +124,24 @@ public class SellHistory implements Entity {
                 ", sellDate=" + sellDate +
                 ", sellPrice=" + sellPrice +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof SellHistory)) return false;
+        SellHistory that = (SellHistory) o;
+        return getSellPrice() == that.getSellPrice() &&
+                getId().equals(that.getId()) &&
+                getBuyer().equals(that.getBuyer()) &&
+                getSeller().equals(that.getSeller()) &&
+                getAdvert().equals(that.getAdvert()) &&
+                getSellStatus() == that.getSellStatus() &&
+                getSellDate().equals(that.getSellDate());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getBuyer(), getSeller(), getAdvert(), getSellStatus(), getSellDate(), getSellPrice());
     }
 }

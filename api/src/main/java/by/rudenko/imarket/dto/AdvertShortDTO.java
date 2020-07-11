@@ -1,6 +1,6 @@
 package by.rudenko.imarket.dto;
 
-import by.rudenko.imarket.utils.Enumes;
+import by.rudenko.imarket.enumes.Enumes;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 

@@ -39,7 +39,6 @@ public class DebateController {
     }
 
     //тип Post /debates/JSON добавить новую запись
-    // TODO посмотреть как отрабатывает возврат ответа
     @PostMapping
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<?> addNewDebate(@RequestBody DebateDTO debateDTO) {
@@ -57,7 +56,6 @@ public class DebateController {
     }
 
     //тип Put /debates/JSON обновить запись
-    //TODO как лучше через POST или PUT
     @PutMapping
     @ResponseStatus(HttpStatus.OK)
     public void updateDebate(@RequestBody DebateDTO debateDTO) {

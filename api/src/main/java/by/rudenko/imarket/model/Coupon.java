@@ -1,6 +1,7 @@
 package by.rudenko.imarket.model;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 
 /**
@@ -78,5 +79,21 @@ public class Coupon implements Entity {
                 ", discount=" + discount +
                 ", couponName='" + couponName + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Coupon)) return false;
+        Coupon coupon = (Coupon) o;
+        return getDiscount() == coupon.getDiscount() &&
+                getId().equals(coupon.getId()) &&
+                getUser().equals(coupon.getUser()) &&
+                getCouponName().equals(coupon.getCouponName());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getUser(), getDiscount(), getCouponName());
     }
 }

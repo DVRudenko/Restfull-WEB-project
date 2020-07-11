@@ -1,8 +1,9 @@
 package by.rudenko.imarket.model;
 
-import by.rudenko.imarket.utils.Enumes;
+import by.rudenko.imarket.enumes.Enumes;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 
 /**
@@ -67,5 +68,20 @@ public class AdvertRank implements Entity {
                 ", rankPrice=" + rankPrice +
                 ", rankName='" + rankName + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof AdvertRank)) return false;
+        AdvertRank that = (AdvertRank) o;
+        return getRankPrice() == that.getRankPrice() &&
+                getId().equals(that.getId()) &&
+                getRankName() == that.getRankName();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getRankPrice(), getRankName());
     }
 }

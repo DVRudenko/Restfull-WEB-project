@@ -1,9 +1,10 @@
 package by.rudenko.imarket.model;
 
-import by.rudenko.imarket.utils.Enumes;
+import by.rudenko.imarket.enumes.Enumes;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Objects;
 
 
 /**
@@ -152,5 +153,24 @@ public class Advert implements Entity {
                 '}';
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Advert)) return false;
+        Advert advert = (Advert) o;
+        return getAdvPrice() == advert.getAdvPrice() &&
+                getId().equals(advert.getId()) &&
+                getUser().equals(advert.getUser()) &&
+                getAdvertTopic().equals(advert.getAdvertTopic()) &&
+                getAdvertRank().equals(advert.getAdvertRank()) &&
+                getAdvType() == advert.getAdvType() &&
+                Objects.equals(getAdvText(), advert.getAdvText()) &&
+                getAdvDate().equals(advert.getAdvDate()) &&
+                getAdvStatus() == advert.getAdvStatus();
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getUser(), getAdvertTopic(), getAdvertRank(), getAdvType(), getAdvText(), getAdvPrice(), getAdvDate(), getAdvStatus());
+    }
 }

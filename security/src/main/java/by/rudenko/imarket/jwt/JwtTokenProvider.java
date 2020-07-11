@@ -1,7 +1,9 @@
 package by.rudenko.imarket.jwt;
 
-import by.rudenko.imarket.utils.Enumes;
+import by.rudenko.imarket.enumes.Enumes;
 import io.jsonwebtoken.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
@@ -40,6 +42,8 @@ public class JwtTokenProvider {
     @Autowired
     private UserDetailsService userDetailsService;
 
+    private static final Logger LOGGER = LogManager.getLogger("imarket");
+
     //будет нужен в UserService
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
@@ -61,6 +65,8 @@ public class JwtTokenProvider {
 
         Date now = new Date();
         Date validity = new Date(now.getTime() + validityInMilliseconds);
+
+        LOGGER.info("Token created for "+ username + "with role "+ roles);
 
         return Jwts.builder()//
                 .setClaims(claims)//

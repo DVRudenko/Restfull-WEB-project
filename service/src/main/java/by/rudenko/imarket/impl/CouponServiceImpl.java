@@ -2,9 +2,13 @@ package by.rudenko.imarket.impl;
 
 import by.rudenko.imarket.CouponDao;
 import by.rudenko.imarket.CouponService;
+import by.rudenko.imarket.ProfileDao;
+import by.rudenko.imarket.UserDao;
 import by.rudenko.imarket.dto.CouponDTO;
 import by.rudenko.imarket.exception.NoSuchIdException;
 import by.rudenko.imarket.model.Coupon;
+import by.rudenko.imarket.model.Profile;
+import by.rudenko.imarket.model.User;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
@@ -17,10 +21,14 @@ import java.util.stream.Collectors;
 public class CouponServiceImpl implements CouponService {
 
     private final CouponDao couponDao;
+    private final UserDao userDao;
+    private final ProfileDao profileDao;
     private final ModelMapper modelMapper;
 
-    public CouponServiceImpl(CouponDao couponDao, ModelMapper modelMapper) {
+    public CouponServiceImpl(CouponDao couponDao, UserDao userDao, ProfileDao profileDao, ModelMapper modelMapper) {
         this.couponDao = couponDao;
+        this.userDao = userDao;
+        this.profileDao = profileDao;
         this.modelMapper = modelMapper;
     }
 
@@ -67,5 +75,18 @@ public class CouponServiceImpl implements CouponService {
     @Override
     public Long entityCount() {
         return couponDao.entityCount();
+    }
+
+    //используем купон для пополнения баланса
+    @Override
+    public void useCoupon(CouponDTO couponDTO) {
+        final Coupon coupon = modelMapper.map(couponDTO, Coupon.class);
+        final User user = coupon.getUser();
+        final Profile profile = user.getProfile();
+        int newBalance = profile.getMoneyBalance()+coupon.getDiscount(); //обновляем баланс
+        profile.setMoneyBalance(newBalance);
+        profileDao.update(profile); //сохраняем новый профиль
+        couponDao.delete(coupon);//удаляем использованный купон
+
     }
 }

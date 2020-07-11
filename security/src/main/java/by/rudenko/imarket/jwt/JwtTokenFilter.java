@@ -1,5 +1,7 @@
 package by.rudenko.imarket.jwt;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.GenericFilterBean;
@@ -22,6 +24,8 @@ public class JwtTokenFilter extends GenericFilterBean {
 
     private JwtTokenProvider jwtTokenProvider;
 
+    private static final Logger LOGGER = LogManager.getLogger("imarket");
+
     public JwtTokenFilter(JwtTokenProvider jwtTokenProvider) {
 
         this.jwtTokenProvider = jwtTokenProvider;
@@ -40,6 +44,7 @@ public class JwtTokenFilter extends GenericFilterBean {
             }
         }
         filterChain.doFilter(req, res);
+        LOGGER.info("jwt Token passed ");
     }
 
 }

@@ -39,7 +39,7 @@ public class UserController {
     }
 
     //тип Post /users/JSON добавить новую запись
-    // TODO посмотреть как отрабатывает возврат ответа
+
     @PostMapping
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<?> addNewUser(@RequestBody UserDTO userDTO) {
@@ -57,7 +57,6 @@ public class UserController {
     }
 
     //тип Put /users/JSON обновить запись
-    //TODO как лучше через POST или PUT
     @PutMapping
     @ResponseStatus(HttpStatus.OK)
     public void updateUser(@RequestBody UserDTO userDTO) {

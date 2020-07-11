@@ -17,10 +17,9 @@ public class Profile implements Entity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, optional = false)
-    @JoinColumn(name = "user_id")
+    @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
-    //mappedBy = "profiles",
 
     @Column(name = "first_name")
     private String firstName;
@@ -47,15 +46,46 @@ public class Profile implements Entity {
     public Profile() {
     }
 
-    public Profile(Long id, User user, LocalDate dateOfBirth, String city, String avatar, int moneyBalance, int userRank) {
+    public Profile(Long id, String firstName, String lastName, LocalDate dateOfBirth, String city, String avatar, int moneyBalance, int userRank) {
         this.id = id;
-        this.user = user;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.dateOfBirth = dateOfBirth;
         this.city = city;
         this.avatar = avatar;
         this.moneyBalance = moneyBalance;
         this.userRank = userRank;
     }
+
+    //профиль нового юзера по умолчанию
+    public Profile(User user) {
+        this.moneyBalance = 0;
+        this.userRank = 1;
+    }
+
+
+ /*  Уберем поля User из конструктора
+
+ public Profile(Long id, User user, String firstName, String lastName, LocalDate dateOfBirth, String city, String avatar, int moneyBalance, int userRank) {
+        this.id = id;
+        this.user = user;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.dateOfBirth = dateOfBirth;
+        this.city = city;
+        this.avatar = avatar;
+        this.moneyBalance = moneyBalance;
+        this.userRank = userRank;
+    }
+
+    //профиль нового юзера по умолчанию
+    public Profile(User user) {
+        this.user = user;
+        this.moneyBalance = 0;
+        this.userRank = 1;
+    }*/
+
+
 
     @Override
     public Long getId() {

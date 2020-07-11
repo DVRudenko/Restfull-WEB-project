@@ -41,7 +41,6 @@ public class AdvertRankController {
     }
 
     //тип Post /advertRanks/JSON добавить новую запись
-    // TODO посмотреть как отрабатывает возврат ответа
     @PostMapping
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<?> addNewAdvertRank(@RequestBody AdvertRankDTO advertRankDTO) {
@@ -59,7 +58,6 @@ public class AdvertRankController {
     }
 
     //тип Put /advertRanks/JSON обновить запись
-    //TODO как лучше через POST или PUT
     @PutMapping
     @ResponseStatus(HttpStatus.OK)
     public void updateAdvertRank(@RequestBody AdvertRankDTO advertRankDTO) {

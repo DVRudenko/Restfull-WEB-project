@@ -16,7 +16,7 @@ public class Launcher extends AbstractAnnotationConfigDispatcherServletInitializ
         return new Class[0];
     }
 
-    // все запосы / попадут в диспетчер сервлетов
+    // все запросы / попадут в диспетчер сервлетов
     @Override
     protected String[] getServletMappings() {
         return new String[]{"/"};

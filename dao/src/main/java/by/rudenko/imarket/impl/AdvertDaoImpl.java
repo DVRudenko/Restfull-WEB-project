@@ -50,7 +50,7 @@ public class AdvertDaoImpl extends AbstractDao<Advert, Long> implements AdvertDa
                                 root.get(Advert_.id), id)
                         );
 
-        Advert advert = em.createQuery(select).getSingleResult();
+        Advert advert = em.createQuery(select).getResultList().get(0);
 
         if (advert != null) {
             return advert;

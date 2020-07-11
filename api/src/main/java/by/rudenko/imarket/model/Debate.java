@@ -2,6 +2,7 @@ package by.rudenko.imarket.model;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Objects;
 
 
 /**
@@ -97,5 +98,22 @@ public class Debate implements Entity {
                 ", debateDate=" + debateDate +
                 ", debateText='" + debateText + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Debate)) return false;
+        Debate debate = (Debate) o;
+        return getId().equals(debate.getId()) &&
+                getSellHistory().equals(debate.getSellHistory()) &&
+                getUser().equals(debate.getUser()) &&
+                getDebateDate().equals(debate.getDebateDate()) &&
+                Objects.equals(getDebateText(), debate.getDebateText());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getSellHistory(), getUser(), getDebateDate(), getDebateText());
     }
 }

@@ -61,7 +61,6 @@ public class CommentController {
     }
 
     //тип Post /comments/JSON добавить новую запись
-    // TODO посмотреть как отрабатывает возврат ответа
     @PostMapping
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<?> addNewComment(@RequestBody CommentDTO commentDTO) {
@@ -78,7 +77,6 @@ public class CommentController {
     }
 
     //тип Put /comments/JSON обновить запись
-    //TODO как лучше через POST или PUT
     @PutMapping
     @ResponseStatus(HttpStatus.OK)
     public void updateComment(@RequestBody CommentDTO commentDTO) {

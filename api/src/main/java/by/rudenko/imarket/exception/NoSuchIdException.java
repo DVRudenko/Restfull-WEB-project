@@ -3,11 +3,11 @@ package by.rudenko.imarket.exception;
 /**
  * класс моего исключения
  */
-public class NoSuchIdException extends Exception {
+public class NoSuchIdException extends RuntimeException {
 
-    public NoSuchIdException() {
-
-    }
+//    public NoSuchIdException() {
+//
+//    }
 
     public NoSuchIdException(String exception) {
         super(exception);

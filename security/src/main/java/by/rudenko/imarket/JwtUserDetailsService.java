@@ -3,6 +3,8 @@ package by.rudenko.imarket;
 import by.rudenko.imarket.jwt.JwtUser;
 import by.rudenko.imarket.jwt.JwtUserFactory;
 import by.rudenko.imarket.model.User;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -15,7 +17,7 @@ public class JwtUserDetailsService implements UserDetailsService {
 
     private final UserService userService;
 
-    //private Log4j log;
+    private static final Logger LOGGER = LogManager.getLogger("imarket");
 
     @Autowired
     public JwtUserDetailsService(UserService userService) {
@@ -31,7 +33,7 @@ public class JwtUserDetailsService implements UserDetailsService {
         }
 
         JwtUser jwtUser = JwtUserFactory.create(user);
-        //log.info("IN loadUserByUsername - user with username: {} successfully loaded", username);
+        LOGGER.info("IN loadUserByUsername - user with username: {} successfully loaded", username);
         return jwtUser;
     }
 }

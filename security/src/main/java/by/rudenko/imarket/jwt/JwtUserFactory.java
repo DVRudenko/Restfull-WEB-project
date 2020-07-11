@@ -2,7 +2,7 @@ package by.rudenko.imarket.jwt;
 
 
 import by.rudenko.imarket.model.User;
-import by.rudenko.imarket.utils.Enumes;
+import by.rudenko.imarket.enumes.Enumes;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 

@@ -15,7 +15,8 @@ import java.time.LocalDate;
 public class ProfileDTO {
 
     private Long id;
-    private User user;
+    //меняем на UserId
+    private Long userId;
     private String firstName;
     private String lastName;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
@@ -33,12 +34,12 @@ public class ProfileDTO {
         this.id = id;
     }
 
-    public User getUser() {
-        return user;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public String getFirstName() {

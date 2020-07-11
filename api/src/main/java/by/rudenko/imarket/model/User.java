@@ -1,6 +1,6 @@
 package by.rudenko.imarket.model;
 
-import by.rudenko.imarket.utils.Enumes;
+import by.rudenko.imarket.enumes.Enumes;
 
 import javax.persistence.*;
 import java.util.Objects;
@@ -9,6 +9,7 @@ import java.util.Objects;
 /**
  * класс описывает модель Пользователя User
  */
+
 
 @javax.persistence.Entity
 @Table(name = "users")
@@ -28,25 +29,25 @@ public class User implements Entity {
     @Enumerated(EnumType.STRING)
     private Enumes.UserRole role;
 
-/*    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
-    private Profile profile;*/
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Profile profile;
 
     public User() {
     }
-
- /*   public User(Long id, String login, String password, Enumes.UserRole role, Profile profile) {
-        this.id = id;
-        this.login = login;
-        this.password = password;
-        this.role = role;
-        this.profile = profile;
-    }*/
 
     public User(Long id, String login, String password, Enumes.UserRole role) {
         this.id = id;
         this.login = login;
         this.password = password;
         this.role = role;
+    }
+
+    public User(Long id, String login, String password, Enumes.UserRole role, Profile profile) {
+        this.id = id;
+        this.login = login;
+        this.password = password;
+        this.role = role;
+        this.profile = profile;
     }
 
 
@@ -84,13 +85,13 @@ public class User implements Entity {
         this.role = role;
     }
 
-//    public Profile getProfile() {
-//        return profile;
-//    }
-//
-//    public void setProfile(Profile profile) {
-//        this.profile = profile;
-//    }
+    public Profile getProfile() {
+        return profile;
+    }
+
+    public void setProfile(Profile profile) {
+        this.profile = profile;
+    }
 
     @Override
     public String toString() {

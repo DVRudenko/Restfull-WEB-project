@@ -18,7 +18,6 @@ public class CouponController {
         this.couponService = couponService;
     }
 
-
     //тип Get /coupons/ - получить весь список с пагинацией
     @GetMapping
     public List<CouponDTO> getAllCoupons(
@@ -40,12 +39,19 @@ public class CouponController {
     }
 
     //тип Post /coupons/JSON добавить новую запись
-    // TODO посмотреть как отрабатывает возврат ответа
     @PostMapping
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<?> addNewCoupon(@RequestBody CouponDTO couponDTO) {
         couponService.addNewCoupon(couponDTO);
         return ResponseEntity.ok("coupon saved");
+    }
+
+    //тип Post /coupons/JSON добавить новую запись
+    @PostMapping(value = "/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<?> useCoupon(@RequestBody CouponDTO couponDTO) {
+        couponService.useCoupon(couponDTO);
+        return ResponseEntity.ok("coupon used successfully");
     }
 
 
@@ -58,7 +64,6 @@ public class CouponController {
     }
 
     //тип Put /coupons/JSON обновить запись
-    //TODO как лучше через POST или PUT
     @PutMapping
     @ResponseStatus(HttpStatus.OK)
     public void updateCoupon(@RequestBody CouponDTO couponDTO) {
