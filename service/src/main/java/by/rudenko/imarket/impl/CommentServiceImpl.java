@@ -55,7 +55,9 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public List<CommentDTO> getAllCommentsList(int pageNumber, int pageSize) {
 
-        return commentDao.getAll(pageNumber, pageSize).stream()
+
+
+        return commentDao.getAll(pageNumber, pageSize, null).stream()
                 .map(x -> modelMapper.map(x, CommentDTO.class))
                 .collect(Collectors.toList());
     }
@@ -83,7 +85,7 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public List<CommentShortDTO> getAllShortComments(int pageNumber, Integer pageSize) {
 
-        return commentDao.getAll(pageNumber, pageSize).stream()
+        return commentDao.getAll(pageNumber, pageSize, null).stream()
                 .map(x -> modelMapper.map(x, CommentShortDTO.class))
                 .collect(Collectors.toList());
     }

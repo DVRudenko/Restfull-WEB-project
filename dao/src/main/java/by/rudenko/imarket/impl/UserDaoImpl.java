@@ -29,7 +29,7 @@ public class UserDaoImpl extends AbstractDao<User, Long> implements UserDao {
                 .where(cb.equal(
                         root.get(User_.login), username));
 
-        return em.createQuery(select).getSingleResult();
+        return em.createQuery(select).getResultList().get(0);
     }
 }
 

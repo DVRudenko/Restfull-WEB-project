@@ -3,13 +3,16 @@ package by.rudenko.imarket;
 import by.rudenko.imarket.exception.NoSuchIdException;
 import by.rudenko.imarket.model.Entity;
 
+import javax.persistence.metamodel.SingularAttribute;
 import java.util.List;
 
 public interface GenericDao<T extends Entity, PK extends Number> {
 
     T findByID(PK id) throws NoSuchIdException;
 
-    List<T> getAll(int pageNumber, int pageSize);
+
+    //запрос с пагинацией и fetch вложенных полей
+    List<T> getAll(int pageNumber, int pageSize, List<SingularAttribute> fetchAttributes);
 
     boolean save(T entity);
 

@@ -1,6 +1,9 @@
 package by.rudenko.imarket;
 
-
+/**
+ * Check Pagination parameters for correction output
+ *
+ */
 public class CheckPagination {
     private int pageNumber;
     private Integer pageSize;

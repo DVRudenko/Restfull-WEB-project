@@ -44,7 +44,7 @@ public class AdvertRankServiceImpl implements AdvertRankService {
     @Override
     public List<AdvertRankDTO> getAllAdvertRanksList(int pageNumber, int pageSize) {
 
-        return advertRankDao.getAll(pageNumber, pageSize).stream()
+        return advertRankDao.getAll(pageNumber, pageSize, null).stream()
                 .map(x -> modelMapper.map(x, AdvertRankDTO.class))
                 .collect(Collectors.toList());
     }

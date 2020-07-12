@@ -52,7 +52,7 @@ public class CouponServiceImpl implements CouponService {
     @Override
     public List<CouponDTO> getAllCouponsList(int pageNumber, int pageSize) {
 
-        return couponDao.getAll(pageNumber, pageSize).stream()
+        return couponDao.getAll(pageNumber, pageSize, null).stream()
                 .map(x -> modelMapper.map(x, CouponDTO.class))
                 .collect(Collectors.toList());
     }

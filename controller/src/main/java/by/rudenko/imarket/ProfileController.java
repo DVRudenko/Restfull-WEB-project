@@ -38,13 +38,13 @@ public class ProfileController {
         return profileService.findById(id);
     }
 
-    //тип Post /profiles/JSON добавить новую запись
+    /*//убираем - будет делаться автоматом
     @PostMapping
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<?> addNewProfile(@RequestBody ProfileDTO profileDTO) {
         profileService.addNewProfile(profileDTO);
         return ResponseEntity.ok("profile saved");
-    }
+    }*/
 
 
     //тип Delete /rooms/id удалить запись по Id

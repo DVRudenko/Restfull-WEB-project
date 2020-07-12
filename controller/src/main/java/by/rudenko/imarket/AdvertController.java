@@ -23,7 +23,7 @@ public class AdvertController {
         this.advertService = advertService;
     }
 
-    //тип Get - получить "краткие" объявления
+    //тип Get - получить все "краткие" объявления
     @GetMapping
     public List<AdvertShortDTO> getAllShortAdverts(
             @RequestParam(value = "pageNumber", defaultValue = "1") int pageNumber,
@@ -81,11 +81,10 @@ public class AdvertController {
     //тип Post /adverts/JSON добавить новую запись
     @PostMapping
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<?> addNewAdvert(@RequestBody AdvertDTO advertDTO) {
-        advertService.addNewAdvert(advertDTO);
+    public ResponseEntity<?> addNewAdvert(@RequestBody AdvertShortDTO advertShortDTO) {
+        advertService.addNewAdvert(advertShortDTO);
         return ResponseEntity.ok("advert saved");
     }
-
 
     //тип Delete удалить запись по Id
     @DeleteMapping(value = "/{id}")
@@ -98,8 +97,9 @@ public class AdvertController {
     //тип Put /adverts/JSON обновить запись
     @PutMapping
     @ResponseStatus(HttpStatus.OK)
-    public void updateAdvert(@RequestBody AdvertDTO advertDTO) {
-        advertService.update(advertDTO);
+    public ResponseEntity<?> updateAdvert(@RequestBody AdvertShortDTO advertShortDTO) {
+        advertService.update(advertShortDTO);
+        return ResponseEntity.ok("advert updated");
     }
 
 }

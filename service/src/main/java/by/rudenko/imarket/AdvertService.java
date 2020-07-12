@@ -15,11 +15,11 @@ public interface AdvertService {
 
     AdvertDTO getFullAdvertByID(Long id) throws NoSuchIdException;
 
-    boolean addNewAdvert(AdvertDTO advertDTO);
+    boolean addNewAdvert(AdvertShortDTO advertShortDTO);
 
     boolean deleteAdvert(AdvertDTO advertDTO);
 
-    boolean update(AdvertDTO advertDTO);
+    boolean update(AdvertShortDTO advertShortDTO);
 
     List<AdvertShortDTO> getAllSortedAdverts(int pageNumber, int pageSize);
 

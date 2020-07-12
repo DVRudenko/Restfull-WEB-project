@@ -85,7 +85,9 @@ public class IMarketConfig {
     private Properties getHibernateProperties() {
         Properties properties = new Properties();
         properties.put("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
-        properties.put("hibernate.show_sql", "true");
+        properties.put("hibernate.show_sql", true);
+        properties.put("hibernate.format sql", true);
+        properties.put("hibernate.use sql comments", true);
         return properties;
     }
 }

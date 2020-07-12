@@ -42,18 +42,19 @@ public class Advert implements Entity {
     private int advPrice;
 
     @Column(name = "adv_date")
+
     private LocalDate advDate;
 
     @Column(name = "adv_status")
     @Enumerated(EnumType.STRING)
-    private Enumes.AdverStatus advStatus;
+    private Enumes.AdverStatus adverStatus;
 
 
     public Advert() {
     }
 
     public Advert(User user, AdvertTopic advertTopic, AdvertRank advertRank, Enumes.AdverType advType,
-                  String advText, int advPrice, LocalDate advDate, Enumes.AdverStatus advStatus) {
+                  String advText, int advPrice, LocalDate advDate, Enumes.AdverStatus adverStatus) {
         this.user = user;
         this.advertTopic = advertTopic;
         this.advertRank = advertRank;
@@ -61,7 +62,7 @@ public class Advert implements Entity {
         this.advText = advText;
         this.advPrice = advPrice;
         this.advDate = advDate;
-        this.advStatus = advStatus;
+        this.adverStatus = adverStatus;
     }
 
     @Override
@@ -130,12 +131,12 @@ public class Advert implements Entity {
         this.advDate = advDate;
     }
 
-    public Enumes.AdverStatus getAdvStatus() {
-        return advStatus;
+    public Enumes.AdverStatus getAdverStatus() {
+        return adverStatus;
     }
 
-    public void setAdvStatus(Enumes.AdverStatus adverStatus) {
-        this.advStatus = adverStatus;
+    public void setAdverStatus(Enumes.AdverStatus adverStatus) {
+        this.adverStatus = adverStatus;
     }
 
     @Override
@@ -149,7 +150,7 @@ public class Advert implements Entity {
                 ", advText='" + advText + '\'' +
                 ", advPrice=" + advPrice +
                 ", advDate=" + advDate +
-                ", adverStatus=" + advStatus +
+                ", adverStatus=" + adverStatus +
                 '}';
     }
 
@@ -166,11 +167,11 @@ public class Advert implements Entity {
                 getAdvType() == advert.getAdvType() &&
                 Objects.equals(getAdvText(), advert.getAdvText()) &&
                 getAdvDate().equals(advert.getAdvDate()) &&
-                getAdvStatus() == advert.getAdvStatus();
+                getAdverStatus() == advert.getAdverStatus();
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getUser(), getAdvertTopic(), getAdvertRank(), getAdvType(), getAdvText(), getAdvPrice(), getAdvDate(), getAdvStatus());
+        return Objects.hash(getId(), getUser(), getAdvertTopic(), getAdvertRank(), getAdvType(), getAdvText(), getAdvPrice(), getAdvDate(), getAdverStatus());
     }
 }

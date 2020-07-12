@@ -1,6 +1,7 @@
 package by.rudenko.imarket.model;
 
 import by.rudenko.imarket.enumes.Enumes;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.Objects;
@@ -29,6 +30,8 @@ public class User implements Entity {
     @Enumerated(EnumType.STRING)
     private Enumes.UserRole role;
 
+    //для избежания циклической зависимости
+    @JsonIgnore
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Profile profile;
 
@@ -42,13 +45,13 @@ public class User implements Entity {
         this.role = role;
     }
 
-    public User(Long id, String login, String password, Enumes.UserRole role, Profile profile) {
+/*    public User(Long id, String login, String password, Enumes.UserRole role, Profile profile) {
         this.id = id;
         this.login = login;
         this.password = password;
         this.role = role;
         this.profile = profile;
-    }
+    }*/
 
 
     @Override

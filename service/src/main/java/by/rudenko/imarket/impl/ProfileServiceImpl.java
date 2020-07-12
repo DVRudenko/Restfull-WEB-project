@@ -24,14 +24,14 @@ public class ProfileServiceImpl implements ProfileService {
         this.modelMapper = modelMapper;
     }
 
-
+    /*//Профиль будет создаваться автоматом (по умолчанию) при создании нового юзера
     @Override
     public boolean addNewProfile(ProfileDTO profileDTO) {
         // маппинг из ДТО в  Entity
         final Profile profile = modelMapper.map(profileDTO, Profile.class);
         profileDao.save(profile);
         return true;
-    }
+    }*/
 
 
     @Override
@@ -44,7 +44,7 @@ public class ProfileServiceImpl implements ProfileService {
     @Override
     public List<ProfileDTO> getAllProfilesList(int pageNumber, int pageSize) {
 
-        return profileDao.getAll(pageNumber, pageSize).stream()
+        return profileDao.getAll(pageNumber, pageSize, null).stream()
                 .map(x -> modelMapper.map(x, ProfileDTO.class))
                 .collect(Collectors.toList());
     }

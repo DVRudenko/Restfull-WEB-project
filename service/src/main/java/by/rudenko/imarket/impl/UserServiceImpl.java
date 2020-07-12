@@ -5,13 +5,14 @@ import by.rudenko.imarket.UserDao;
 import by.rudenko.imarket.UserService;
 import by.rudenko.imarket.dto.UserDTO;
 import by.rudenko.imarket.exception.NoSuchIdException;
-import by.rudenko.imarket.model.Profile;
-import by.rudenko.imarket.model.User;
+import by.rudenko.imarket.model.*;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.metamodel.SingularAttribute;
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -34,12 +35,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean addNewUser(UserDTO userDTO) {
         final User user = modelMapper.map(userDTO, User.class);
-
-        Profile profile = new Profile(user); //попытка связать профиль по умолчанию
+        Profile profile = new Profile(user); //создаем профиль по умолчанию
         user.setProfile(profile);
-        profile.setUser(user);
+        //profile.setUser(user);
         userDao.save(user);
-        //profileDao.save(profile); //сохраняем профиль
 
         return true;
     }
@@ -62,8 +61,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<UserDTO> getAllUsersList(int pageNumber, int pageSize) {
-
-        return userDao.getAll(pageNumber, pageSize).stream()
+        List <SingularAttribute> attributes = new ArrayList<>();
+        attributes.add(User_.profile);
+        return userDao.getAll(pageNumber, pageSize, attributes).stream()
                 .map(x -> modelMapper.map(x, UserDTO.class))
                 .collect(Collectors.toList());
     }

@@ -58,9 +58,11 @@ public class Profile implements Entity {
     }
 
     //профиль нового юзера по умолчанию
+    // нужен ли User ????
     public Profile(User user) {
+        this.user = user;
         this.moneyBalance = 0;
-        this.userRank = 1;
+        this.userRank = 0;
     }
 
 

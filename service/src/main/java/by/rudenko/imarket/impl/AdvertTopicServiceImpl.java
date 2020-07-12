@@ -44,7 +44,7 @@ public class AdvertTopicServiceImpl implements AdvertTopicService {
     @Override
     public List<AdvertTopicDTO> getAllAdvertTopicsList(int pageNumber, int pageSize) {
 
-        return advertTopicDao.getAll(pageNumber, pageSize).stream()
+        return advertTopicDao.getAll(pageNumber, pageSize, null).stream()
                 .map(x -> modelMapper.map(x, AdvertTopicDTO.class))
                 .collect(Collectors.toList());
     }

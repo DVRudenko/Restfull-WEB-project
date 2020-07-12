@@ -6,10 +6,13 @@ import by.rudenko.imarket.dto.AdvertDTO;
 import by.rudenko.imarket.dto.AdvertShortDTO;
 import by.rudenko.imarket.exception.NoSuchIdException;
 import by.rudenko.imarket.model.Advert;
+import by.rudenko.imarket.model.Profile_;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.metamodel.SingularAttribute;
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -27,9 +30,9 @@ public class AdvertServiceImpl implements AdvertService {
 
 
     @Override
-    public boolean addNewAdvert(AdvertDTO advertDTO) {
+    public boolean addNewAdvert(AdvertShortDTO advertShortDTO) {
         // маппинг из ДТО в  Entity
-        final Advert advert = modelMapper.map(advertDTO, Advert.class);
+        Advert advert = modelMapper.map(advertShortDTO, Advert.class);
         advertDao.save(advert);
         return true;
     }
@@ -46,7 +49,8 @@ public class AdvertServiceImpl implements AdvertService {
     @Override
     public List<AdvertShortDTO> getAllShortAdverts(int pageNumber, int pageSize) {
 
-        return advertDao.getAll(pageNumber, pageSize).stream()
+
+        return advertDao.getAll(pageNumber, pageSize, null).stream()
                 .map(x -> modelMapper.map(x, AdvertShortDTO.class))
                 .collect(Collectors.toList());
     }
@@ -76,8 +80,8 @@ public class AdvertServiceImpl implements AdvertService {
     }
 
     @Override
-    public boolean update(AdvertDTO advertDTO) {
-        final Advert advert = modelMapper.map(advertDTO, Advert.class);
+    public boolean update(AdvertShortDTO advertShortDTO) {
+        final Advert advert = modelMapper.map(advertShortDTO, Advert.class);
         advertDao.update(advert);
         return true;
     }

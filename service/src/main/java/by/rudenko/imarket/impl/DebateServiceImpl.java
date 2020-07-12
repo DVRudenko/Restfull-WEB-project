@@ -53,7 +53,7 @@ public class DebateServiceImpl implements DebateService {
     @Override
     public List<DebateDTO> getAllDebatesList(int pageNumber, int pageSize) {
 
-        return debateDao.getAll(pageNumber, pageSize).stream()
+        return debateDao.getAll(pageNumber, pageSize, null).stream()
                 .map(x -> modelMapper.map(x, DebateDTO.class))
                 .collect(Collectors.toList());
     }

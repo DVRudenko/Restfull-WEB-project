@@ -22,7 +22,7 @@ public class AdvertShortDTO {
     private int advPrice;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private LocalDate advDate;
-    private Enumes.AdverStatus advStatus;
+    private Enumes.AdverStatus adverStatus;
 
     public Long getId() {
         return id;
@@ -88,12 +88,12 @@ public class AdvertShortDTO {
         this.advDate = advDate;
     }
 
-    public Enumes.AdverStatus getAdvStatus() {
-        return advStatus;
+    public Enumes.AdverStatus getAdverStatus() {
+        return adverStatus;
     }
 
-    public void setAdvStatus(Enumes.AdverStatus advStatus) {
-        this.advStatus = advStatus;
+    public void setAdverStatus(Enumes.AdverStatus adverStatus) {
+        this.adverStatus = adverStatus;
     }
 
 

@@ -28,7 +28,7 @@ public class UserController {
 
     //тип Get /guests/id - получить сущность по Id
     @GetMapping(value = "/{id}")
-    public UserDTO getAllUsers(@PathVariable(value = "id") Long id) throws NoSuchIdException {
+    public UserDTO getUserById(@PathVariable(value = "id") Long id) throws NoSuchIdException {
         return userService.findById(id);
     }
 

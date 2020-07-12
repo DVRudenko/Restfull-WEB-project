@@ -7,11 +7,14 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.JoinType;
 import javax.persistence.criteria.Root;
+import javax.persistence.metamodel.SingularAttribute;
 import java.util.List;
 
 public class AbstractDao<T extends Entity, PK extends Number> implements GenericDao<T, PK> {
@@ -57,11 +60,17 @@ public class AbstractDao<T extends Entity, PK extends Number> implements Generic
 
     //запрос с пагинацией
     @Override
-    public List<T> getAll(int pageNumber, int pageSize) {
+    public List<T> getAll(int pageNumber, int pageSize, List<SingularAttribute> fetchAttributes) {
         LOGGER.info("Find all by " + entityClass.getSimpleName());
         final CriteriaBuilder cb = em.getCriteriaBuilder();
         final CriteriaQuery<T> cq = cb.createQuery(entityClass);
         final Root<T> root = cq.from(entityClass);
+
+        //делаем fetch вложенных полей
+        if (fetchAttributes != null) {
+            fetchAttributes.forEach(item -> root.fetch(item, JoinType.LEFT));
+        }
+
         CriteriaQuery<T> select = cq.select(root);
 
         TypedQuery<T> typedQuery = em.createQuery(select);
@@ -89,7 +98,6 @@ public class AbstractDao<T extends Entity, PK extends Number> implements Generic
 
     @Override
     public boolean update(final T updateEntity) {
-        //TODO проверить как работает
         em.refresh(em.contains(updateEntity) ? updateEntity : em.merge(updateEntity));
         LOGGER.info("1 row updated to DB. Add new " + entityClass.getSimpleName());
         return true;

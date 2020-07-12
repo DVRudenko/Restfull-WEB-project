@@ -10,7 +10,7 @@ USE iMarket;
 DROP TABLE IF EXISTS `iMarket`.`users`;
 CREATE TABLE IF NOT EXISTS `iMarket`.`users`
 (
-    `id`       INT                              NOT NULL AUTO_INCREMENT,
+    `id`       BIGINT                           NOT NULL AUTO_INCREMENT,
     `login`    VARCHAR(45)                      NOT NULL,
     `password` VARCHAR(150)                     NOT NULL,
     `role`     ENUM ('ROLE_USER', 'ROLE_ADMIN') NOT NULL DEFAULT 'ROLE_USER',
@@ -23,8 +23,8 @@ CREATE TABLE IF NOT EXISTS `iMarket`.`users`
 DROP TABLE IF EXISTS `iMarket`.`profiles`;
 CREATE TABLE IF NOT EXISTS `iMarket`.`profiles`
 (
-    `id`            INT         NOT NULL AUTO_INCREMENT,
-    `user_id`       INT         NOT NULL,
+    `id`            BIGINT      NOT NULL AUTO_INCREMENT,
+    `user_id`       BIGINT      NOT NULL,
     `first_name`    VARCHAR(45) NULL,
     `last_name`     VARCHAR(45) NULL,
     `date_of_birth` DATE        NULL,
@@ -47,8 +47,8 @@ CREATE TABLE IF NOT EXISTS `iMarket`.`profiles`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `imarket`.`coupons`
 (
-    `id`          INT         NOT NULL AUTO_INCREMENT,
-    `user_id`     INT         NOT NULL,
+    `id`          BIGINT      NOT NULL AUTO_INCREMENT,
+    `user_id`     BIGINT      NOT NULL,
     `discount`    INT         NOT NULL,
     `coupon_name` VARCHAR(45) NOT NULL,
     PRIMARY KEY (`id`),
@@ -68,7 +68,7 @@ DROP TABLE IF EXISTS `iMarket`.`advert_topics`;
 
 CREATE TABLE IF NOT EXISTS `iMarket`.`advert_topics`
 (
-    `id`             INT         NOT NULL AUTO_INCREMENT,
+    `id`             BIGINT      NOT NULL AUTO_INCREMENT,
     `topic_name`     VARCHAR(45) NOT NULL,
     `topic_sub_name` VARCHAR(45) NULL,
     PRIMARY KEY (`id`)
@@ -82,7 +82,7 @@ DROP TABLE IF EXISTS `iMarket`.`advert_ranks`;
 
 CREATE TABLE IF NOT EXISTS `iMarket`.`advert_ranks`
 (
-    `id`         INT                            NOT NULL AUTO_INCREMENT,
+    `id`         BIGINT                         NOT NULL AUTO_INCREMENT,
     `rank_name`  ENUM ('USUAL', 'PRIOR', 'VIP') NOT NULL DEFAULT 'USUAL',
     `rank_price` INT                            NOT NULL DEFAULT '0',
     CHECK (rank_price >= 0),
@@ -96,11 +96,11 @@ DROP TABLE IF EXISTS `iMarket`.`adverts`;
 
 CREATE TABLE IF NOT EXISTS `iMarket`.`adverts`
 (
-    `id`           INT                             NOT NULL AUTO_INCREMENT,
-    `user_id`      INT                             NOT NULL,
-    `adv_topic_id` INT                             NOT NULL,
+    `id`           BIGINT                          NOT NULL AUTO_INCREMENT,
+    `user_id`      BIGINT                          NOT NULL,
+    `adv_topic_id` BIGINT                          NOT NULL,
     `adv_type`     ENUM ('BUY', 'SELL', 'RENT')    NOT NULL DEFAULT 'SELL',
-    `adv_rank_id`  INT                             NOT NULL,
+    `adv_rank_id`  BIGINT                          NOT NULL,
     `adv_text`     VARCHAR(200)                    NOT NULL,
     `adv_price`    INT                             NOT NULL,
     `adv_date`     DATE                            NOT NULL,
@@ -134,9 +134,9 @@ DROP TABLE IF EXISTS `iMarket`.`comments`;
 
 CREATE TABLE IF NOT EXISTS `iMarket`.`comments`
 (
-    `id`           INT          NOT NULL AUTO_INCREMENT,
-    `adv_id`       INT          NOT NULL,
-    `user_id`      INT          NOT NULL,
+    `id`           BIGINT       NOT NULL AUTO_INCREMENT,
+    `adv_id`       BIGINT       NOT NULL,
+    `user_id`      BIGINT       NOT NULL,
     `comment_date` DATE         NOT NULL,
     `comment_text` VARCHAR(200) NOT NULL,
     PRIMARY KEY (`id`),
@@ -161,10 +161,10 @@ DROP TABLE IF EXISTS `iMarket`.`sell_histories`;
 
 CREATE TABLE IF NOT EXISTS `iMarket`.`sell_histories`
 (
-    `id`           INT                                            NOT NULL AUTO_INCREMENT,
-    `buyer_id`     INT                                            NOT NULL,
-    `seller_id`    INT                                            NOT NULL,
-    `adv_id`       INT                                            NOT NULL,
+    `id`           BIGINT                                         NOT NULL AUTO_INCREMENT,
+    `buyer_id`     BIGINT                                         NOT NULL,
+    `seller_id`    BIGINT                                         NOT NULL,
+    `adv_id`       BIGINT                                         NOT NULL,
     `sell_date`    DATE                                           NOT NULL,
     `sell_price`   INT                                            NOT NULL,
     `sell_status`  ENUM ('PAID', 'SEND', 'RECEIVED', 'CANCELLED') NOT NULL DEFAULT 'PAID',
@@ -198,9 +198,9 @@ DROP TABLE IF EXISTS `iMarket`.`debates`;
 
 CREATE TABLE IF NOT EXISTS `iMarket`.`debates`
 (
-    `id`              INT          NOT NULL AUTO_INCREMENT,
-    `sell_history_id` INT          NOT NULL,
-    `user_id`         INT          NOT NULL,
+    `id`              BIGINT       NOT NULL AUTO_INCREMENT,
+    `sell_history_id` BIGINT       NOT NULL,
+    `user_id`         BIGINT       NOT NULL,
     `debate_date`     DATE         NOT NULL,
     `debate_text`     VARCHAR(200) NOT NULL,
     PRIMARY KEY (`id`),
