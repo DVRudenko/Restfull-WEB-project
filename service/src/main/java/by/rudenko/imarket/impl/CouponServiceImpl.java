@@ -74,7 +74,7 @@ public class CouponServiceImpl implements CouponService {
 
     @Override
     public Long entityCount() {
-        return couponDao.entityCount();
+        return couponDao.getCount();
     }
 
     //используем купон для пополнения баланса

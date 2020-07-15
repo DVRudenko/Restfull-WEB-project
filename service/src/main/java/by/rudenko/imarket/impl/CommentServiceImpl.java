@@ -79,7 +79,7 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public Long entityCount() {
-        return commentDao.entityCount();
+        return commentDao.getCount();
     }
 
     @Override

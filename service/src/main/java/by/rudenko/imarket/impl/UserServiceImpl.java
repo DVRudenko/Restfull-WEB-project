@@ -82,6 +82,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Long entityCount() {
-        return userDao.entityCount();
+        return userDao.getCount();
     }
 }

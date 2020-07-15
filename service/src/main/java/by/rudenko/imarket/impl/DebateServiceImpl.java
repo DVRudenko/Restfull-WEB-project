@@ -75,6 +75,6 @@ public class DebateServiceImpl implements DebateService {
 
     @Override
     public Long entityCount() {
-        return debateDao.entityCount();
+        return debateDao.getCount();
     }
 }

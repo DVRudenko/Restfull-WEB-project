@@ -47,7 +47,7 @@ public class AbstractDao<T extends Entity, PK extends Number> implements Generic
 
     //поиск количества элементов в классе (в таблице)
     @Override
-    public Long entityCount() {
+    public Long getCount() {
         LOGGER.info("Counting " + entityClass.getSimpleName());
         final CriteriaBuilder cb = em.getCriteriaBuilder();
         final CriteriaQuery<Long> cq = cb.createQuery(Long.class);
@@ -98,7 +98,9 @@ public class AbstractDao<T extends Entity, PK extends Number> implements Generic
 
     @Override
     public boolean update(final T updateEntity) {
-        em.refresh(em.contains(updateEntity) ? updateEntity : em.merge(updateEntity));
+        //em.refresh(em.contains(updateEntity) ? updateEntity : em.merge(updateEntity));
+        //проверяем апдейт
+        em.merge(updateEntity);
         LOGGER.info("1 row updated to DB. Add new " + entityClass.getSimpleName());
         return true;
     }

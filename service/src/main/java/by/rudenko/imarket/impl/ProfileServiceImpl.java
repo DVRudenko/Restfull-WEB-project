@@ -74,6 +74,6 @@ public class ProfileServiceImpl implements ProfileService {
 
     @Override
     public Long entityCount() {
-        return profileDao.entityCount();
+        return profileDao.getCount();
     }
 }

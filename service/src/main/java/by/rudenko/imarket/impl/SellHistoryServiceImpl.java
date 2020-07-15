@@ -69,6 +69,6 @@ public class SellHistoryServiceImpl implements SellHistoryService {
 
     @Override
     public Long entityCount() {
-        return sellHistoryDao.entityCount();
+        return sellHistoryDao.getCount();
     }
 }

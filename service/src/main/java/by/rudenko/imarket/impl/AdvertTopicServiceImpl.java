@@ -66,6 +66,6 @@ public class AdvertTopicServiceImpl implements AdvertTopicService {
 
     @Override
     public Long entityCount() {
-        return advertTopicDao.entityCount();
+        return advertTopicDao.getCount();
     }
 }

@@ -21,6 +21,6 @@ public interface GenericDao<T extends Entity, PK extends Number> {
     boolean update(T updateEntity);
 
     //подсчитываем количество строк в таблице
-    Long entityCount();
+    Long getCount();
 
 }

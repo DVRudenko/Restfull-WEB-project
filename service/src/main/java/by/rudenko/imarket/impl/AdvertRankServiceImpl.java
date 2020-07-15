@@ -66,6 +66,6 @@ public class AdvertRankServiceImpl implements AdvertRankService {
 
     @Override
     public Long entityCount() {
-        return advertRankDao.entityCount();
+        return advertRankDao.getCount();
     }
 }

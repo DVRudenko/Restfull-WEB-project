@@ -6,13 +6,10 @@ import by.rudenko.imarket.dto.AdvertDTO;
 import by.rudenko.imarket.dto.AdvertShortDTO;
 import by.rudenko.imarket.exception.NoSuchIdException;
 import by.rudenko.imarket.model.Advert;
-import by.rudenko.imarket.model.Profile_;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.metamodel.SingularAttribute;
 import javax.transaction.Transactional;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -103,7 +100,7 @@ public class AdvertServiceImpl implements AdvertService {
 
     @Override
     public Long entityCount() {
-        return advertDao.entityCount();
+        return advertDao.getCount();
     }
 
     @Override
