@@ -7,7 +7,9 @@ import by.rudenko.imarket.dto.UserDTO;
 import by.rudenko.imarket.exception.NoSuchIdException;
 import by.rudenko.imarket.model.*;
 import org.modelmapper.ModelMapper;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.metamodel.SingularAttribute;
@@ -19,6 +21,8 @@ import java.util.stream.Collectors;
 @Service
 @Transactional
 public class UserServiceImpl implements UserService {
+
+
 
     private final UserDao userDao;
     private final ProfileDao profileDao;
@@ -37,7 +41,9 @@ public class UserServiceImpl implements UserService {
         final User user = modelMapper.map(userDTO, User.class);
         Profile profile = new Profile(user); //создаем профиль по умолчанию
         user.setProfile(profile);
-        //profile.setUser(user);
+        //шифруем пароль
+        //правильно ли шифровать пароль в сервисе?????
+        user.setPassword(passwordEncoder.encode(userDTO.getPassword()));
         userDao.save(user);
 
         return true;
@@ -45,9 +51,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User findByUsername(String username) {
-        User result = userDao.findByUsername(username);
         //log.info("IN findByUsername - user: {} found by username: {}", result, username);
-        return result;
+        return userDao.findByUsername(username);
     }
 
 
@@ -76,12 +81,15 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean update(UserDTO userDTO) {
-        final User user = modelMapper.map(userDTO, User.class);
+        User user = modelMapper.map(userDTO, User.class);
+        //шифруем пароль
+        //правильно ли шифровать пароль в сервисе?????
+        user.setPassword(passwordEncoder.encode(userDTO.getPassword()));
         return userDao.update(user);
     }
 
     @Override
-    public Long entityCount() {
+    public Long getCount() {
         return userDao.getCount();
     }
 }

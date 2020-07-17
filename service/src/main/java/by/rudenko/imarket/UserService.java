@@ -21,7 +21,7 @@ public interface UserService {
 
     boolean update(UserDTO userDTO);
 
-    Long entityCount();
+    Long getCount();
 }
 
 

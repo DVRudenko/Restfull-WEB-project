@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import java.util.List;
 
 @Repository
 public class UserDaoImpl extends AbstractDao<User, Long> implements UserDao {
@@ -22,6 +23,7 @@ public class UserDaoImpl extends AbstractDao<User, Long> implements UserDao {
 
     @Override
     public User findByUsername(String username) {
+
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<User> cq = cb.createQuery(User.class);
         Root<User> root = cq.from(User.class);
@@ -29,7 +31,16 @@ public class UserDaoImpl extends AbstractDao<User, Long> implements UserDao {
                 .where(cb.equal(
                         root.get(User_.login), username));
 
-        return em.createQuery(select).getResultList().get(0);
+        LOGGER.info ("Find by username "+username);
+        List<User> response = em.createQuery(select).getResultList();
+        //проверяем на пустой ответ
+        User user;
+        if (response.size()==0){
+            user=null;
+        }
+        else {user = response.get(0);}
+
+        return user;
     }
 }
 

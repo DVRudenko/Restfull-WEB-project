@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import static org.springframework.http.HttpStatus.CONFLICT;
+import static org.springframework.http.HttpStatus.NOT_ACCEPTABLE;
+
 @RestController
 @RequestMapping("/users")
 public class UserController {
@@ -35,7 +38,7 @@ public class UserController {
     //тип Get /guests/count - получить количество строк в таблице (пользователей)
     @GetMapping(value = "/count")
     public Long getUsersCount() {
-        return userService.entityCount();
+        return userService.getCount();
     }
 
     //тип Post /users/JSON добавить новую запись
@@ -43,6 +46,11 @@ public class UserController {
     @PostMapping
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<?> addNewUser(@RequestBody UserDTO userDTO) {
+        //проверяем пользователя на дублирование логина
+        String newLogin = userDTO.getLogin();
+        if (userService.findByUsername(newLogin)!=null){
+            return ResponseEntity.status(CONFLICT).body("Login is already exist");
+        }
         userService.addNewUser(userDTO);
         return ResponseEntity.ok("user saved");
     }
@@ -59,8 +67,10 @@ public class UserController {
     //тип Put /users/JSON обновить запись
     @PutMapping
     @ResponseStatus(HttpStatus.OK)
-    public void updateUser(@RequestBody UserDTO userDTO) {
+    public ResponseEntity<?> updateUser(@RequestBody UserDTO userDTO) {
+
         userService.update(userDTO);
+        return ResponseEntity.ok("user updated");
     }
 
 }
