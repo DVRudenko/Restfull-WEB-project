@@ -5,10 +5,6 @@ package by.rudenko.imarket.exception;
  */
 public class NoSuchIdException extends RuntimeException {
 
-//    public NoSuchIdException() {
-//
-//    }
-
     public NoSuchIdException(String exception) {
         super(exception);
     }

@@ -17,7 +17,7 @@ import java.util.List;
 @Repository
 public class AdvertDaoImpl extends AbstractDao<Advert, Long> implements AdvertDao {
 
-    private static final Logger LOGGER = LogManager.getLogger("imarket");
+    private static final Logger LOGGER = LogManager.getLogger(AdvertDaoImpl.class);
 
     public AdvertDaoImpl() {
         super(Advert.class);

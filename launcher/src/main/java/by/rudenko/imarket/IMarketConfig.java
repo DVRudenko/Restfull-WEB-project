@@ -20,12 +20,14 @@ import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 import java.util.Properties;
 
+
 @Configuration
 @EnableTransactionManagement
 @EnableWebMvc
 @ComponentScan("by.rudenko.imarket")
 @PropertySource("classpath:imarket.properties")
 public class IMarketConfig {
+
 
     @Value("${defaultPageSize}")
     public Integer defaultPageSize;

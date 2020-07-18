@@ -19,7 +19,7 @@ import java.util.List;
 
 public class AbstractDao<T extends Entity, PK extends Number> implements GenericDao<T, PK> {
 
-    private static final Logger LOGGER = LogManager.getLogger("imarket");
+    private static final Logger LOGGER = LogManager.getLogger(AbstractDao.class);
 
     @PersistenceContext
     protected EntityManager em;
@@ -39,8 +39,8 @@ public class AbstractDao<T extends Entity, PK extends Number> implements Generic
         if (entity != null) {
             return entity;
         } else {
-            LOGGER.error("No such ID" + id, entityClass.getSimpleName());
-            throw new NoSuchIdException("No such ID" + id);
+            LOGGER.error("No such ID-" + id, entityClass.getSimpleName());
+            throw new NoSuchIdException("No such ID-" + id);
 
         }
     }
