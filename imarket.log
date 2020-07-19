@@ -1,0 +1,23 @@
+[INFO ] 2020-07-19 23:14:50.059 [http-nio-8080-exec-2] imarket - jwt Token passed 
+[INFO ] 2020-07-19 23:14:50.475 [http-nio-8080-exec-5] imarket - jwt Token passed 
+[INFO ] 2020-07-19 23:15:08.355 [http-nio-8080-exec-7] imarket - jwt Token passed 
+[INFO ] 2020-07-19 23:15:09.231 [http-nio-8080-exec-9] imarket - jwt Token passed 
+[INFO ] 2020-07-19 23:15:12.406 [http-nio-8080-exec-8] imarket - jwt Token passed 
+[INFO ] 2020-07-19 23:15:13.555 [http-nio-8080-exec-10] imarket - jwt Token passed 
+[INFO ] 2020-07-19 23:15:17.252 [http-nio-8080-exec-1] imarket - jwt Token passed 
+[INFO ] 2020-07-19 23:15:19.445 [http-nio-8080-exec-3] imarket - jwt Token passed 
+[INFO ] 2020-07-19 23:20:10.302 [http-nio-8080-exec-6] imarket - Find by username admin
+[INFO ] 2020-07-19 23:20:10.358 [http-nio-8080-exec-6] imarket - IN loadUserByUsername - user with username: admin successfully loaded
+[INFO ] 2020-07-19 23:20:10.392 [http-nio-8080-exec-6] imarket - Find by username admin
+[INFO ] 2020-07-19 23:20:10.417 [http-nio-8080-exec-6] imarket - Token created for adminwith role ROLE_ADMIN
+[INFO ] 2020-07-19 23:20:10.630 [http-nio-8080-exec-6] imarket - jwt Token passed 
+[INFO ] 2020-07-19 23:34:43.469 [http-nio-8080-exec-10] imarket - Find by username user1
+[INFO ] 2020-07-19 23:34:43.479 [http-nio-8080-exec-10] imarket - IN loadUserByUsername - user with username: user1 successfully loaded
+[INFO ] 2020-07-19 23:34:43.659 [http-nio-8080-exec-10] imarket - jwt Token passed 
+[INFO ] 2020-07-19 23:55:21.841 [http-nio-8080-exec-9] imarket - jwt Token passed 
+[INFO ] 2020-07-19 23:55:28.996 [http-nio-8080-exec-8] imarket - Find by username user6
+[INFO ] 2020-07-19 23:55:29.036 [http-nio-8080-exec-8] imarket - jwt Token passed 
+[INFO ] 2020-07-19 23:56:48.320 [http-nio-8080-exec-1] imarket - jwt Token passed 
+[INFO ] 2020-07-19 23:56:52.654 [http-nio-8080-exec-5] imarket - jwt Token passed 
+[INFO ] 2020-07-20 00:16:36.236 [http-nio-8080-exec-1] imarket - jwt Token passed 
+[INFO ] 2020-07-20 00:16:36.745 [http-nio-8080-exec-5] imarket - jwt Token passed 

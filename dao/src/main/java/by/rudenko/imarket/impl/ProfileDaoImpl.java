@@ -18,7 +18,7 @@ import java.util.List;
 @Repository
 public class ProfileDaoImpl extends AbstractDao<Profile, Long> implements ProfileDao {
 
-    private static final Logger LOGGER = LogManager.getLogger("imarket");
+    private static final Logger LOGGER = LogManager.getLogger(ProfileDaoImpl.class);
 
     public ProfileDaoImpl() {
         super(Profile.class);

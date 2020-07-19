@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class AdvertTopicDaoImpl extends AbstractDao<AdvertTopic, Long> implements AdvertTopicDao {
 
-    private static final Logger LOGGER = LogManager.getLogger("imarket");
+    private static final Logger LOGGER = LogManager.getLogger(AdvertTopicDaoImpl.class);
 
     public AdvertTopicDaoImpl() {
         super(AdvertTopic.class);

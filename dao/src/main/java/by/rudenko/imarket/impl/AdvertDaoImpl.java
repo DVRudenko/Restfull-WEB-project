@@ -55,8 +55,8 @@ public class AdvertDaoImpl extends AbstractDao<Advert, Long> implements AdvertDa
         if (advert != null) {
             return advert;
         } else {
-            LOGGER.error("No such Advert ID" + id);
-            throw new NoSuchIdException("No such Advert ID" + id);
+            LOGGER.error("No such Advert ID-" + id);
+            throw new NoSuchIdException("No such Advert ID-" + id);
         }
     }
 

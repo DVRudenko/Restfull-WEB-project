@@ -15,7 +15,7 @@ import java.util.List;
 @Repository
 public class UserDaoImpl extends AbstractDao<User, Long> implements UserDao {
 
-    private static final Logger LOGGER = LogManager.getLogger("imarket");
+    private static final Logger LOGGER = LogManager.getLogger(UserDaoImpl.class);
 
     public UserDaoImpl() {
         super(User.class);

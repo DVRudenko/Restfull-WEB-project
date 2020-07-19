@@ -14,7 +14,7 @@ import java.util.List;
 @Repository
 public class CommentDaoImpl extends AbstractDao<Comment, Long> implements CommentDao {
 
-    private static final Logger LOGGER = LogManager.getLogger("imarket");
+    private static final Logger LOGGER = LogManager.getLogger(CommentDaoImpl.class);
 
     public CommentDaoImpl() {
         super(Comment.class);

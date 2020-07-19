@@ -14,7 +14,7 @@ import java.util.List;
 @Repository
 public class SellHistoryDaoImpl extends AbstractDao<SellHistory, Long> implements SellHistoryDao {
 
-    private static final Logger LOGGER = LogManager.getLogger("imarket");
+    private static final Logger LOGGER = LogManager.getLogger(SellHistoryDaoImpl.class);
 
     public SellHistoryDaoImpl() {
         super(SellHistory.class);

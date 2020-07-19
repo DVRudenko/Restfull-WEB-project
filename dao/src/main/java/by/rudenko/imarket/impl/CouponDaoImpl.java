@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class CouponDaoImpl extends AbstractDao<Coupon, Long> implements CouponDao {
 
-    private static final Logger LOGGER = LogManager.getLogger("imarket");
+    private static final Logger LOGGER = LogManager.getLogger(CouponDaoImpl.class);
 
     public CouponDaoImpl() {
         super(Coupon.class);
