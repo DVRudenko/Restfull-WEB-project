@@ -9,7 +9,10 @@ import java.time.LocalDate;
 
 
 /**
- * класс описывает DTO Дебаты по проданным товарам Debates
+ * Debate DTO class to use in RestAPI
+ *
+ * @author Dmitry Rudenko
+ * @version 1.0
  */
 
 @JsonInclude(JsonInclude.Include.NON_NULL)

@@ -6,7 +6,10 @@ import java.util.Objects;
 
 
 /**
- * класс описывает модель Дебаты по проданным товарам Debates
+ * Debate class with Debate Entity model to use in project
+ *
+ * @author Dmitry Rudenko
+ * @version 1.0
  */
 
 @javax.persistence.Entity

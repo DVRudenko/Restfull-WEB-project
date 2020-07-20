@@ -1,7 +1,10 @@
 package by.rudenko.imarket.exception;
 
 /**
- * Created by Дмитрий on 01.02.2020.
+ * CreateAdvertException class to use in Exception report
+ *
+ * @author Dmitry Rudenko
+ * @version 1.0
  */
 public class CreateAdvertException extends Exception {
 

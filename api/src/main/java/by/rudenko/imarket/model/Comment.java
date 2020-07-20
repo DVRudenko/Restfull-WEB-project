@@ -6,7 +6,10 @@ import java.util.Objects;
 
 
 /**
- * класс описывает модель Комментария к объявлениям Comments
+ * Comment class with Comment Entity model to use in project
+ *
+ * @author Dmitry Rudenko
+ * @version 1.0
  */
 
 @javax.persistence.Entity

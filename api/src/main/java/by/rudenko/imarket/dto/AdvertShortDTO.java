@@ -7,7 +7,10 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import java.time.LocalDate;
 
 /**
- * класс описывает DTO сокращенного объявления  short Advert
+ * Short Advert (without include) DTO class to use in RestAPI
+ *
+ * @author Dmitry Rudenko
+ * @version 1.0
  */
 
 @JsonInclude(JsonInclude.Include.NON_NULL)

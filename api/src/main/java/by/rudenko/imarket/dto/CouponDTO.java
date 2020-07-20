@@ -5,7 +5,10 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 
 
 /**
- * класс описывает DTO Скидочного купона  Coupons
+ * Coupon DTO class to use in RestAPI
+ *
+ * @author Dmitry Rudenko
+ * @version 1.0
  */
 
 @JsonInclude(JsonInclude.Include.NON_NULL)

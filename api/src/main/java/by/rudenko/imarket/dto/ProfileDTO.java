@@ -1,6 +1,5 @@
 package by.rudenko.imarket.dto;
 
-import by.rudenko.imarket.model.User;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
@@ -8,14 +7,16 @@ import java.time.LocalDate;
 
 
 /**
- * класс описывает DTO Профиля пользователя Profiles
+ * Profile DTO class to use in RestAPI
+ *
+ * @author Dmitry Rudenko
+ * @version 1.0
  */
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ProfileDTO {
 
     private Long id;
-    //меняем на UserId
     private Long userId;
     private String firstName;
     private String lastName;

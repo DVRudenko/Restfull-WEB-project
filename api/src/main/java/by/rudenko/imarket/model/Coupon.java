@@ -5,7 +5,10 @@ import java.util.Objects;
 
 
 /**
- * класс описывает модель Скидочного купона  Coupons
+ * Coupon class with Coupon Entity model to use in project
+ *
+ * @author Dmitry Rudenko
+ * @version 1.0
  */
 
 @javax.persistence.Entity

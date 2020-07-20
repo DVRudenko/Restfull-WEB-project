@@ -8,7 +8,10 @@ import java.util.Objects;
 
 
 /**
- * класс описывает модель Объявления  Advert
+ * Advert class with Advert Entity model to use in project
+ *
+ * @author Dmitry Rudenko
+ * @version 1.0
  */
 
 @javax.persistence.Entity

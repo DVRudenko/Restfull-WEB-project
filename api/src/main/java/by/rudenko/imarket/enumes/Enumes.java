@@ -2,6 +2,13 @@ package by.rudenko.imarket.enumes;
 
 public class Enumes {
 
+    /**
+     * Enumes class to use in project
+     *
+     * @author Dmitry Rudenko
+     * @version 1.0
+     */
+
     // роль пользователя: юзер или администратор
     public enum UserRole {ROLE_USER, ROLE_ADMIN}
 

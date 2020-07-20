@@ -8,7 +8,10 @@ import java.util.Objects;
 
 
 /**
- * класс описывает модель Истории продаж  SellHistory
+ * SellHistory class with SellHistory Entity model to use in project
+ *
+ * @author Dmitry Rudenko
+ * @version 1.0
  */
 
 @javax.persistence.Entity

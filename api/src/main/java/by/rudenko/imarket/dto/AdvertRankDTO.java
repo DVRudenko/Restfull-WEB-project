@@ -4,7 +4,10 @@ import by.rudenko.imarket.enumes.Enumes;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 /**
- * класс описывает DTO Ранга объявления  AdvertRank
+ * Advert Rank DTO class to use in RestAPI
+ *
+ * @author Dmitry Rudenko
+ * @version 1.0
  */
 
 @JsonInclude(JsonInclude.Include.NON_NULL)

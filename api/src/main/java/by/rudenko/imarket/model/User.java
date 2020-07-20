@@ -8,7 +8,10 @@ import java.util.Objects;
 
 
 /**
- * класс описывает модель Пользователя User
+ * User class with User Entity model to use in project
+ *
+ * @author Dmitry Rudenko
+ * @version 1.0
  */
 
 
@@ -30,7 +33,6 @@ public class User implements Entity {
     @Enumerated(EnumType.STRING)
     private Enumes.UserRole role;
 
-    //для избежания циклической зависимости
     @JsonIgnore
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Profile profile;
@@ -44,15 +46,6 @@ public class User implements Entity {
         this.password = password;
         this.role = role;
     }
-
-/*    public User(Long id, String login, String password, Enumes.UserRole role, Profile profile) {
-        this.id = id;
-        this.login = login;
-        this.password = password;
-        this.role = role;
-        this.profile = profile;
-    }*/
-
 
     @Override
     public Long getId() {

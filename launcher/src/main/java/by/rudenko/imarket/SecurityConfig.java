@@ -47,6 +47,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     //настройка файервола
+    //иначе не дает передать токен
     @Bean
     public HttpFirewall defaultHttpFirewall() {
         return new DefaultHttpFirewall();
@@ -66,12 +67,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
-                .authorizeRequests()
-                .antMatchers(LOGIN_ENDPOINT).permitAll()
-                .antMatchers(ADMIN_ENDPOINT).hasRole("ADMIN")
-                .antMatchers(USER_ENDPOINT).hasRole("USER")
-//              .anyRequest().authenticated()
-                .anyRequest().permitAll()
+                    .authorizeRequests()
+                    .antMatchers(LOGIN_ENDPOINT).permitAll()
+                    .antMatchers(ADMIN_ENDPOINT).hasRole("ADMIN")
+                    .antMatchers(USER_ENDPOINT).hasRole("USER")
+//                  .anyRequest().authenticated()
+                    .anyRequest().permitAll()
                 .and()
                 .apply(new JwtConfigurer(jwtTokenProvider));
     }

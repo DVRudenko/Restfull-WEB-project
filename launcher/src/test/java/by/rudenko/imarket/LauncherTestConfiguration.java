@@ -51,7 +51,10 @@ public class LauncherTestConfiguration extends AbstractAnnotationConfigDispatche
     }
 
     @Bean
-    public MockMvc createMockMvc () {return MockMvcBuilders.webAppContextSetup(webApplicationContext).build();}
+    public MockMvc createMockMvc () {
+        return MockMvcBuilders
+            .webAppContextSetup(webApplicationContext)
+            .build();}
 
 
 }

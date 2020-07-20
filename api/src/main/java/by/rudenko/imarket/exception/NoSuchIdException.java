@@ -1,7 +1,10 @@
 package by.rudenko.imarket.exception;
 
 /**
- * класс моего исключения
+ * NoSuchIdException class to use in Exception report
+ *
+ * @author Dmitry Rudenko
+ * @version 1.0
  */
 public class NoSuchIdException extends RuntimeException {
 

@@ -9,7 +9,10 @@ import java.time.LocalDate;
 
 
 /**
- * класс описывает DTO Комментария к объявлениям Comments
+ * Comment DTO class to use in RestAPI
+ *
+ * @author Dmitry Rudenko
+ * @version 1.0
  */
 
 @JsonInclude(JsonInclude.Include.NON_NULL)

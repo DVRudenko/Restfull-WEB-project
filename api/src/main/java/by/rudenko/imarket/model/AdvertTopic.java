@@ -5,7 +5,10 @@ import java.util.Objects;
 
 
 /**
- * класс описывает модель Раздела объявления  AdvertTopic
+ * AdvertTopic class with AdvertTopic Entity model to use in project
+ *
+ * @author Dmitry Rudenko
+ * @version 1.0
  */
 
 @javax.persistence.Entity
