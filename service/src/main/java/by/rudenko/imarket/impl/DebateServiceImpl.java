@@ -24,8 +24,6 @@ public class DebateServiceImpl implements DebateService {
         this.modelMapper = modelMapper;
     }
 
-
-    //вывести полный список объявлений с вложениями
     @Override
     public List<DebateDTO> getFullDebatesList(int pageNumber, int pageSize) {
 
@@ -36,12 +34,10 @@ public class DebateServiceImpl implements DebateService {
 
     @Override
     public boolean addNewDebate(DebateDTO debateDTO) {
-        // маппинг из ДТО в  Entity
         final Debate debate = modelMapper.map(debateDTO, Debate.class);
         debateDao.save(debate);
         return true;
     }
-
 
     @Override
     public DebateDTO findById(Long id) throws NoSuchIdException {

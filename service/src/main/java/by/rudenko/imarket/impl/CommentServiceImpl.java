@@ -28,7 +28,6 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public boolean addNewComment(CommentDTO commentDTO) {
-        // маппинг из ДТО в  Entity
         final Comment comment = modelMapper.map(commentDTO, Comment.class);
         commentDao.save(comment);
         return true;
@@ -54,8 +53,6 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public List<CommentDTO> getAllCommentsList(int pageNumber, int pageSize) {
-
-
 
         return commentDao.getAll(pageNumber, pageSize, null).stream()
                 .map(x -> modelMapper.map(x, CommentDTO.class))

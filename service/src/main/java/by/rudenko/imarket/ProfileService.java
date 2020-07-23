@@ -13,9 +13,6 @@ public interface ProfileService {
 
     List<ProfileDTO> getFullProfiles(int pageNumber, int pageSize);
 
-    //Профиль будет создаваться автоматом (по умолчанию) при создании нового юзера
-    //boolean addNewProfile(ProfileDTO profileDTO);
-
     boolean deleteProfile(ProfileDTO profileDTO);
 
     boolean update(ProfileDTO profileDTO);

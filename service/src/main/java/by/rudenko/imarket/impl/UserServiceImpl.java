@@ -7,9 +7,7 @@ import by.rudenko.imarket.dto.UserDTO;
 import by.rudenko.imarket.exception.NoSuchIdException;
 import by.rudenko.imarket.model.*;
 import org.modelmapper.ModelMapper;
-import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.metamodel.SingularAttribute;
@@ -21,8 +19,6 @@ import java.util.stream.Collectors;
 @Service
 @Transactional
 public class UserServiceImpl implements UserService {
-
-
 
     private final UserDao userDao;
     private final ProfileDao profileDao;
@@ -52,7 +48,6 @@ public class UserServiceImpl implements UserService {
     public User findByUsername(String username) {
         return userDao.findByUsername(username);
     }
-
 
     @Override
     public UserDTO findById(Long id) throws NoSuchIdException {

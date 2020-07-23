@@ -8,6 +8,12 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * REST controller for sellHistories requests (get, post, delete, etc.)
+ *
+ * @author Dmitry Rudenko
+ * @version 1.0
+ */
 @RestController
 @RequestMapping("/sellHistories")
 public class SellHistoryController {
@@ -18,7 +24,6 @@ public class SellHistoryController {
         this.sellHistoryService = sellHistoryService;
     }
 
-    //тип Get /sellHistories/ - получить весь список с пагинацией
     @GetMapping
     public List<SellHistoryDTO> getAllSellHistories(
             @RequestParam(value = "pageNumber", defaultValue = "1") int pageNumber,
@@ -26,19 +31,16 @@ public class SellHistoryController {
         return sellHistoryService.getFullSellHistoriesList(pageNumber, pageSize);
     }
 
-    //тип Get /guests/id - получить сущность по Id
     @GetMapping(value = "/{id}")
     public SellHistoryDTO getAllSellHistories(@PathVariable(value = "id") Long id) throws NoSuchIdException {
         return sellHistoryService.findById(id);
     }
 
-    //тип Get /guests/count - получить количество строк в таблице (пользователей)
     @GetMapping(value = "/count")
     public Long getUsersCount() {
         return sellHistoryService.entityCount();
     }
 
-    //тип Post /sellHistorys/JSON добавить новую запись
     @PostMapping
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<?> addNewSellHistory(@RequestBody SellHistoryDTO sellHistoryDTO) {
@@ -46,7 +48,6 @@ public class SellHistoryController {
         return ResponseEntity.ok("sellHistory saved");
     }
 
-    //тип Delete /rooms/id удалить запись по Id
     @DeleteMapping(value = "/{id}")
     @ResponseStatus(HttpStatus.OK)
     public void deleteSellHistory(@PathVariable(value = "id") Long id) throws NoSuchIdException {
@@ -54,7 +55,6 @@ public class SellHistoryController {
         sellHistoryService.deleteSellHistory(sellHistoryService.findById(id));
     }
 
-    //тип Put /sellHistorys/JSON обновить запись
     @PutMapping
     @ResponseStatus(HttpStatus.OK)
     public void updateSellHistory(@RequestBody SellHistoryDTO sellHistoryDTO) {

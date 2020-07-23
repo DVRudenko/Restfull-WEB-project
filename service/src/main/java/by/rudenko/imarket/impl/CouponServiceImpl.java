@@ -32,15 +32,12 @@ public class CouponServiceImpl implements CouponService {
         this.modelMapper = modelMapper;
     }
 
-
     @Override
     public boolean addNewCoupon(CouponDTO couponDTO) {
-        // маппинг из ДТО в  Entity
         final Coupon coupon = modelMapper.map(couponDTO, Coupon.class);
         couponDao.save(coupon);
         return true;
     }
-
 
     @Override
     public CouponDTO findById(Long id) throws NoSuchIdException {

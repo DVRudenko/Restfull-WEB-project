@@ -24,17 +24,13 @@ public class SellHistoryServiceImpl implements SellHistoryService {
         this.modelMapper = modelMapper;
     }
 
-
     @Override
     public boolean addNewSellHistory(SellHistoryDTO sellHistoryDTO) {
-        // маппинг из ДТО в  Entity
         final SellHistory sellHistory = modelMapper.map(sellHistoryDTO, SellHistory.class);
         sellHistoryDao.save(sellHistory);
         return true;
     }
 
-
-    //вывести полный список историй продаж с вложениями
     @Override
     public List<SellHistoryDTO> getFullSellHistoriesList(int pageNumber, int pageSize) {
 
@@ -43,8 +39,6 @@ public class SellHistoryServiceImpl implements SellHistoryService {
                 .collect(Collectors.toList());
     }
 
-
-    //вывести полную историю продаж с вложениями по Id
     @Override
     public SellHistoryDTO findById(Long id) throws NoSuchIdException {
         final SellHistory sellHistoryEntity = sellHistoryDao.getFullSellHistoryByID(id);

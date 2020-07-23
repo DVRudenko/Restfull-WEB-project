@@ -8,6 +8,12 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * REST controller for advertTopics requests (get, post, delete, etc.)
+ *
+ * @author Dmitry Rudenko
+ * @version 1.0
+ */
 @RestController
 @RequestMapping("/advertTopics")
 public class AdvertTopicController {
@@ -19,7 +25,6 @@ public class AdvertTopicController {
     }
 
 
-    //тип Get /advertTopics/ - получить весь список с пагинацией
     @GetMapping
     public List<AdvertTopicDTO> getAllAdvertTopics(
             @RequestParam(value = "pageNumber", defaultValue = "1") int pageNumber,
@@ -27,19 +32,16 @@ public class AdvertTopicController {
         return advertTopicService.getAllAdvertTopicsList(pageNumber, pageSize);
     }
 
-    //тип Get /count - получить количество строк в таблице
     @GetMapping(value = "/count")
     public Long getUsersCount() {
         return advertTopicService.entityCount();
     }
 
-    //тип Get /guests/id - получить сущность по Id
     @GetMapping(value = "/{id}")
     public AdvertTopicDTO getAllAdvertTopics(@PathVariable(value = "id") Long id) throws NoSuchIdException {
         return advertTopicService.findById(id);
     }
 
-    //тип Post /advertTopics/JSON добавить новую запись
     @PostMapping
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<?> addNewAdvertTopic(@RequestBody AdvertTopicDTO advertTopicDTO) {
@@ -48,7 +50,6 @@ public class AdvertTopicController {
     }
 
 
-    //тип Delete /rooms/id удалить запись по Id
     @DeleteMapping(value = "/{id}")
     @ResponseStatus(HttpStatus.OK)
     public void deleteAdvertTopic(@PathVariable(value = "id") Long id) throws NoSuchIdException {
@@ -56,7 +57,6 @@ public class AdvertTopicController {
         advertTopicService.deleteAdvertTopic(advertTopicService.findById(id));
     }
 
-    //тип Put /advertTopics/JSON обновить запись
     @PutMapping
     @ResponseStatus(HttpStatus.OK)
     public void updateAdvertTopic(@RequestBody AdvertTopicDTO advertTopicDTO) {

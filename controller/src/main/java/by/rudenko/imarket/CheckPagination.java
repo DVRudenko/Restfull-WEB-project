@@ -1,10 +1,14 @@
 package by.rudenko.imarket;
 
 /**
- * Check Pagination parameters for correction output
+ *
+ *   Check Pagination class to use in controllers for correction output
+ *
+ *   @author Dmitry Rudenko
+ *   @version 1.0
  *
  */
-public class CheckPagination {
+class CheckPagination {
     private int pageNumber;
     private Integer pageSize;
     private Long count;

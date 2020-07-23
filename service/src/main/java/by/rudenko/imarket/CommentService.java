@@ -8,7 +8,7 @@ import java.util.List;
 
 
 public interface CommentService {
-    //вывести полный список объявлений с вложениями
+
     List<CommentDTO> getFullCommentsList(int pageNumber, int pageSize);
 
     CommentDTO findById(Long id) throws NoSuchIdException;

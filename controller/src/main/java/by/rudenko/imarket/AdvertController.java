@@ -10,6 +10,12 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * REST controller for adverts requests (get, post, delete, etc.)
+ *
+ * @author Dmitry Rudenko
+ * @version 1.0
+ */
 @RestController
 @RequestMapping(value = {"/","/adverts"})
 public class AdvertController {
@@ -23,7 +29,6 @@ public class AdvertController {
         this.advertService = advertService;
     }
 
-    //тип Get - получить все "краткие" объявления
     @GetMapping
     public List<AdvertShortDTO> getAllShortAdverts(
             @RequestParam(value = "pageNumber", defaultValue = "1") int pageNumber,
@@ -39,13 +44,11 @@ public class AdvertController {
         return advertService.getAllShortAdverts(pageNumber, pageSize);
     }
 
-    //тип Get /count - получить количество строк в таблице
     @GetMapping(value = "/count")
     public Long advertCount() {
         return advertService.entityCount();
     }
 
-    //тип Get /adverts/ - получить весь список объявлений с пагинацией (без сортировки)
     @GetMapping(value = "/full")
     public List<AdvertDTO> getAllAdverts(
             @RequestParam(value = "pageNumber", defaultValue = "1") int pageNumber,
@@ -53,13 +56,11 @@ public class AdvertController {
         return advertService.getFullAdvertsList(pageNumber, pageSize);
     }
 
-    //тип Get /guests/id - получить полное объявление по Id
     @GetMapping(value = "/{id}")
     public AdvertDTO getAdvertByID(@PathVariable(value = "id") Long id) throws NoSuchIdException {
         return advertService.getFullAdvertByID(id);
     }
 
-    //тип Get сортированные объявления
     @GetMapping(value = "/sorted")
     public List<AdvertShortDTO> getAllSortedAdverts(
             @RequestParam(value = "pageNumber", defaultValue = "1") int pageNumber,
@@ -78,7 +79,6 @@ public class AdvertController {
         return advertService.getAllSortedAdverts(pageNumber, pageSize);
     }
 
-    //тип Post /adverts/JSON добавить новую запись
     @PostMapping
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<?> addNewAdvert(@RequestBody AdvertShortDTO advertShortDTO) {
@@ -86,7 +86,6 @@ public class AdvertController {
         return ResponseEntity.ok("advert saved");
     }
 
-    //тип Delete удалить запись по Id
     @DeleteMapping(value = "/{id}")
     @ResponseStatus(HttpStatus.OK)
     public void deleteAdvert(@PathVariable(value = "id") Long id) throws NoSuchIdException {
@@ -94,7 +93,6 @@ public class AdvertController {
         advertService.deleteAdvert(advertService.findById(id));
     }
 
-    //тип Put /adverts/JSON обновить запись
     @PutMapping
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<?> updateAdvert(@RequestBody AdvertShortDTO advertShortDTO) {

@@ -7,7 +7,7 @@ import java.util.List;
 
 
 public interface SellHistoryService {
-    //вывести полный список историй продаж с вложениями
+
     List<SellHistoryDTO> getFullSellHistoriesList(int pageNumber, int pageSize);
 
     SellHistoryDTO findById(Long id) throws NoSuchIdException;

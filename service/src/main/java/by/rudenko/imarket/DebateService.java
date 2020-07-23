@@ -11,7 +11,6 @@ public interface DebateService {
 
     List<DebateDTO> getAllDebatesList(int pageNumber, int pageSize);
 
-    //вывести полный список объявлений с вложениями
     List<DebateDTO> getFullDebatesList(int pageNumber, int pageSize);
 
     boolean addNewDebate(DebateDTO debateDTO);

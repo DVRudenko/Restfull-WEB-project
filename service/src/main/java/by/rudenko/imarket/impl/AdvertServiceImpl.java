@@ -28,7 +28,6 @@ public class AdvertServiceImpl implements AdvertService {
 
     @Override
     public boolean addNewAdvert(AdvertShortDTO advertShortDTO) {
-        // маппинг из ДТО в  Entity
         Advert advert = modelMapper.map(advertShortDTO, Advert.class);
         advertDao.save(advert);
         return true;
@@ -45,7 +44,6 @@ public class AdvertServiceImpl implements AdvertService {
     //вывести сокращенный вариант объявлений
     @Override
     public List<AdvertShortDTO> getAllShortAdverts(int pageNumber, int pageSize) {
-
 
         return advertDao.getAll(pageNumber, pageSize, null).stream()
                 .map(x -> modelMapper.map(x, AdvertShortDTO.class))

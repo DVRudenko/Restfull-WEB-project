@@ -8,6 +8,12 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * REST controller for debates requests (get, post, delete, etc.)
+ *
+ * @author Dmitry Rudenko
+ * @version 1.0
+ */
 @RestController
 @RequestMapping("/debates")
 public class DebateController {
@@ -18,7 +24,6 @@ public class DebateController {
         this.debateService = debateService;
     }
 
-    //тип Get /debates/ - получить весь список с пагинацией
     @GetMapping
     public List<DebateDTO> getAllDebates(
             @RequestParam(value = "pageNumber", defaultValue = "1") int pageNumber,
@@ -26,19 +31,16 @@ public class DebateController {
         return debateService.getFullDebatesList(pageNumber, pageSize);
     }
 
-    //тип Get /guests/count - получить количество строк в таблице (пользователей)
     @GetMapping(value = "/count")
     public Long getUsersCount() {
         return debateService.entityCount();
     }
 
-    //тип Get /guests/id - получить сущность по Id
     @GetMapping(value = "/{id}")
     public DebateDTO getAllDebates(@PathVariable(value = "id") Long id) throws NoSuchIdException {
         return debateService.findById(id);
     }
 
-    //тип Post /debates/JSON добавить новую запись
     @PostMapping
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<?> addNewDebate(@RequestBody DebateDTO debateDTO) {
@@ -47,7 +49,6 @@ public class DebateController {
     }
 
 
-    //тип Delete /rooms/id удалить запись по Id
     @DeleteMapping(value = "/{id}")
     @ResponseStatus(HttpStatus.OK)
     public void deleteDebate(@PathVariable(value = "id") Long id) throws NoSuchIdException {
@@ -55,7 +56,6 @@ public class DebateController {
         debateService.deleteDebate(debateService.findById(id));
     }
 
-    //тип Put /debates/JSON обновить запись
     @PutMapping
     @ResponseStatus(HttpStatus.OK)
     public void updateDebate(@RequestBody DebateDTO debateDTO) {

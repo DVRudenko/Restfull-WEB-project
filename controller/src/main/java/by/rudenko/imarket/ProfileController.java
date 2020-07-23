@@ -8,6 +8,12 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * REST controller for profiles requests (get, post, delete, etc.)
+ *
+ * @author Dmitry Rudenko
+ * @version 1.0
+ */
 @RestController
 @RequestMapping("/profiles")
 public class ProfileController {
@@ -18,7 +24,6 @@ public class ProfileController {
         this.profileService = profileService;
     }
 
-    //тип Get /profiles/ - получить весь список с пагинацией
     @GetMapping
     public List<ProfileDTO> getAllProfiles(
             @RequestParam(value = "pageNumber", defaultValue = "1") int pageNumber,
@@ -26,36 +31,23 @@ public class ProfileController {
         return profileService.getFullProfiles(pageNumber, pageSize);
     }
 
-    //тип Get /guests/count - получить количество строк в таблице (пользователей)
     @GetMapping(value = "/count")
     public Long getUsersCount() {
         return profileService.entityCount();
     }
 
-    //тип Get /guests/id - получить сущность по Id
     @GetMapping(value = "/{id}")
     public ProfileDTO getAllProfiles(@PathVariable(value = "id") Long id) throws NoSuchIdException {
         return profileService.findById(id);
     }
 
-    /*//убираем - будет делаться автоматом
-    @PostMapping
-    @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<?> addNewProfile(@RequestBody ProfileDTO profileDTO) {
-        profileService.addNewProfile(profileDTO);
-        return ResponseEntity.ok("profile saved");
-    }*/
-
-
-    //тип Delete /rooms/id удалить запись по Id
-    @DeleteMapping(value = "/{id}")
+   @DeleteMapping(value = "/{id}")
     @ResponseStatus(HttpStatus.OK)
     public void deleteProfile(@PathVariable(value = "id") Long id) throws NoSuchIdException {
 
         profileService.deleteProfile(profileService.findById(id));
     }
 
-    //тип Put /profiles/JSON обновить запись
     @PutMapping
     @ResponseStatus(HttpStatus.OK)
     public void updateProfile(@RequestBody ProfileDTO profileDTO) {

@@ -27,7 +27,6 @@ public class AdvertTopicServiceImpl implements AdvertTopicService {
 
     @Override
     public boolean addNewAdvertTopic(AdvertTopicDTO advertTopicDTO) {
-        // маппинг из ДТО в  Entity
         final AdvertTopic advertTopic = modelMapper.map(advertTopicDTO, AdvertTopic.class);
         advertTopicDao.save(advertTopic);
         return true;

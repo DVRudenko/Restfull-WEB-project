@@ -24,16 +24,6 @@ public class ProfileServiceImpl implements ProfileService {
         this.modelMapper = modelMapper;
     }
 
-    /*//Профиль будет создаваться автоматом (по умолчанию) при создании нового юзера
-    @Override
-    public boolean addNewProfile(ProfileDTO profileDTO) {
-        // маппинг из ДТО в  Entity
-        final Profile profile = modelMapper.map(profileDTO, Profile.class);
-        profileDao.save(profile);
-        return true;
-    }*/
-
-
     @Override
     public ProfileDTO findById(Long id) throws NoSuchIdException {
         final Profile profileEntity = profileDao.getFullProfileByID(id);
@@ -55,7 +45,6 @@ public class ProfileServiceImpl implements ProfileService {
                 .map(x -> modelMapper.map(x, ProfileDTO.class))
                 .collect(Collectors.toList());
     }
-
 
     @Override
     public boolean deleteProfile(ProfileDTO profileDTO) {
