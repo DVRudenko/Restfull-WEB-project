@@ -27,6 +27,22 @@ public class AdvertShortDTO {
     private LocalDate advDate;
     private Enumes.AdverStatus adverStatus;
 
+    public AdvertShortDTO() {
+    }
+
+    public AdvertShortDTO(Long id, Long userId, Long advertTopicId, Long advertRankId,
+                          Enumes.AdverType advType, String advText, int advPrice, LocalDate advDate, Enumes.AdverStatus adverStatus) {
+        this.id = id;
+        this.userId = userId;
+        this.advertTopicId = advertTopicId;
+        this.advertRankId = advertRankId;
+        this.advType = advType;
+        this.advText = advText;
+        this.advPrice = advPrice;
+        this.advDate = advDate;
+        this.adverStatus = adverStatus;
+    }
+
     public Long getId() {
         return id;
     }

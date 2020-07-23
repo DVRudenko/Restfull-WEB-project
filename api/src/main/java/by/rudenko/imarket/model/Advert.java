@@ -68,6 +68,19 @@ public class Advert implements Entity {
         this.adverStatus = adverStatus;
     }
 
+    public Advert(Long id, User user, AdvertTopic advertTopic, AdvertRank advertRank, Enumes.AdverType advType,
+                  String advText, int advPrice, LocalDate advDate, Enumes.AdverStatus adverStatus) {
+        this.id = id;
+        this.user = user;
+        this.advertTopic = advertTopic;
+        this.advertRank = advertRank;
+        this.advType = advType;
+        this.advText = advText;
+        this.advPrice = advPrice;
+        this.advDate = advDate;
+        this.adverStatus = adverStatus;
+    }
+
     @Override
     public Long getId() {
         return id;

@@ -30,8 +30,9 @@ import org.springframework.security.web.firewall.HttpFirewall;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private static final String ADMIN_ENDPOINT = "/admin/**";
-    private static final String USER_ENDPOINT = "/users/**,/profiles/**";
+    private static final String USER_ENDPOINT = "/users/**";
     private static final String LOGIN_ENDPOINT = "/auth/**";
+    private static final String ALL_ENDPOINT = "/adverts/**";
     private final JwtTokenProvider jwtTokenProvider;
 
     @Autowired
@@ -69,10 +70,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                     .authorizeRequests()
                     .antMatchers(LOGIN_ENDPOINT).permitAll()
+                    .antMatchers(ALL_ENDPOINT).permitAll()
+                     .antMatchers("/").permitAll()
                     .antMatchers(ADMIN_ENDPOINT).hasRole("ADMIN")
                     .antMatchers(USER_ENDPOINT).hasRole("USER")
-//                  .anyRequest().authenticated()
-                    .anyRequest().permitAll()
+                    .antMatchers("/profiles/**").hasRole("USER")
+                    .anyRequest().authenticated()
+//                  .anyRequest().permitAll()
                 .and()
                 .apply(new JwtConfigurer(jwtTokenProvider));
     }

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = {"/adverts"})
+@RequestMapping(value = {"/","/adverts"})
 public class AdvertController {
 
     private final AdvertService advertService;

@@ -60,8 +60,7 @@ public class AdvertDaoImpl extends AbstractDao<Advert, Long> implements AdvertDa
         }
     }
 
-    // сортируем объявления по рангу (VIP,Prior,Usual)
-    // и TODO рейтинга продавца
+    // сортируем объявления только по рангу (VIP,Prior,Usual)
     @Override
     public List<Advert> getSortedAdverts(int pageNumber, int pageSize) {
         LOGGER.info("Get sorted adverts ");

@@ -7,7 +7,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -58,7 +57,7 @@ public class AbstractDao<T extends Entity, PK extends Number> implements Generic
     }
 
 
-    //запрос с пагинацией
+    //запрос с пагинацией и fetch вложенных полей
     @Override
     public List<T> getAll(int pageNumber, int pageSize, List<SingularAttribute> fetchAttributes) {
         LOGGER.info("Find all by " + entityClass.getSimpleName());
@@ -83,7 +82,7 @@ public class AbstractDao<T extends Entity, PK extends Number> implements Generic
     @Override
     public boolean save(final T entity) {
         em.persist(em.contains(entity) ? entity : em.merge(entity));
-        LOGGER.info("1 row added to DB. Add new " + entityClass.getSimpleName());
+        LOGGER.info("1 row added to DB. Add by " + entityClass.getSimpleName());
         return true;
     }
 
@@ -98,10 +97,8 @@ public class AbstractDao<T extends Entity, PK extends Number> implements Generic
 
     @Override
     public boolean update(final T updateEntity) {
-        //em.refresh(em.contains(updateEntity) ? updateEntity : em.merge(updateEntity));
-        //проверяем апдейт
         em.merge(updateEntity);
-        LOGGER.info("1 row updated to DB. Add new " + entityClass.getSimpleName());
+        LOGGER.info("1 row updated to DB. Add by " + entityClass.getSimpleName());
         return true;
     }
 }

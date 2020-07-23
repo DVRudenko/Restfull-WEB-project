@@ -42,7 +42,6 @@ public class UserServiceImpl implements UserService {
         Profile profile = new Profile(user); //создаем профиль по умолчанию
         user.setProfile(profile);
         //шифруем пароль
-        //правильно ли шифровать пароль в сервисе?????
         user.setPassword(passwordEncoder.encode(userDTO.getPassword()));
         userDao.save(user);
 
@@ -51,7 +50,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User findByUsername(String username) {
-        //log.info("IN findByUsername - user: {} found by username: {}", result, username);
         return userDao.findByUsername(username);
     }
 
@@ -83,7 +81,6 @@ public class UserServiceImpl implements UserService {
     public boolean update(UserDTO userDTO) {
         User user = modelMapper.map(userDTO, User.class);
         //шифруем пароль
-        //правильно ли шифровать пароль в сервисе?????
         user.setPassword(passwordEncoder.encode(userDTO.getPassword()));
         return userDao.update(user);
     }

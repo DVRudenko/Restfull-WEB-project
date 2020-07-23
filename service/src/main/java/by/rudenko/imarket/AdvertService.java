@@ -10,7 +10,6 @@ import java.util.List;
 public interface AdvertService {
     AdvertDTO findById(Long id) throws NoSuchIdException;
 
-
     List<AdvertDTO> getFullAdvertsList(int pageNumber, int pageSize);
 
     AdvertDTO getFullAdvertByID(Long id) throws NoSuchIdException;

@@ -23,6 +23,13 @@ import javax.sql.DataSource;
 import java.util.Properties;
 
 
+/**
+ * Main configuration class for Transaction Manager, WebMVC, Swagger to use in application.
+ *
+ * @author Dmitry Rudenko
+ * @version 1.0
+ */
+
 @Configuration
 @EnableTransactionManagement
 @EnableWebMvc
@@ -95,7 +102,7 @@ public class IMarketConfig implements WebMvcConfigurer {
         return properties;
     }
 
-    //для регистрации Swager
+    //для регистрации Swagger
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("swagger-ui.html")

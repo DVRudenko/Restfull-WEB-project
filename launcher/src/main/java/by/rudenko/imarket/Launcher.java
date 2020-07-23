@@ -21,6 +21,8 @@ public class Launcher extends AbstractAnnotationConfigDispatcherServletInitializ
     protected String[] getServletMappings() {
         return new String[]{"/"};
     }
+
+
 }
 
 
