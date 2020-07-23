@@ -14,7 +14,7 @@ import java.util.List;
 @Repository
 public class SellHistoryDaoImpl extends AbstractDao<SellHistory, Long> implements SellHistoryDao {
 
-    private static final Logger LOGGER = LogManager.getLogger(SellHistoryDaoImpl.class);
+    private static final Logger LOGGER = LogManager.getLogger("imarket");
 
     public SellHistoryDaoImpl() {
         super(SellHistory.class);
@@ -66,13 +66,13 @@ public class SellHistoryDaoImpl extends AbstractDao<SellHistory, Long> implement
                                 root.get(SellHistory_.id), id)
                         );
 
-        SellHistory sellHistory = em.createQuery(select).getSingleResult();
+        List<SellHistory> sellHistory = em.createQuery(select).getResultList();
 
-        if (sellHistory != null) {
-            return sellHistory;
+        if (sellHistory.size() > 0) {
+            return sellHistory.get(0);
         } else {
-            LOGGER.error("No such SellHistory ID" + id);
-            throw new NoSuchIdException("No such SellHistory ID" + id);
+            LOGGER.error("No such SellHistory ID-" + id);
+            throw new NoSuchIdException("No such SellHistory ID-" + id);
         }
     }
 

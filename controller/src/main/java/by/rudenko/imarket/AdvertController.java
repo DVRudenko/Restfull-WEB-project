@@ -17,7 +17,7 @@ import java.util.List;
  * @version 1.0
  */
 @RestController
-@RequestMapping(value = {"/", "/adverts"})
+@RequestMapping(value = {"/adverts"})//
 public class AdvertController {
 
     private final AdvertService advertService;

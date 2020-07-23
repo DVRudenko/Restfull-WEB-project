@@ -28,8 +28,7 @@ public class AdvertRankServiceImpl implements AdvertRankService {
     @Override
     public boolean addNewAdvertRank(AdvertRankDTO advertRankDTO) {
         final AdvertRank advertRank = modelMapper.map(advertRankDTO, AdvertRank.class);
-        advertRankDao.save(advertRank);
-        return true;
+        return advertRankDao.save(advertRank);
     }
 
 

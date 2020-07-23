@@ -18,7 +18,7 @@ import java.util.List;
 @Repository
 public class ProfileDaoImpl extends AbstractDao<Profile, Long> implements ProfileDao {
 
-    private static final Logger LOGGER = LogManager.getLogger(ProfileDaoImpl.class);
+    private static final Logger LOGGER = LogManager.getLogger("imarket");
 
     public ProfileDaoImpl() {
         super(Profile.class);
@@ -59,10 +59,10 @@ public class ProfileDaoImpl extends AbstractDao<Profile, Long> implements Profil
                                 root.get(Profile_.id), id)
                         );
 
-        Profile profile = em.createQuery(select).getSingleResult();
+        List<Profile> profile = em.createQuery(select).getResultList();
 
-        if (profile != null) {
-            return profile;
+        if (profile.size() >0) {
+            return profile.get(0);
         } else {
             LOGGER.error("No such Profile ID" + id);
             throw new NoSuchIdException("No such Profile ID" + id);

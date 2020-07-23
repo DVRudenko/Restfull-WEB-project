@@ -166,3 +166,169 @@
 [INFO ] 2020-07-23 09:48:59.837 [http-nio-8080-exec-7] imarket - jwt Token passed 
 [INFO ] 2020-07-23 09:55:30.825 [http-nio-8080-exec-8] imarket - jwt Token passed 
 [INFO ] 2020-07-23 09:55:33.618 [http-nio-8080-exec-9] imarket - jwt Token passed 
+[INFO ] 2020-07-23 11:30:17.074 [http-nio-8080-exec-1] imarket - IN loadUserByUsername - user with username: admin successfully loaded
+[INFO ] 2020-07-23 11:30:17.151 [http-nio-8080-exec-1] imarket - Token created for adminwith role ROLE_ADMIN
+[INFO ] 2020-07-23 11:30:22.093 [http-nio-8080-exec-5] imarket - IN loadUserByUsername - user with username: user1 successfully loaded
+[INFO ] 2020-07-23 11:30:29.511 [http-nio-8080-exec-9] imarket - IN loadUserByUsername - user with username: admin successfully loaded
+[INFO ] 2020-07-23 11:31:13.636 [http-nio-8080-exec-4] imarket - IN loadUserByUsername - user with username: user1 successfully loaded
+[INFO ] 2020-07-23 11:31:33.303 [http-nio-8080-exec-10] imarket - IN loadUserByUsername - user with username: user2 successfully loaded
+[INFO ] 2020-07-23 11:31:33.355 [http-nio-8080-exec-10] imarket - Token created for user2with role ROLE_USER
+[INFO ] 2020-07-23 11:33:04.073 [http-nio-8080-exec-6] imarket - IN loadUserByUsername - user with username: user2 successfully loaded
+[INFO ] 2020-07-23 11:33:48.391 [http-nio-8080-exec-8] imarket - IN loadUserByUsername - user with username: admin successfully loaded
+[INFO ] 2020-07-23 12:39:43.294 [http-nio-8080-exec-2] imarket - Counting Advert
+[INFO ] 2020-07-23 12:39:44.021 [http-nio-8080-exec-2] imarket - Find all by Advert
+[INFO ] 2020-07-23 12:39:45.346 [http-nio-8080-exec-8] imarket - Counting Advert
+[INFO ] 2020-07-23 12:39:45.453 [http-nio-8080-exec-8] imarket - Find all by Advert
+[INFO ] 2020-07-23 12:39:59.032 [http-nio-8080-exec-3] imarket - Counting Advert
+[INFO ] 2020-07-23 12:39:59.089 [http-nio-8080-exec-3] imarket - Find all by Advert
+[INFO ] 2020-07-23 12:40:12.203 [http-nio-8080-exec-4] imarket - Counting Advert
+[INFO ] 2020-07-23 12:40:12.243 [http-nio-8080-exec-4] imarket - Find all by Advert
+[INFO ] 2020-07-23 12:40:19.275 [http-nio-8080-exec-2] imarket - Get full advert by Id 
+[INFO ] 2020-07-23 12:51:17.502 [http-nio-8080-exec-2] imarket - Counting Advert
+[INFO ] 2020-07-23 13:21:50.002 [http-nio-8080-exec-2] imarket - Find all by Advert
+[INFO ] 2020-07-23 13:21:50.125 [http-nio-8080-exec-4] imarket - Counting Advert
+[INFO ] 2020-07-23 13:21:54.853 [http-nio-8080-exec-4] imarket - Find all by Advert
+[INFO ] 2020-07-23 13:21:54.898 [http-nio-8080-exec-7] imarket - Counting Advert
+[INFO ] 2020-07-23 13:21:55.810 [http-nio-8080-exec-7] imarket - Find all by Advert
+[INFO ] 2020-07-23 13:21:57.113 [http-nio-8080-exec-3] imarket - Counting Advert
+[INFO ] 2020-07-23 13:21:57.636 [http-nio-8080-exec-3] imarket - Find all by Advert
+[INFO ] 2020-07-23 13:25:46.010 [http-nio-8080-exec-2] imarket - IN loadUserByUsername - user with username: admin successfully loaded
+[INFO ] 2020-07-23 13:27:56.464 [http-nio-8080-exec-6] imarket - Counting Advert
+[INFO ] 2020-07-23 13:27:56.519 [http-nio-8080-exec-6] imarket - Find all by Advert
+[INFO ] 2020-07-23 13:27:57.688 [http-nio-8080-exec-4] imarket - Counting Advert
+[INFO ] 2020-07-23 13:27:57.917 [http-nio-8080-exec-4] imarket - Find all by Advert
+[INFO ] 2020-07-23 13:29:57.256 [http-nio-8080-exec-6] imarket - IN loadUserByUsername - user with username: admin successfully loaded
+[INFO ] 2020-07-23 13:32:04.278 [http-nio-8080-exec-7] imarket - IN loadUserByUsername - user with username: admin successfully loaded
+[INFO ] 2020-07-23 13:32:17.984 [http-nio-8080-exec-3] imarket - IN loadUserByUsername - user with username: admin successfully loaded
+[INFO ] 2020-07-23 18:01:23.184 [http-nio-8080-exec-2] imarket - Counting Advert
+[INFO ] 2020-07-23 18:01:24.223 [http-nio-8080-exec-2] imarket - Find all by Advert
+[INFO ] 2020-07-23 18:01:25.015 [http-nio-8080-exec-2] imarket - jwt Token passed 
+[INFO ] 2020-07-23 18:01:25.839 [http-nio-8080-exec-8] imarket - Counting Advert
+[INFO ] 2020-07-23 18:01:26.458 [http-nio-8080-exec-8] imarket - Find all by Advert
+[INFO ] 2020-07-23 18:01:26.529 [http-nio-8080-exec-8] imarket - jwt Token passed 
+[INFO ] 2020-07-23 18:01:40.961 [http-nio-8080-exec-10] imarket - jwt Token passed 
+[INFO ] 2020-07-23 18:01:41.744 [http-nio-8080-exec-3] imarket - jwt Token passed 
+[INFO ] 2020-07-23 18:08:56.572 [http-nio-8080-exec-1] imarket - Counting Advert
+[INFO ] 2020-07-23 18:08:57.256 [http-nio-8080-exec-1] imarket - Find all by Advert
+[INFO ] 2020-07-23 18:08:57.890 [http-nio-8080-exec-1] imarket - jwt Token passed 
+[INFO ] 2020-07-23 18:08:58.271 [http-nio-8080-exec-7] imarket - Counting Advert
+[INFO ] 2020-07-23 18:08:58.838 [http-nio-8080-exec-7] imarket - Find all by Advert
+[INFO ] 2020-07-23 18:08:58.958 [http-nio-8080-exec-7] imarket - jwt Token passed 
+[INFO ] 2020-07-23 18:20:26.004 [http-nio-8080-exec-1] imarket - Counting Advert
+[INFO ] 2020-07-23 18:20:26.624 [http-nio-8080-exec-1] imarket - Find all by Advert
+[INFO ] 2020-07-23 18:20:27.290 [http-nio-8080-exec-1] imarket - jwt Token passed 
+[INFO ] 2020-07-23 18:20:27.768 [http-nio-8080-exec-5] imarket - Counting Advert
+[INFO ] 2020-07-23 18:20:28.106 [http-nio-8080-exec-5] imarket - Find all by Advert
+[INFO ] 2020-07-23 18:20:28.252 [http-nio-8080-exec-5] imarket - jwt Token passed 
+[INFO ] 2020-07-23 18:23:04.000 [http-nio-8080-exec-2] imarket - Counting Advert
+[INFO ] 2020-07-23 18:23:04.617 [http-nio-8080-exec-2] imarket - Find all by Advert
+[INFO ] 2020-07-23 18:23:05.144 [http-nio-8080-exec-2] imarket - jwt Token passed 
+[INFO ] 2020-07-23 18:23:05.543 [http-nio-8080-exec-6] imarket - Counting Advert
+[INFO ] 2020-07-23 18:23:05.897 [http-nio-8080-exec-6] imarket - Find all by Advert
+[INFO ] 2020-07-23 18:23:05.982 [http-nio-8080-exec-6] imarket - jwt Token passed 
+[INFO ] 2020-07-23 18:29:00.803 [http-nio-8080-exec-2] imarket - Counting Advert
+[INFO ] 2020-07-23 18:29:01.517 [http-nio-8080-exec-2] imarket - Find all by Advert
+[INFO ] 2020-07-23 18:29:02.220 [http-nio-8080-exec-2] imarket - jwt Token passed 
+[INFO ] 2020-07-23 18:29:02.836 [http-nio-8080-exec-8] imarket - Counting Advert
+[INFO ] 2020-07-23 18:29:03.575 [http-nio-8080-exec-8] imarket - Find all by Advert
+[INFO ] 2020-07-23 18:29:03.667 [http-nio-8080-exec-8] imarket - jwt Token passed 
+[INFO ] 2020-07-23 19:12:54.920 [main] imarket - 1 row added to DB. Add by Advert
+[INFO ] 2020-07-23 19:12:54.921 [main] imarket - Find by ID Advert
+[INFO ] 2020-07-23 19:12:55.020 [main] imarket - Counting Advert
+[INFO ] 2020-07-23 19:12:55.472 [main] imarket - 1 row added to DB. Add by Advert
+[INFO ] 2020-07-23 19:12:55.472 [main] imarket - Find by ID Advert
+[INFO ] 2020-07-23 19:12:55.541 [main] imarket - 1 row added to DB. Add by User
+[INFO ] 2020-07-23 19:12:55.580 [main] imarket - Find by username user2
+[INFO ] 2020-07-23 19:12:55.834 [main] imarket - 1 row added to DB. Add by User
+[INFO ] 2020-07-23 19:12:55.834 [main] imarket - Find by ID User
+[INFO ] 2020-07-23 19:15:53.187 [http-nio-8080-exec-1] imarket - Counting Advert
+[INFO ] 2020-07-23 19:15:53.693 [http-nio-8080-exec-1] imarket - Find all by Advert
+[INFO ] 2020-07-23 19:15:54.161 [http-nio-8080-exec-1] imarket - jwt Token passed 
+[INFO ] 2020-07-23 19:15:54.856 [http-nio-8080-exec-2] imarket - Counting Advert
+[INFO ] 2020-07-23 19:15:54.991 [http-nio-8080-exec-2] imarket - Find all by Advert
+[INFO ] 2020-07-23 19:15:55.082 [http-nio-8080-exec-2] imarket - jwt Token passed 
+[INFO ] 2020-07-23 19:18:53.547 [http-nio-8080-exec-5] imarket - jwt Token passed 
+[INFO ] 2020-07-23 19:18:53.703 [http-nio-8080-exec-7] imarket - jwt Token passed 
+[INFO ] 2020-07-23 19:18:53.763 [http-nio-8080-exec-9] imarket - jwt Token passed 
+[INFO ] 2020-07-23 19:18:53.799 [http-nio-8080-exec-1] imarket - jwt Token passed 
+[INFO ] 2020-07-23 19:18:53.810 [http-nio-8080-exec-6] imarket - jwt Token passed 
+[INFO ] 2020-07-23 19:18:54.044 [http-nio-8080-exec-10] imarket - jwt Token passed 
+[INFO ] 2020-07-23 19:18:54.688 [http-nio-8080-exec-3] imarket - jwt Token passed 
+[INFO ] 2020-07-23 19:18:54.710 [http-nio-8080-exec-2] imarket - jwt Token passed 
+[INFO ] 2020-07-23 19:18:54.726 [http-nio-8080-exec-4] imarket - jwt Token passed 
+[INFO ] 2020-07-23 19:18:54.813 [http-nio-8080-exec-5] imarket - jwt Token passed 
+[INFO ] 2020-07-23 19:18:54.927 [http-nio-8080-exec-7] imarket - jwt Token passed 
+[INFO ] 2020-07-23 19:18:54.943 [http-nio-8080-exec-9] imarket - jwt Token passed 
+[INFO ] 2020-07-23 19:18:55.393 [http-nio-8080-exec-8] imarket - jwt Token passed 
+[INFO ] 2020-07-23 19:18:55.790 [http-nio-8080-exec-1] imarket - jwt Token passed 
+[INFO ] 2020-07-23 19:18:55.857 [http-nio-8080-exec-6] imarket - jwt Token passed 
+[INFO ] 2020-07-23 19:18:55.871 [http-nio-8080-exec-10] imarket - jwt Token passed 
+[INFO ] 2020-07-23 19:19:08.519 [http-nio-8080-exec-3] imarket - jwt Token passed 
+[INFO ] 2020-07-23 19:23:45.777 [http-nio-8080-exec-8] imarket - Find by username admin
+[INFO ] 2020-07-23 19:23:45.848 [http-nio-8080-exec-8] imarket - IN loadUserByUsername - user with username: admin successfully loaded
+[INFO ] 2020-07-23 19:23:45.887 [http-nio-8080-exec-8] imarket - Find by username admin
+[INFO ] 2020-07-23 19:23:45.916 [http-nio-8080-exec-8] imarket - Token created for adminwith role ROLE_ADMIN
+[INFO ] 2020-07-23 19:23:46.009 [http-nio-8080-exec-8] imarket - jwt Token passed 
+[INFO ] 2020-07-23 19:24:05.431 [http-nio-8080-exec-6] imarket - Counting Advert
+[INFO ] 2020-07-23 19:24:05.493 [http-nio-8080-exec-6] imarket - Find all by Advert
+[INFO ] 2020-07-23 19:24:05.528 [http-nio-8080-exec-6] imarket - jwt Token passed 
+[INFO ] 2020-07-23 19:24:10.226 [http-nio-8080-exec-10] imarket - Get full advert by Id 
+[INFO ] 2020-07-23 19:24:10.445 [http-nio-8080-exec-10] imarket - jwt Token passed 
+[INFO ] 2020-07-23 19:24:42.594 [http-nio-8080-exec-2] imarket - Get full adverts list 
+[INFO ] 2020-07-23 19:24:42.649 [http-nio-8080-exec-2] imarket - jwt Token passed 
+[INFO ] 2020-07-23 19:28:01.448 [http-nio-8080-exec-1] imarket - Find by username admin
+[INFO ] 2020-07-23 19:28:01.461 [http-nio-8080-exec-1] imarket - IN loadUserByUsername - user with username: admin successfully loaded
+[INFO ] 2020-07-23 19:28:01.493 [http-nio-8080-exec-1] imarket - Find by ID User
+[INFO ] 2020-07-23 19:28:01.591 [http-nio-8080-exec-1] imarket - jwt Token passed 
+[INFO ] 2020-07-23 19:28:19.162 [http-nio-8080-exec-6] imarket - Find by username admin
+[INFO ] 2020-07-23 19:28:19.183 [http-nio-8080-exec-6] imarket - IN loadUserByUsername - user with username: admin successfully loaded
+[INFO ] 2020-07-23 19:28:19.190 [http-nio-8080-exec-6] imarket - jwt Token passed 
+[INFO ] 2020-07-23 19:28:49.930 [http-nio-8080-exec-3] imarket - Find by username user1
+[INFO ] 2020-07-23 19:28:49.941 [http-nio-8080-exec-3] imarket - IN loadUserByUsername - user with username: user1 successfully loaded
+[INFO ] 2020-07-23 19:28:49.985 [http-nio-8080-exec-3] imarket - Find by username user1
+[INFO ] 2020-07-23 19:28:49.996 [http-nio-8080-exec-3] imarket - Token created for user1with role ROLE_USER
+[INFO ] 2020-07-23 19:28:49.999 [http-nio-8080-exec-3] imarket - jwt Token passed 
+[INFO ] 2020-07-23 19:29:41.920 [http-nio-8080-exec-5] imarket - Find by username user1
+[INFO ] 2020-07-23 19:29:41.933 [http-nio-8080-exec-5] imarket - IN loadUserByUsername - user with username: user1 successfully loaded
+[INFO ] 2020-07-23 19:29:41.969 [http-nio-8080-exec-5] imarket - Find by username user1
+[INFO ] 2020-07-23 19:29:41.980 [http-nio-8080-exec-5] imarket - Token created for user1with role ROLE_USER
+[INFO ] 2020-07-23 19:29:41.985 [http-nio-8080-exec-5] imarket - jwt Token passed 
+[INFO ] 2020-07-23 19:30:00.707 [http-nio-8080-exec-7] imarket - Find by username user1
+[INFO ] 2020-07-23 19:30:00.715 [http-nio-8080-exec-7] imarket - IN loadUserByUsername - user with username: user1 successfully loaded
+[INFO ] 2020-07-23 19:30:00.754 [http-nio-8080-exec-7] imarket - Get full profiles list
+[INFO ] 2020-07-23 19:30:00.846 [http-nio-8080-exec-7] imarket - jwt Token passed 
+[INFO ] 2020-07-23 19:30:27.971 [http-nio-8080-exec-1] imarket - Get full debates list 
+[INFO ] 2020-07-23 19:30:28.142 [http-nio-8080-exec-1] imarket - jwt Token passed 
+[INFO ] 2020-07-24 00:11:46.305 [main] imarket - 1 row added to DB. Add by Advert
+[INFO ] 2020-07-24 00:11:46.306 [main] imarket - Find by ID Advert
+[INFO ] 2020-07-24 00:11:46.448 [main] imarket - Counting Advert
+[INFO ] 2020-07-24 00:11:47.222 [main] imarket - 1 row added to DB. Add by Advert
+[INFO ] 2020-07-24 00:11:47.222 [main] imarket - Find by ID Advert
+[INFO ] 2020-07-24 00:11:47.438 [main] imarket - 1 row added to DB. Add by User
+[INFO ] 2020-07-24 00:11:47.675 [main] imarket - Find by username user2
+[INFO ] 2020-07-24 00:11:47.793 [main] imarket - 1 row added to DB. Add by User
+[INFO ] 2020-07-24 00:11:47.793 [main] imarket - Find by ID User
+[INFO ] 2020-07-24 00:21:57.004 [http-nio-8080-exec-1] imarket - Counting Advert
+[INFO ] 2020-07-24 00:21:57.659 [http-nio-8080-exec-1] imarket - Find all by Advert
+[INFO ] 2020-07-24 00:21:58.253 [http-nio-8080-exec-1] imarket - jwt Token passed 
+[INFO ] 2020-07-24 00:21:58.850 [http-nio-8080-exec-4] imarket - Counting Advert
+[INFO ] 2020-07-24 00:21:59.151 [http-nio-8080-exec-4] imarket - Find all by Advert
+[INFO ] 2020-07-24 00:21:59.290 [http-nio-8080-exec-4] imarket - jwt Token passed 
+[INFO ] 2020-07-24 00:22:22.455 [http-nio-8080-exec-5] imarket - jwt Token passed 
+[INFO ] 2020-07-24 00:22:22.582 [http-nio-8080-exec-2] imarket - jwt Token passed 
+[INFO ] 2020-07-24 00:22:22.690 [http-nio-8080-exec-10] imarket - jwt Token passed 
+[INFO ] 2020-07-24 00:22:22.783 [http-nio-8080-exec-1] imarket - jwt Token passed 
+[INFO ] 2020-07-24 00:22:22.913 [http-nio-8080-exec-7] imarket - jwt Token passed 
+[INFO ] 2020-07-24 00:22:23.033 [http-nio-8080-exec-3] imarket - jwt Token passed 
+[INFO ] 2020-07-24 00:22:23.600 [http-nio-8080-exec-4] imarket - jwt Token passed 
+[INFO ] 2020-07-24 00:22:23.632 [http-nio-8080-exec-8] imarket - jwt Token passed 
+[INFO ] 2020-07-24 00:22:23.647 [http-nio-8080-exec-6] imarket - jwt Token passed 
+[INFO ] 2020-07-24 00:22:23.758 [http-nio-8080-exec-5] imarket - jwt Token passed 
+[INFO ] 2020-07-24 00:22:23.943 [http-nio-8080-exec-10] imarket - jwt Token passed 
+[INFO ] 2020-07-24 00:22:23.984 [http-nio-8080-exec-2] imarket - jwt Token passed 
+[INFO ] 2020-07-24 00:22:24.329 [http-nio-8080-exec-9] imarket - jwt Token passed 
+[INFO ] 2020-07-24 00:22:24.933 [http-nio-8080-exec-1] imarket - jwt Token passed 
+[INFO ] 2020-07-24 00:22:24.965 [http-nio-8080-exec-7] imarket - jwt Token passed 
+[INFO ] 2020-07-24 00:22:24.974 [http-nio-8080-exec-7] imarket - jwt Token passed 
+[INFO ] 2020-07-24 00:22:39.783 [http-nio-8080-exec-4] imarket - jwt Token passed 
+[INFO ] 2020-07-24 00:24:14.623 [http-nio-8080-exec-2] imarket - jwt Token passed 

@@ -15,7 +15,7 @@ import java.util.List;
 @Repository
 public class UserDaoImpl extends AbstractDao<User, Long> implements UserDao {
 
-    private static final Logger LOGGER = LogManager.getLogger(UserDaoImpl.class);
+    private static final Logger LOGGER = LogManager.getLogger("imarket");
 
     public UserDaoImpl() {
         super(User.class);
@@ -31,17 +31,14 @@ public class UserDaoImpl extends AbstractDao<User, Long> implements UserDao {
                 .where(cb.equal(
                         root.get(User_.login), username));
 
-        LOGGER.info("Find by username " + username);
         List<User> response = em.createQuery(select).getResultList();
-        //проверяем на пустой ответ
-        User user;
         if (response.size() == 0) {
-            user = null;
+            LOGGER.warn("Username " + username + " not found");
+            return null;
         } else {
-            user = response.get(0);
+            LOGGER.info("Find by username " + username);
+            return response.get(0);
         }
-
-        return user;
     }
 }
 

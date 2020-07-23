@@ -14,7 +14,7 @@ import java.util.List;
 @Repository
 public class DebateDaoImpl extends AbstractDao<Debate, Long> implements DebateDao {
 
-    private static final Logger LOGGER = LogManager.getLogger(DebateDaoImpl.class);
+    private static final Logger LOGGER = LogManager.getLogger("imarket");
 
     public DebateDaoImpl() {
         super(Debate.class);
@@ -69,10 +69,10 @@ public class DebateDaoImpl extends AbstractDao<Debate, Long> implements DebateDa
                                 root.get(Debate_.id), id)
                         );
 
-        Debate debate = em.createQuery(select).getSingleResult();
+        List<Debate> debate = em.createQuery(select).getResultList();
 
-        if (debate != null) {
-            return debate;
+        if (debate.size() > 0) {
+            return debate.get(0);
         } else {
             LOGGER.error("No such Debate ID" + id);
             throw new NoSuchIdException("No such Debate ID" + id);

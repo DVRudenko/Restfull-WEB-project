@@ -1,6 +1,6 @@
 package by.rudenko.imarket.exceptions;
 
-public class NoSuсhURLException extends Exception {
+public class NoSuсhURLException extends RuntimeException {
 
     public NoSuсhURLException(String exception) {
 

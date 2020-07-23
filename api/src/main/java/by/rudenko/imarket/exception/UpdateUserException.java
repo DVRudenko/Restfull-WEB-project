@@ -6,7 +6,7 @@ package by.rudenko.imarket.exception;
  * @author Dmitry Rudenko
  * @version 1.0
  */
-public class UpdateUserException extends Exception {
+public class UpdateUserException extends RuntimeException {
 
     public UpdateUserException() {
     }

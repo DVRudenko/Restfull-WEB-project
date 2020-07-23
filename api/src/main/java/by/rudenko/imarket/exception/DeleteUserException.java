@@ -6,7 +6,7 @@ package by.rudenko.imarket.exception;
  * @author Dmitry Rudenko
  * @version 1.0
  */
-public class DeleteUserException extends Exception {
+public class DeleteUserException extends RuntimeException {
 
     public DeleteUserException() {
     }

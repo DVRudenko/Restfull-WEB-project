@@ -14,7 +14,7 @@ import java.util.List;
 @Repository
 public class CommentDaoImpl extends AbstractDao<Comment, Long> implements CommentDao {
 
-    private static final Logger LOGGER = LogManager.getLogger(CommentDaoImpl.class);
+    private static final Logger LOGGER = LogManager.getLogger("imarket");
 
     public CommentDaoImpl() {
         super(Comment.class);
@@ -65,10 +65,10 @@ public class CommentDaoImpl extends AbstractDao<Comment, Long> implements Commen
                                 root.get(Comment_.id), id)
                         );
 
-        Comment comment = em.createQuery(select).getSingleResult();
+        List<Comment> comment = em.createQuery(select).getResultList();
 
-        if (comment != null) {
-            return comment;
+        if (comment.size() > 0) {
+            return comment.get(0);
         } else {
             LOGGER.error("No such Comment ID" + id);
             throw new NoSuchIdException("No such Comment ID" + id);

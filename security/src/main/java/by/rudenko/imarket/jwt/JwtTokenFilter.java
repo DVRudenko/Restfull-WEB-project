@@ -22,7 +22,7 @@ import java.io.IOException;
 
 public class JwtTokenFilter extends GenericFilterBean {
 
-    private static final Logger LOGGER = LogManager.getLogger(JwtTokenFilter.class);
+    private static final Logger LOGGER = LogManager.getLogger("imarket");
     private JwtTokenProvider jwtTokenProvider;
 
 

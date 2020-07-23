@@ -17,7 +17,7 @@ import java.util.List;
 @Repository
 public class AdvertDaoImpl extends AbstractDao<Advert, Long> implements AdvertDao {
 
-    private static final Logger LOGGER = LogManager.getLogger(AdvertDaoImpl.class);
+    private static final Logger LOGGER = LogManager.getLogger("imarket");
 
     public AdvertDaoImpl() {
         super(Advert.class);
@@ -50,10 +50,10 @@ public class AdvertDaoImpl extends AbstractDao<Advert, Long> implements AdvertDa
                                 root.get(Advert_.id), id)
                         );
 
-        Advert advert = em.createQuery(select).getResultList().get(0);
+        List<Advert> advert = em.createQuery(select).getResultList();
 
-        if (advert != null) {
-            return advert;
+        if (advert.size() > 0) {
+            return advert.get(0);
         } else {
             LOGGER.error("No such Advert ID-" + id);
             throw new NoSuchIdException("No such Advert ID-" + id);

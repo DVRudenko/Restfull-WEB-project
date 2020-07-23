@@ -18,7 +18,7 @@ import java.util.List;
 
 public class AbstractDao<T extends Entity, PK extends Number> implements GenericDao<T, PK> {
 
-    private static final Logger LOGGER = LogManager.getLogger(AbstractDao.class);
+    private static final Logger LOGGER = LogManager.getLogger("imarket");
 
     @PersistenceContext
     protected EntityManager em;
@@ -51,8 +51,6 @@ public class AbstractDao<T extends Entity, PK extends Number> implements Generic
         final CriteriaBuilder cb = em.getCriteriaBuilder();
         final CriteriaQuery<Long> cq = cb.createQuery(Long.class);
         cq.select(cb.count(cq.from(entityClass)));
-        //если вдруг понадобиться по отдельному условию
-        //cq.where(/*something stuff*/);
         return em.createQuery(cq).getSingleResult();
     }
 
