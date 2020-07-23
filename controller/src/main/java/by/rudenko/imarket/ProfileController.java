@@ -3,7 +3,6 @@ package by.rudenko.imarket;
 import by.rudenko.imarket.dto.ProfileDTO;
 import by.rudenko.imarket.exception.NoSuchIdException;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -41,7 +40,7 @@ public class ProfileController {
         return profileService.findById(id);
     }
 
-   @DeleteMapping(value = "/{id}")
+    @DeleteMapping(value = "/{id}")
     @ResponseStatus(HttpStatus.OK)
     public void deleteProfile(@PathVariable(value = "id") Long id) throws NoSuchIdException {
 

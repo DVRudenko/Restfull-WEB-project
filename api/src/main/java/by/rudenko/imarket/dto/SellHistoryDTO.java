@@ -1,8 +1,8 @@
 package by.rudenko.imarket.dto;
 
+import by.rudenko.imarket.enumes.Enumes;
 import by.rudenko.imarket.model.Advert;
 import by.rudenko.imarket.model.User;
-import by.rudenko.imarket.enumes.Enumes;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 

@@ -15,9 +15,8 @@ import org.springframework.stereotype.Service;
 
 public class JwtUserDetailsService implements UserDetailsService {
 
-    private final UserService userService;
-
     private static final Logger LOGGER = LogManager.getLogger("imarket");
+    private final UserService userService;
 
     @Autowired
     public JwtUserDetailsService(UserService userService) {

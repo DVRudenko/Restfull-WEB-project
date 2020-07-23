@@ -3,7 +3,6 @@ package by.rudenko.imarket.jwt;
 import by.rudenko.imarket.model.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Arrays;

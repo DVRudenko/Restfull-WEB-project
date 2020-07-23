@@ -31,11 +31,11 @@ import java.time.LocalDate;
 public class AdvertTest {
 
     @Autowired
-    private  AdvertService advertService;
+    private AdvertService advertService;
     @Autowired
-    private  AdvertDao advertDAO ;
+    private AdvertDao advertDAO;
     @Autowired
-    private  ModelMapper modelMapper;
+    private ModelMapper modelMapper;
 
 
     //тестируем через DAO
@@ -60,32 +60,27 @@ public class AdvertTest {
     @Test
     public void advertCountTst() {
 
-   /*     advertDAO.save(newAdvert(1L));
-        advertDAO.save(newAdvert(2L));
-        advertDAO.save(newAdvert(3L));
-*/
         Long expected = advertService.entityCount();
-        Long actual = 18L; //сколько записей по факту в базе
-        Assert.assertEquals(expected,actual);
+        Long actual = 17L; //сколько записей по факту в базе
+        Assert.assertEquals(expected, actual);
 
     }
 
     //вспомогательные методы создания новых объявлений
-    private Advert newAdvert (Long id){
-        User user = new User(1L, "user-"+id, "pass-"+id, Enumes.UserRole.ROLE_USER);
+    private Advert newAdvert(Long id) {
+        User user = new User(1L, "user-" + id, "pass-" + id, Enumes.UserRole.ROLE_USER);
         AdvertTopic advertTopic = new AdvertTopic(1L, "Phones", "Mobile");
-        AdvertRank advertRank = new AdvertRank(1L, 10 , Enumes.RankName.PRIOR);
-        LocalDate date = LocalDate.now();
+        AdvertRank advertRank = new AdvertRank(1L, 10, Enumes.RankName.PRIOR);
 
         return new Advert(id, user, advertTopic, advertRank,
-                Enumes.AdverType.SELL, "Sell nice phone "+id,
-                100, date, Enumes.AdverStatus.NEW  );
+                Enumes.AdverType.SELL, "Sell nice phone " + id,
+                100, LocalDate.now(), Enumes.AdverStatus.NEW);
     }
 
-    private AdvertShortDTO newAdvertShortDTO (Long id){
+    private AdvertShortDTO newAdvertShortDTO(Long id) {
         return new AdvertShortDTO(id, 1L, 1L, 1L,
                 Enumes.AdverType.SELL, "Sell nice phone",
-                100, LocalDate.now(), Enumes.AdverStatus.NEW );
+                100, LocalDate.now(), Enumes.AdverStatus.NEW);
 
     }
 }

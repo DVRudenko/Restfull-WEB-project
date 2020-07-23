@@ -31,14 +31,15 @@ public class UserDaoImpl extends AbstractDao<User, Long> implements UserDao {
                 .where(cb.equal(
                         root.get(User_.login), username));
 
-        LOGGER.info ("Find by username "+username);
+        LOGGER.info("Find by username " + username);
         List<User> response = em.createQuery(select).getResultList();
         //проверяем на пустой ответ
         User user;
-        if (response.size()==0){
-            user=null;
+        if (response.size() == 0) {
+            user = null;
+        } else {
+            user = response.get(0);
         }
-        else {user = response.get(0);}
 
         return user;
     }

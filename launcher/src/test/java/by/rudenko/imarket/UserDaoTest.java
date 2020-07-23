@@ -1,7 +1,7 @@
 package by.rudenko.imarket;
 
-import by.rudenko.imarket.model.User;
 import by.rudenko.imarket.enumes.Enumes;
+import by.rudenko.imarket.model.User;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,7 +15,7 @@ import javax.transaction.Transactional;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes =
-                {LauncherTestConfiguration.class,
+        {LauncherTestConfiguration.class,
                 IMarketConfig.class,
                 Launcher.class})
 @WebAppConfiguration
@@ -34,6 +34,7 @@ public class UserDaoTest {
         User user = userDao.findByID(1L);
         Assert.assertNotNull(user);
     }
+
     //новый тест
     @Test
     public void findByUsernameTst() {
@@ -41,10 +42,8 @@ public class UserDaoTest {
         User newUser = new User(2L, "user2", "pass2", Enumes.UserRole.ROLE_USER);
         userDao.save(newUser);
         User user = userDao.findByUsername("user2");
-        Assert.assertEquals(user,newUser);
+        Assert.assertEquals(user, newUser);
     }
-
-
 
 
 }

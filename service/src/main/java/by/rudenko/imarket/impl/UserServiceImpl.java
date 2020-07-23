@@ -5,7 +5,9 @@ import by.rudenko.imarket.UserDao;
 import by.rudenko.imarket.UserService;
 import by.rudenko.imarket.dto.UserDTO;
 import by.rudenko.imarket.exception.NoSuchIdException;
-import by.rudenko.imarket.model.*;
+import by.rudenko.imarket.model.Profile;
+import by.rudenko.imarket.model.User;
+import by.rudenko.imarket.model.User_;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -59,7 +61,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<UserDTO> getAllUsersList(int pageNumber, int pageSize) {
-        List <SingularAttribute> attributes = new ArrayList<>();
+        List<SingularAttribute> attributes = new ArrayList<>();
         attributes.add(User_.profile);
         return userDao.getAll(pageNumber, pageSize, attributes).stream()
                 .map(x -> modelMapper.map(x, UserDTO.class))

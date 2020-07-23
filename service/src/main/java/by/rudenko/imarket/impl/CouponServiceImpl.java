@@ -80,7 +80,7 @@ public class CouponServiceImpl implements CouponService {
         final Coupon coupon = modelMapper.map(couponDTO, Coupon.class);
         final User user = coupon.getUser();
         final Profile profile = user.getProfile();
-        int newBalance = profile.getMoneyBalance()+coupon.getDiscount(); //обновляем баланс
+        int newBalance = profile.getMoneyBalance() + coupon.getDiscount(); //обновляем баланс
         profile.setMoneyBalance(newBalance);
         profileDao.update(profile); //сохраняем новый профиль
         couponDao.delete(coupon);//удаляем использованный купон

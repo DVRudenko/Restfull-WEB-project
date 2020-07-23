@@ -31,18 +31,14 @@ import java.util.Date;
 @Component
 public class JwtTokenProvider {
 
+    private static final Logger LOGGER = LogManager.getLogger("imarket");
     @Value("${jwt.token.secret}")
     private String secret;
-
     @Value("${jwt.token.expired}")
     private long validityInMilliseconds;
-
-
     @Qualifier("jwtUserDetailsService")
     @Autowired
     private UserDetailsService userDetailsService;
-
-    private static final Logger LOGGER = LogManager.getLogger("imarket");
 
     //будет нужен в UserService
     @Bean
@@ -66,7 +62,7 @@ public class JwtTokenProvider {
         Date now = new Date();
         Date validity = new Date(now.getTime() + validityInMilliseconds);
 
-        LOGGER.info("Token created for "+ username + "with role "+ roles);
+        LOGGER.info("Token created for " + username + "with role " + roles);
 
         return Jwts.builder()//
                 .setClaims(claims)//

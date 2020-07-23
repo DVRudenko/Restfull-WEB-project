@@ -1,6 +1,5 @@
 package by.rudenko.imarket.jwt;
 
-import by.rudenko.imarket.impl.AbstractDao;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.security.core.Authentication;
@@ -23,9 +22,8 @@ import java.io.IOException;
 
 public class JwtTokenFilter extends GenericFilterBean {
 
-    private JwtTokenProvider jwtTokenProvider;
-
     private static final Logger LOGGER = LogManager.getLogger(JwtTokenFilter.class);
+    private JwtTokenProvider jwtTokenProvider;
 
 
     public JwtTokenFilter(JwtTokenProvider jwtTokenProvider) {
