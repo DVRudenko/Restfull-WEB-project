@@ -1,5 +1,5 @@
 # Restfull-WEB-project
-Educational Restfull web project without user interface.  Spring MVC. Java 8. MySQL. Spring JWTSecurity. Back-end only. API access from Postman
+Educational RESTful web project without user interface.  Spring MVC. Java 8. MySQL. Spring JWTSecurity. Back-end only. API access from Postman
 
                                   Описание проекта
                                   Ver 1.3
